@@ -1,0 +1,24 @@
+<div class = 'row'>
+<div class='col-sm-12 text-center'>
+  <h1>Table {{selectedId}}
+  <button class = 'btn btn-danger float-sm-right' (click) = 'onBack()' >back</button>
+</h1>
+  <hr>
+</div>
+</div>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" (click)='openTab = OpenTab.MENU' [ngClass]="{'active':openTab== OpenTab.MENU}">Menu</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)='openTab = OpenTab.IN_PROGRESS' [ngClass]="{'active':openTab== OpenTab.IN_PROGRESS}">Pending</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)='openTab = OpenTab.ORDERED' [ngClass]="{'active':openTab== OpenTab.ORDERED}">Ordered</a>
+  </li>
+</ul>
+
+<app-menu-tab *ngIf="openTab === OpenTab.MENU" [table]="table"></app-menu-tab>
+<app-pending-tab *ngIf="openTab === OpenTab.IN_PROGRESS" [table]="table"></app-pending-tab>
+<app-ordered-tab *ngIf="openTab === OpenTab.ORDERED" [table]="table"></app-ordered-tab>
+<!-- <pre>{{table|json}}</pre> -->

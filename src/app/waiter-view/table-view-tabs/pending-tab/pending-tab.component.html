@@ -1,0 +1,19 @@
+
+<table class="table table-bordered ">
+    <thead>
+      <th colspan="2" class = "text-center">Pending Items</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of table.PendingOrders">
+        <td width="50%">
+            {{p.name}} 
+        </td>
+        <td class="text-center" width="50%">
+            <button class="btn btn-danger" (click) = 'removeFoodFromPending(p)'>Remove</button>
+        </td>
+        
+      </tr>
+    </tbody>
+    
+  </table>
+  <button class = "btn btn-success" (click) = 'send()'>Send</button>

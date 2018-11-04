@@ -1,3 +1,38 @@
-<p>
-  waiter-view works!
-</p>
+
+
+<table class="table">
+  <thead>
+    <th colspan="2" class = "text-center">Active</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of activeTables">
+      <td>
+        <a routerLink = "/table-view/{{t.tableNumber}}">Table #{{t.tableNumber}}</a>
+      </td>
+      <td class="text-center">
+        <button class="btn btn-success">{{t.numSeats}}</button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+
+<table class="table">
+  <thead>
+    <th colspan="2" class = "text-center">Inactive</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of inactiveTables">
+      <td>
+        Table #{{t.tableNumber}}
+      </td>
+      <td class="text-center"> 
+        <button class="btn btn-secondary" [disabled]="!t.is_active">{{t.numSeats}}</button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+<!-- <pre>{{my_tables|json}}</pre> -->
+
+

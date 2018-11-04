@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -8,20 +9,38 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WaiterViewComponent } from './waiter-view/waiter-view.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
+import { MenuTabComponent } from './waiter-view/table-view-tabs/menu-tab/menu-tab.component';
+import { PendingTabComponent } from './waiter-view/table-view-tabs/pending-tab/pending-tab.component';
+import { OrderedTabComponent } from './waiter-view/table-view-tabs/ordered-tab/ordered-tab.component';
+import { TableViewComponent } from './waiter-view/table-view/table-view.component';
+
+const appRoute: Routes = [
+  {path: 'waiter-view', component: WaiterViewComponent},
+  {path: 'table-view/:id', component: TableViewComponent},
+  {path: '', redirectTo: '/waiter-view', pathMatch:'full'}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     WaiterViewComponent,
     KitchenViewComponent,
-    ManagerViewComponent
+    ManagerViewComponent,
+    MenuTabComponent,
+    PendingTabComponent,
+    OrderedTabComponent,
+    TableViewComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    RouterModule.forRoot(
+      appRoute,
+      { enableTracing: true}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

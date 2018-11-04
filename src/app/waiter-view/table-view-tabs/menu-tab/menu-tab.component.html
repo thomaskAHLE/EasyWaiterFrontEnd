@@ -1,0 +1,68 @@
+<table class="table table-bordered ">
+  <thead>
+    <th colspan="2" class = "text-center">Appetizers</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of menu.appetizers">
+      <td width="50%"> 
+        {{a.name}} {{a.price}}
+      </td>
+      <td class="text-center" width="50%"> 
+        <button class="btn btn-success" (click) = 'addFoodToPending(a)'>Add</button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+
+<table class="table table-bordered ">
+  <thead>
+    <th colspan="2" class = "text-center">Sides</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of menu.sides">
+      <td width="50%">
+        {{s.name}} {{s.price}}
+      </td>
+      <td class="text-center" width="50%">
+          <button class="btn btn-success" (click) = 'addFoodToPending(s)'>Add</button>
+      </td>
+      
+    </tr>
+  </tbody>
+  
+</table>
+
+<table class="table table-bordered ">
+  <thead>
+    <th colspan="2" class = "text-center">Entrees</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of menu.entrees">
+      <td width="50%">
+        {{e.name}} {{e.price}}
+      </td>
+      <td class="text-center" width="50%">
+          <button class="btn btn-success" (click) = 'addFoodToPending(e)'>Add</button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+
+<table class="table table-bordered ">
+  <thead>
+    <th colspan="2" class = "text-center">Desserts</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of menu.desserts">
+      <td width="50%"> 
+        {{d.name}} {{d.price}}
+      </td>
+      <td class="text-center" width="50%">
+          <button class="btn btn-success" (click) = 'addFoodToPending(d)'>Add</button>
+      </td>
+    </tr>
+  </tbody>
+  
+</table>

@@ -1,8 +1,10 @@
-export class User_Model
+export enum USER_TYPE{WAITER, MANAGER, KITCHEN};
+
+export class UserModel
 {
-    user_name: string;
-    user_password: string;
-    user_email:string;
-    user_type: string; //temp - make enum or something
+    userName: string;
+    userPassword: string;
+    userEmail:string;
+    userType: USER_TYPE; 
     
 }
