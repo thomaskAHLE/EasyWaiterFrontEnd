@@ -6,7 +6,12 @@
       <tr *ngFor="let o of table.Orders">
         <td width="50%">
             {{o.name}}  
+
         </td>
+        <td width="50%">
+            {{o.getStatusString()}}
+        </td>
+
         
       </tr>
     </tbody>

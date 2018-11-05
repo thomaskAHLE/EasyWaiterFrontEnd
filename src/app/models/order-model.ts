@@ -11,5 +11,8 @@ export class OrderModel extends FoodModel {
         this.tableNumber = tableNumber;
         this.status = ORDER_STATUS.TO_DO;
     }
+    getStatusString() :string {
+        return OrderModel.OrderStatusStrings[this.status];
 
+    }
 }
