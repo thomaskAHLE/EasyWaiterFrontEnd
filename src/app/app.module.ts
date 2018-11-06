@@ -13,11 +13,13 @@ import { MenuTabComponent } from './waiter-view/table-view-tabs/menu-tab/menu-ta
 import { PendingTabComponent } from './waiter-view/table-view-tabs/pending-tab/pending-tab.component';
 import { OrderedTabComponent } from './waiter-view/table-view-tabs/ordered-tab/ordered-tab.component';
 import { TableViewComponent } from './waiter-view/table-view/table-view.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
   {path: 'table-view/:id', component: TableViewComponent},
-  {path: '', redirectTo: '/waiter-view', pathMatch:'full'}
+  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: '/login', pathMatch:'full'}
 ]
 
 @NgModule({
@@ -30,6 +32,7 @@ const appRoute: Routes = [
     PendingTabComponent,
     OrderedTabComponent,
     TableViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
