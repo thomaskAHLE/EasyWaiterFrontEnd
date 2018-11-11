@@ -10,10 +10,10 @@
         </td>
         <td width="50%">
             {{o.getStatusString()}}
+          <div *ngIf='o.status == orderStatus.FINISHED'>
+            <button class = "btn btn-success" (click) = 'markFoodAsDelivered(o)' >Delivered</button>
+          </div>
         </td>
-
-        
       </tr>
     </tbody>
-    
   </table>

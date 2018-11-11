@@ -22,13 +22,8 @@ export class PendingTabComponent implements OnInit {
 
   send():void //temperary function 
   {
-    console.log('send')
-    console.log(this.table.PendingOrders)
-    this.table.Orders = this.table.Orders.concat(this.table.PendingOrders);
-    console.log(this.table.Orders)
+    this.table.Orders = this.table.Orders.concat(this.table.PendingOrders); 
     this.table.PendingOrders = [];
-    console.log(this.table.PendingOrders)
-
   }
 
   ngOnInit() {

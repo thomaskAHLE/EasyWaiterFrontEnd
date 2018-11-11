@@ -19,6 +19,7 @@ const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
   {path: 'table-view/:id', component: TableViewComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'kitchen-view',component: KitchenViewComponent},
   {path: '', redirectTo: '/login', pathMatch:'full'}
 ]
 
