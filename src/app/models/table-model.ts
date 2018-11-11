@@ -26,4 +26,13 @@ export class TableModel {
         this.PendingOrders.splice(this.PendingOrders.indexOf(pendingItem),1)
     }
 
+    readyForPickup():boolean {
+
+        for(let o  of this.Orders){
+            if(o.status == ORDER_STATUS.FINISHED)
+            return true;
+        }
+        return false;
+    }
+
 }

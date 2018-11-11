@@ -1,29 +1,8 @@
 <a routerLink = "/waiter-view/">Login Waiter</a>
-<!-- <table class='table table-bordered'>
-<thead>
-    <th width="33%" class = "text-center">To Do</th>
-    <th width="33%" class = "text-center">In Progress</th>
-    <th width="33%" class = "text-center">Finished</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let td of toDoOrders" >
-      <td > 
-        {{td.name}} 
-        <button (click) = 'moveToInProg(td)'></button>
-      </td>
-    </tr>
-    <tr *ngFor="let ip of inProgOrders" >
-        <td > 
-          {{ip.name}}
-          <button (click) = 'moveToFinished(ip)'></button>
-        </td>
-      </tr>
-  </tbody>
-  
-</table> -->
-<div class="container">
+
+<div class="container-fluid">
     <div class="row">
-      <div class="col-4">
+      <div class="col-4 border">
         To Do
         <ul class="list-group" *ngFor = 'let td of toDoOrders'>
             <li class="list-group-item">{{td.name}} 
@@ -32,7 +11,7 @@
             
           </ul>
       </div>
-      <div class="col-4">
+      <div class="col-4 border">
         In Progress
         <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
             <li class="list-group-item">{{ip.name}} 
@@ -41,7 +20,7 @@
             
           </ul>
       </div>
-      <div class="col-4">
+      <div class="col-4 border">
         Finished
        <ul class="list-group" *ngFor = 'let f of finishedOrders'>
             <li class="list-group-item">{{f.name}} 

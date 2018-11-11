@@ -1,5 +1,5 @@
 
-
+<div class='table-responsive'>
 <table class="table">
   <thead>
     <th colspan="2" class = "text-center">Active</th>
@@ -10,13 +10,19 @@
         <a routerLink = "/table-view/{{t.tableNumber}}">Table #{{t.tableNumber}}</a>
       </td>
       <td class="text-center">
-        <button class="btn btn-success">{{t.numSeats}}</button>
+        <div *ngIf = 't.readyForPickup();else notready'>
+        <button class="btn btn-success">Ready For Pickup</button>
+      </div>
+        <ng-template #notready>
+            <button class="btn btn-secondary" disabled >Ready For Pickup</button>
+        </ng-template>
       </td>
     </tr>
   </tbody>
   
 </table>
-
+</div>
+<div class = 'table-responsive'>
 <table class="table">
   <thead>
     <th colspan="2" class = "text-center">Inactive</th>
@@ -33,6 +39,7 @@
   </tbody>
   
 </table>
+</div>
 <!-- <pre>{{my_tables|json}}</pre> -->
 
 
