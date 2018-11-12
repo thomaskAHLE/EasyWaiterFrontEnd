@@ -2,28 +2,28 @@
 
 <div class="container-fluid">
     <div class="row">
-      <div class="col-4 border">
+      <div class="col-4 border" mwlDroppable (drop) = 'moveToToDo($event.dropData)' >
         To Do
         <ul class="list-group" *ngFor = 'let td of toDoOrders'>
-            <li class="list-group-item">{{td.name}} 
-                <button (click) = 'moveToInProg(td)'></button>
+            <div mwlDraggable [dropData] = td>
+            <li class="list-group-item">{{td.name}}  for Table:{{td.tableNumber}}
             </li>
-            
+        </div>
           </ul>
       </div>
-      <div class="col-4 border">
+      <div class="col-4 border" mwlDroppable (drop)='moveToInProg($event.dropData)'>
         In Progress
         <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
-            <li class="list-group-item">{{ip.name}} 
-                <button (click) = 'moveToFinished(ip)'></button>
+            <div mwlDraggable [dropData] = ip>
+            <li class="list-group-item">{{ip.name}} for Table:{{ip.tableNumber}}
             </li>
-            
+        </div>
           </ul>
       </div>
-      <div class="col-4 border">
+      <div class="col-4 border" mwlDroppable (drop)='moveToFinished($event.dropData)'>
         Finished
        <ul class="list-group" *ngFor = 'let f of finishedOrders'>
-            <li class="list-group-item">{{f.name}} 
+            <li class="list-group-item">{{f.name}} for Table:{{f.tableNumber}}
             </li>
             
           </ul>

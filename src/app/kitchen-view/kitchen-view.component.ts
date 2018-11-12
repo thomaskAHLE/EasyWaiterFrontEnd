@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck, Input} from '@angular/core';
 import {RestaurantService} from '../services/restaurant.service';
 import {OrderModel,ORDER_STATUS} from '../models/order-model';
+
 @Component({
   selector: 'app-kitchen-view',
   templateUrl: './kitchen-view.component.html',
@@ -23,6 +24,13 @@ export class KitchenViewComponent implements OnInit, DoCheck {
     return this._restaurantService.getToDoOrders();
   }
 
+  moveToToDo(order:OrderModel)
+  {
+    order.status = ORDER_STATUS.TO_DO;
+    this.toDoOrders=this._restaurantService.getToDoOrders();
+    this.inProgOrders = this._restaurantService.getInProgOrders();
+
+  }
   moveToInProg(order:OrderModel){
     order.status = ORDER_STATUS.IN_PROGRESS;
     this.toDoOrders = this._restaurantService.getToDoOrders();

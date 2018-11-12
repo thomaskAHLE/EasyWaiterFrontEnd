@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DragAndDropModule } from 'angular-draggable-droppable';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WaiterViewComponent } from './waiter-view/waiter-view.component';
@@ -40,6 +40,7 @@ const appRoute: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DragAndDropModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoute,
