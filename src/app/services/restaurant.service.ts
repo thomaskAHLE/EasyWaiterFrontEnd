@@ -12,6 +12,7 @@ export class RestaurantService {
 
   tables: TableModel[];
   waiters: UserModel[];
+  orders:OrderModel[] = [];
   constructor(_userServers: UserService) {
     this.tables = tableData;
     console.log('Restaurant service constructor');
@@ -21,41 +22,29 @@ export class RestaurantService {
     return tableData.filter(t => t.assignedTo === waiter);
   }
   getToDoOrders():OrderModel[]{
-    let todoOrders: OrderModel[]=[];
-    for(let table of this.tables)
-    {
-      if(table.isActive)
-      {
-       todoOrders = todoOrders.concat(table.Orders.filter(t=> t.status === ORDER_STATUS.TO_DO));
-      }
-    }
-    return todoOrders;
+    return this.orders.filter(o=> o.status === ORDER_STATUS.TO_DO);
   }
+
+  addPendingToOrders(ordersToAdd: OrderModel[])
+  {
+    this.orders = this.orders.concat(ordersToAdd);
+  }
+
+  getOrdersForTable(tableNumber:number):OrderModel[]{
+    return this.orders.filter(o=> o.tableNumber === tableNumber);
+  }
+
 
   getInProgOrders():OrderModel[]{
-    let inProgOrders: OrderModel[]=[];
-    for(let table of this.tables)
-    {
-      if(table.isActive)
-      {
-       inProgOrders = inProgOrders.concat(table.Orders.filter(t=> t.status === ORDER_STATUS.IN_PROGRESS));
-      }
-    }
-    return inProgOrders;
+    return this.orders.filter(o=> o.status === ORDER_STATUS.IN_PROGRESS);
   }
   getFinishedOrders():OrderModel[]{
-    let finishedOrders: OrderModel[]=[];
-    for(let table of this.tables)
-    {
-      if(table.isActive)
-      {
-       finishedOrders = finishedOrders.concat(table.Orders.filter(t=> t.status === ORDER_STATUS.FINISHED));
-      }
-    }
-    return finishedOrders;
+    return this.orders.filter(o=> o.status === ORDER_STATUS.FINISHED);
   }
   
-
+  tableReadyForPickup(tableNum:number):boolean{
+    return (this.orders.filter(o=> o.status === ORDER_STATUS.FINISHED && o.tableNumber === tableNum).length > 0);
+  }
 
 }
 

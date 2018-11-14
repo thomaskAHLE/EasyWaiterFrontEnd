@@ -13,6 +13,5 @@ export class OrderModel extends FoodModel {
     }
     getStatusString() :string {
         return OrderModel.OrderStatusStrings[this.status];
-
     }
 }

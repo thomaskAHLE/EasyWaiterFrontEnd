@@ -10,7 +10,7 @@
         <a routerLink = "/table-view/{{t.tableNumber}}">Table #{{t.tableNumber}}</a>
       </td>
       <td class="text-center">
-        <div *ngIf = 't.readyForPickup();else notready'>
+        <div *ngIf = 'readyForPickup(t.tableNumber);else notready'>
         <button class="btn btn-success">Ready For Pickup</button>
       </div>
         <ng-template #notready>

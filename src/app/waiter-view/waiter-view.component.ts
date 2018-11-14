@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TableModel} from '../models/table-model';
 import {UserService} from '../services/user.service';
 import { RestaurantService } from '../services/restaurant.service';
+import { ORDER_STATUS } from '../models/order-model';
 @Component({
   selector: 'app-waiter-view',
   templateUrl: './waiter-view.component.html',
@@ -21,8 +22,10 @@ export class WaiterViewComponent implements OnInit {
     this.allTables = this._restaurantService.getWaitersTables(waiter);
     this.activeTables = this.allTables.filter(t => t.isActive);
     this.inactiveTables = this.allTables.filter(t => !t.isActive);
-    console.log(waiter);
-    console.log(this.allTables);
   }
 
+  readyForPickup(tableNum:number):boolean{
+    return this._restaurantService.tableReadyForPickup(tableNum);
+
+  }
 }
