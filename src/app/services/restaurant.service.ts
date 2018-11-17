@@ -4,6 +4,7 @@ import { UserModel, USER_TYPE } from '../models/user-model';
 import { UserService, waiterData } from './user.service';
 import { OrderModel,ORDER_STATUS } from '../models/order-model';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database/';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 @Injectable({
@@ -13,18 +14,18 @@ import {map} from 'rxjs/operators';
 export class RestaurantService {
 
   tables: TableModel[];
-  a: AngularFireList<OrderModel>;
+  a: AngularFirestoreCollection<OrderModel>;
   o: Observable<OrderModel[]>;
   waiters: UserModel[];
   path:string = "/orders";
   orders:OrderModel[] = [];
   ordersOb: Observable<OrderModel[]>;
-  constructor( private db:AngularFireDatabase) {
+  constructor( private db:AngularFirestore) {
     this.tables = tableData;
     console.log('Restaurant service constructor');
-    this.a = this.db.list('orders');
-    this.ordersOb = this.getOrderObservable();
-    this.ordersOb.subscribe((data: OrderModel[]) => {console.log(data); this.orders = data as OrderModel[];});
+    this.a = this.db.collection('orders');
+    //this.ordersOb = this.getOrderObservable();
+    //this.ordersOb.subscribe((data: OrderModel[]) => {console.log(data); this.orders = data as OrderModel[];});
 
   }
 
@@ -37,8 +38,7 @@ export class RestaurantService {
 
   addPendingToOrders(ordersToAdd: OrderModel[])
   {
-    const fire = this.db.database.ref(this.path);
-    ordersToAdd.forEach( o => fire.push(o));
+    ordersToAdd.forEach( o => this.a.add(JSON.parse(JSON.stringify(o))));
     //this.orders = this.orders.concat(ordersToAdd);
   }
 
@@ -66,10 +66,18 @@ export class RestaurantService {
   //         )
   //       );
   getOrderObservable(): Observable<any[]>{
-    return this.a.snapshotChanges().pipe(map(obj => obj.map(o => (new OrderModel(o.payload.val().food, o.payload.val().tableNumber, o.payload.val().status, o.payload.key)
-    ))));
+    return this.a.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status);  data.$key = o.payload.doc.id; return data;}
+    )));
     // return this.db.list<OrderModel>(this.path).valueChanges().pipe(map(obj => obj.map(o => new OrderModel( o.food, o.tableNumber, o.status, o.$key))));
   }
+
+  // getOrderObservableforTable(tableNum:number){
+  //  let v = this.db.collection('orders', ref =>{
+  //     return ref.where('tableNumber','==',tableNum) 
+  //   });
+  //   return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;}
+
+  // }
 }
 
 

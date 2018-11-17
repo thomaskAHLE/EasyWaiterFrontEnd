@@ -54,7 +54,7 @@ const appRoute: Routes = [
     )
     ,   
      AngularFireModule.initializeApp(environment.firebase)
-    , AngularFireDatabaseModule
+    , AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
