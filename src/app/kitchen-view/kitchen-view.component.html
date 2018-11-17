@@ -6,7 +6,7 @@
             <h2 class = 'text-center'>To Do</h2>
         <ul class="list-group" *ngFor = 'let td of toDoOrders'>
             <div mwlDraggable [dropData] = td>
-            <li class="list-group-item text-center">{{td.name}}  for Table {{td.tableNumber}}
+            <li class="list-group-item text-center">{{td.food.name}}  for Table {{td.tableNumber}}
             </li>
         </div>
           </ul>
@@ -15,7 +15,7 @@
             <h2 class = 'text-center'>In Progress</h2>
         <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
             <div mwlDraggable [dropData] = ip>
-            <li class="list-group-item text-center">{{ip.name}} for Table {{ip.tableNumber}}
+            <li class="list-group-item text-center">{{ip.food.name}} for Table {{ip.tableNumber}}
             </li>
         </div>
           </ul>
@@ -23,7 +23,7 @@
       <div class="col-4 border" mwlDroppable (drop)='moveToFinished($event.dropData)'>
         <h2 class = 'text-center'>Finished</h2>
        <ul class="list-group" *ngFor = 'let f of finishedOrders'>
-            <li class="list-group-item text-center">{{f.name}} for Table {{f.tableNumber}}
+            <li class="list-group-item text-center">{{f.food.name}} for Table {{f.tableNumber}}
             </li>
             
           </ul>

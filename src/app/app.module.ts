@@ -14,6 +14,12 @@ import { PendingTabComponent } from './waiter-view/table-view-tabs/pending-tab/p
 import { OrderedTabComponent } from './waiter-view/table-view-tabs/ordered-tab/ordered-tab.component';
 import { TableViewComponent } from './waiter-view/table-view/table-view.component';
 import { LoginComponent } from './login/login.component';
+import { AngularFireModule } from '@angular/fire';
+import{AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+
+
 
 const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
@@ -46,6 +52,9 @@ const appRoute: Routes = [
       appRoute,
       { enableTracing: true}
     )
+    ,   
+     AngularFireModule.initializeApp(environment.firebase)
+    , AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

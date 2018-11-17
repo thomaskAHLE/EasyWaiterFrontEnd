@@ -3,7 +3,9 @@ import { TableModel } from '../models/table-model';
 import { UserModel, USER_TYPE } from '../models/user-model';
 import { UserService, waiterData } from './user.service';
 import { OrderModel,ORDER_STATUS } from '../models/order-model';
-
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database/';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,11 +13,19 @@ import { OrderModel,ORDER_STATUS } from '../models/order-model';
 export class RestaurantService {
 
   tables: TableModel[];
+  a: AngularFireList<OrderModel>;
+  o: Observable<OrderModel[]>;
   waiters: UserModel[];
+  path:string = "/orders";
   orders:OrderModel[] = [];
-  constructor(_userServers: UserService) {
+  ordersOb: Observable<OrderModel[]>;
+  constructor( private db:AngularFireDatabase) {
     this.tables = tableData;
     console.log('Restaurant service constructor');
+    this.a = this.db.list('orders');
+    this.ordersOb = this.getOrderObservable();
+    this.ordersOb.subscribe((data: OrderModel[]) => {console.log(data); this.orders = data as OrderModel[];});
+
   }
 
   getWaitersTables(waiter): TableModel[] {
@@ -27,7 +37,9 @@ export class RestaurantService {
 
   addPendingToOrders(ordersToAdd: OrderModel[])
   {
-    this.orders = this.orders.concat(ordersToAdd);
+    const fire = this.db.database.ref(this.path);
+    ordersToAdd.forEach( o => fire.push(o));
+    //this.orders = this.orders.concat(ordersToAdd);
   }
 
   getOrdersForTable(tableNumber:number):OrderModel[]{
@@ -45,7 +57,19 @@ export class RestaurantService {
   tableReadyForPickup(tableNum:number):boolean{
     return (this.orders.filter(o=> o.status === ORDER_STATUS.FINISHED && o.tableNumber === tableNum).length > 0);
   }
-
+  //  constructor(db: AngularFireDatabase) {
+  //       this.itemsRef = db.list('messages');
+  //       // Use snapshotChanges().map() to store the key
+  //       this.items = this.itemsRef.snapshotChanges().pipe(
+  //         map(changes => 
+  //           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+  //         )
+  //       );
+  getOrderObservable(): Observable<any[]>{
+    return this.a.snapshotChanges().pipe(map(obj => obj.map(o => (new OrderModel(o.payload.val().food, o.payload.val().tableNumber, o.payload.val().status, o.payload.key)
+    ))));
+    // return this.db.list<OrderModel>(this.path).valueChanges().pipe(map(obj => obj.map(o => new OrderModel( o.food, o.tableNumber, o.status, o.$key))));
+  }
 }
 
 
