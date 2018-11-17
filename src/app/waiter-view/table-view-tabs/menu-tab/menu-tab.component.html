@@ -31,11 +31,11 @@
   <tbody>
     <tr *ngFor="let s of menuSides">
       <td width="50%">
-        <div class="panel">
-        {{s.name}} {{s.price}}
-        <i class="fas fa-info-circle"></i>
-          <p>{{s.description}} </p> 
-        </div>
+          <div class="panel">
+              {{s.name}} {{s.price}}
+              <i class="fas fa-info-circle"></i>
+              <p>{{s.description}}</p> 
+            </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(s)'>Add</button>
@@ -56,8 +56,8 @@
           <div class="panel">
               {{e.name}} {{e.price}}
               <i class="fas fa-info-circle"></i>
-                <p>{{e.description}} </p> 
-              </div>
+              <p>{{e.description}}</p> 
+            </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(e)'>Add</button>
@@ -77,8 +77,8 @@
           <div class="panel">
               {{d.name}} {{d.price}}
               <i class="fas fa-info-circle"></i>
-                <p>{{d.description}} </p> 
-              </div>
+              <p>{{d.description}}</p> 
+            </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(d)'>Add</button>
