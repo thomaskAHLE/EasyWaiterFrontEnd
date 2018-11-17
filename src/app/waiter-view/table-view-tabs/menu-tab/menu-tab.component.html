@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script type="text/javascript" src="menu-scripts.js"></script>
 <table class="table table-bordered ">
   <thead>
     <th colspan="2" class = "text-center">Appetizers</th>
@@ -6,7 +8,11 @@
   <tbody>
     <tr *ngFor="let a of menu.appetizers">
       <td width="50%"> 
-        {{a.name}} {{a.price}}
+        <div class="panel">
+          {{a.name}} {{a.price}}
+          <i class="fas fa-info-circle"></i>
+          <p>Description: placeholder</p> 
+        </div>
       </td>
       <td class="text-center" width="50%"> 
         <button class="btn btn-success" (click) = 'addFoodToPending(a)'>Add</button>
@@ -23,7 +29,11 @@
   <tbody>
     <tr *ngFor="let s of menu.sides">
       <td width="50%">
+        <div class="panel">
         {{s.name}} {{s.price}}
+        <i class="fas fa-info-circle"></i>
+          <p>Description: placeholder</p> 
+        </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(s)'>Add</button>
@@ -42,6 +52,7 @@
     <tr *ngFor="let e of menu.entrees">
       <td width="50%">
         {{e.name}} {{e.price}}
+        <i class="fas fa-info-circle"></i>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(e)'>Add</button>
@@ -59,6 +70,7 @@
     <tr *ngFor="let d of menu.desserts">
       <td width="50%"> 
         {{d.name}} {{d.price}}
+        <i class="fas fa-info-circle"></i>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(d)'>Add</button>

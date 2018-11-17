@@ -1,0 +1,26 @@
+.active, .accordion:hover {
+    background-color: #ccc; 
+    
+}
+
+.panel p {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+.panel i:active + p{
+    cursor: pointer;
+    display: block;
+}
+
+.panel i:hover + p{
+    cursor: pointer;
+    display: block;
+}
+
+.panel i:after + p{
+    cursor: pointer;
+    display: block;
+}
