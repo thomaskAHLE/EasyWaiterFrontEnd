@@ -47,11 +47,7 @@ export class MenuService {
   foodlist: FoodModel[] =[];
   menu:MenuModel = new MenuModel();
   constructor(private _afs:AngularFirestore) { 
-    this.menuCollection = _afs.collection('menu');
-    for( let i of foodList)
-      {
-      this.menu.add_item(i);
-      }
+    this.menuCollection = this._afs.collection('menu');
   }
   getMenu (): MenuModel{
     return this.menu;
@@ -67,7 +63,6 @@ export class MenuService {
   getOrderObservable(): Observable<any[]>{
     return this.menuCollection.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new FoodModel(o.payload.doc.data().name,o.payload.doc.data().price, o.payload.doc.data().category, o.payload.doc.data().description);  data.$key = o.payload.doc.id; return data;}
     )));
-    // return this.db.list<OrderModel>(this.path).valueChanges().pipe(map(obj => obj.map(o => new OrderModel( o.food, o.tableNumber, o.status, o.$key))));
   }
 }
 

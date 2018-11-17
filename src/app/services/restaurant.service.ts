@@ -19,10 +19,10 @@ export class RestaurantService {
   path:string = "/orders";
   orders:OrderModel[] = [];
   ordersOb: Observable<OrderModel[]>;
-  constructor( private db:AngularFirestore) {
+  constructor( private afs:AngularFirestore) {
     this.tables = tableData;
     console.log('Restaurant service constructor');
-    this.orderCollection = this.db.collection('orders');
+    this.orderCollection = this.afs.collection('orders');
     //this.ordersOb = this.getOrderObservable();
     //this.ordersOb.subscribe((data: OrderModel[]) => {console.log(data); this.orders = data as OrderModel[];});
 
@@ -32,56 +32,56 @@ export class RestaurantService {
   getWaitersTables(waiter): TableModel[] {
     return tableData.filter(t => t.assignedTo === waiter);
   }
-  getToDoOrders():OrderModel[]{
-    return this.orders.filter(o=> o.status === ORDER_STATUS.TO_DO);
+  getToDoOrders():Observable<OrderModel[]>{
+    let v:AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref =>{
+      return ref.where('status','==',ORDER_STATUS.TO_DO) 
+    });
+    return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
   }
 
   addPendingToOrders(ordersToAdd: OrderModel[])
   {
     ordersToAdd.forEach( o => this.orderCollection.add(JSON.parse(JSON.stringify(o))));
-    //this.orders = this.orders.concat(ordersToAdd);
   }
 
-  getOrdersForTable(tableNumber:number):OrderModel[]{
-    return this.orders.filter(o=> o.tableNumber === tableNumber);
-  }
+  
 
 
-  getInProgOrders():OrderModel[]{
-    return this.orders.filter(o=> o.status === ORDER_STATUS.IN_PROGRESS);
+  getInProgOrders():Observable<OrderModel[]>{
+    let v:AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref =>{
+      return ref.where('status','==',ORDER_STATUS.IN_PROGRESS) 
+    });
+    return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
   }
-  getFinishedOrders():OrderModel[]{
-    return this.orders.filter(o=> o.status === ORDER_STATUS.FINISHED);
+  
+  getFinishedOrders():Observable<OrderModel[]>{
+    let v:AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref =>{
+      return ref.where('status','==',ORDER_STATUS.FINISHED) 
+    });
+    return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
   }
+  
   
   tableReadyForPickup(tableNum:number):boolean{
     return (this.orders.filter(o=> o.status === ORDER_STATUS.FINISHED && o.tableNumber === tableNum).length > 0);
   }
-  //  constructor(db: AngularFireDatabase) {
-  //       this.itemsRef = db.list('messages');
-  //       // Use snapshotChanges().map() to store the key
-  //       this.items = this.itemsRef.snapshotChanges().pipe(
-  //         map(changes => 
-  //           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-  //         )
-  //       );
-  getOrderObservable(): Observable<any[]>{
+
+  getOrderObservable(): Observable<OrderModel[]>{
     return this.orderCollection.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status);  data.$key = o.payload.doc.id; return data;}
     )));
-    // return this.db.list<OrderModel>(this.path).valueChanges().pipe(map(obj => obj.map(o => new OrderModel( o.food, o.tableNumber, o.status, o.$key))));
   }
 
   updateOrderStatus(order:OrderModel)
   {
     this.orderCollection.doc(order.$key).update({status: order.status});
   }
-  // getOrderObservableforTable(tableNum:number){
-  //  let v = this.db.collection('orders', ref =>{
-  //     return ref.where('tableNumber','==',tableNum) 
-  //   });
-  //   return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;}
+  getOrderObservableforTable(tableNum:number):Observable<OrderModel[]>{
+   let v:AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref =>{
+      return ref.where('tableNumber','==',tableNum) 
+    });
+    return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
 
-  // }
+  }
 }
 
 
