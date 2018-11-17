@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DragAndDropModule } from 'angular-draggable-droppable';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WaiterViewComponent } from './waiter-view/waiter-view.component';
@@ -13,11 +13,14 @@ import { MenuTabComponent } from './waiter-view/table-view-tabs/menu-tab/menu-ta
 import { PendingTabComponent } from './waiter-view/table-view-tabs/pending-tab/pending-tab.component';
 import { OrderedTabComponent } from './waiter-view/table-view-tabs/ordered-tab/ordered-tab.component';
 import { TableViewComponent } from './waiter-view/table-view/table-view.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
   {path: 'table-view/:id', component: TableViewComponent},
-  {path: '', redirectTo: '/waiter-view', pathMatch:'full'}
+  {path: 'login', component: LoginComponent},
+  {path: 'kitchen-view',component: KitchenViewComponent},
+  {path: '', redirectTo: '/login', pathMatch:'full'}
 ]
 
 @NgModule({
@@ -30,12 +33,14 @@ const appRoute: Routes = [
     PendingTabComponent,
     OrderedTabComponent,
     TableViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DragAndDropModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoute,
