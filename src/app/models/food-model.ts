@@ -6,6 +6,7 @@ export class FoodModel
     public price: number;
     public category:FOOD_CATEGORY;
     public description:string;
+    public $key:string;
 
     constructor(name:string, price:number, category:FOOD_CATEGORY, description = 'description')
     {
