@@ -4,16 +4,19 @@
     
   </thead>
   <tbody>
-    <tr *ngFor="let a of menu.appetizers">
+     
+    <tr *ngFor="let a of menuApps">
+        
       <td width="50%"> 
-        {{a.name}} {{a.price}}
+        
+        {{a.name}} {{a.price}} : {{a.description}}
       </td>
       <td class="text-center" width="50%"> 
         <button class="btn btn-success" (click) = 'addFoodToPending(a)'>Add</button>
       </td>
     </tr>
   </tbody>
-  
+
 </table>
 
 <table class="table table-bordered ">
@@ -21,7 +24,7 @@
     <th colspan="2" class = "text-center">Sides</th>
   </thead>
   <tbody>
-    <tr *ngFor="let s of menu.sides">
+    <tr *ngFor="let s of menuSides">
       <td width="50%">
         {{s.name}} {{s.price}}
       </td>
@@ -39,7 +42,7 @@
     <th colspan="2" class = "text-center">Entrees</th>
   </thead>
   <tbody>
-    <tr *ngFor="let e of menu.entrees">
+    <tr *ngFor="let e of menuEntrees">
       <td width="50%">
         {{e.name}} {{e.price}}
       </td>
@@ -56,7 +59,7 @@
     <th colspan="2" class = "text-center">Desserts</th>
   </thead>
   <tbody>
-    <tr *ngFor="let d of menu.desserts">
+    <tr *ngFor="let d of menuDesserts">
       <td width="50%"> 
         {{d.name}} {{d.price}}
       </td>
