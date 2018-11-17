@@ -34,6 +34,5 @@ export class OrderedTabComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy()
   {
-
   }
 }
