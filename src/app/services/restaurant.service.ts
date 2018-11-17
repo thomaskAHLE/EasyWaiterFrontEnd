@@ -29,6 +29,7 @@ export class RestaurantService {
 
   }
 
+  
   getWaitersTables(waiter): TableModel[] {
     return tableData.filter(t => t.assignedTo === waiter);
   }
@@ -71,6 +72,10 @@ export class RestaurantService {
     // return this.db.list<OrderModel>(this.path).valueChanges().pipe(map(obj => obj.map(o => new OrderModel( o.food, o.tableNumber, o.status, o.$key))));
   }
 
+  updateOrderStatus(order:OrderModel)
+  {
+    this.a.doc(order.$key).update({status: order.status});
+  }
   // getOrderObservableforTable(tableNum:number){
   //  let v = this.db.collection('orders', ref =>{
   //     return ref.where('tableNumber','==',tableNum) 

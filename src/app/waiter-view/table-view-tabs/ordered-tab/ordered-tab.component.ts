@@ -18,7 +18,7 @@ export class OrderedTabComponent implements OnInit, OnDestroy {
   {
 
     order.status= ORDER_STATUS.DELIVERED;
-    console.log(order);
+    this._restaurantService.updateOrderStatus(order);
   }
   
   ngOnInit() {
