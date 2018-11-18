@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.back-grid {
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    grid-template-areas:
+    "nav-menu table-space waiters-nav"; 
+}
+
+.nav-menu{
+    background-color: grey;
+    position: fixed;
+    font-size: 60px;
+    grid-area: nav-menu;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-areas: 
+    "nav-menu-item1"
+    "nav-menu-item2"
+    "nav-menu-item3"
+    "nav-menu-item4";
+}
+
+.nav-menu-item1{
+    grid-area: nav-menu-item1;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-menu-item1:hover{
+    background-color: aqua;
+}
+
+.nav-menu-item2{
+    grid-area: nav-menu-item2;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-menu-item2:hover{
+    background-color: aqua;
+}
+
+.nav-menu-item3{
+    grid-area: nav-menu-item3;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-menu-item3 > a {
+    color: black;
+}
+
+.nav-menu-item3:hover {
+    background-color: aqua;
+}
+
+.nav-menu-item3:after{
+    background-color: rgb(55, 0, 255); 
+}
+
+.nav-menu-item4{
+    grid-area: nav-menu-item4;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-menu-item4:hover{
+    background-color: aqua;
+}

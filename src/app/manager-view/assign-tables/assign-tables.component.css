@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.back-grid {
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    grid-template-areas:
+    "nav-menu table-space waiters-nav"; 
+}
+
+.table-space{
+    grid-area: table-space;
+}
+
+.table-container{
+    background-image: url("floor.jpg");
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100vh;
+    width: 70vw;
+    position: fixed;
+    grid-column-gap: 10%;
+}
+
+.table-space-item{
+    align-self: center;
+    justify-self: center;
+    background-color: blueviolet;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.waiters-nav{
+    grid-area: waiters-nav;
+    height: 100vh;
+}
+
+.waiters-nav > .list-group >.list-group-item.list-group-item-info > p{
+    text-align: center;
+}
+
+.waiters-nav li{
+    height: 80px;
+}

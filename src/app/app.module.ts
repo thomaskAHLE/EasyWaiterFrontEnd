@@ -17,6 +17,10 @@ import { LoginComponent } from './login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import{AngularFirestoreModule} from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { AssignTablesComponent } from './manager-view/assign-tables/assign-tables.component';
+import { CreateReportComponent } from './manager-view/create-report/create-report.component';
+import { EditMenuComponent } from './manager-view/edit-menu/edit-menu.component';
+import { AddWaiterComponent } from './manager-view/add-waiter/add-waiter.component';
 
 
 
@@ -25,6 +29,7 @@ const appRoute: Routes = [
   {path: 'table-view/:id', component: TableViewComponent},
   {path: 'login', component: LoginComponent},
   {path: 'kitchen-view',component: KitchenViewComponent},
+  {path: 'manager-view', component: ManagerViewComponent},
   {path: '', redirectTo: '/login', pathMatch:'full'}
 ]
 
@@ -39,6 +44,10 @@ const appRoute: Routes = [
     OrderedTabComponent,
     TableViewComponent,
     LoginComponent,
+    AssignTablesComponent,
+    CreateReportComponent,
+    EditMenuComponent,
+    AddWaiterComponent,
   ],
   imports: [
     BrowserModule,
