@@ -1,3 +1,16 @@
-<p>
-  manager-view works!
-</p>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<body>
+  <div class="back-grid">
+    <div class = "nav-menu">
+      <div class = "nav-menu-item1"> <a class="far fa-list-alt" (click)='openTab = OpenTab.EDITMEN' [ngClass]="{'active':openTab== OpenTab.EDITMEN}" ></a></div>
+      <div class = "nav-menu-item2"> <a class="fas fa-chair" (click)='openTab = OpenTab.ASSTA' [ngClass]="{'active':openTab== OpenTab.ASSTA}" ></a></div>
+      <div class = "nav-menu-item3"> <a class="fas fa-user-alt" (click)='openTab = OpenTab.ADDWA' [ngClass]="{'active':openTab== OpenTab.ADDWA}"></a></div>
+      <div class = "nav-menu-item4"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATRE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
+    </div>
+  </div>
+  <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" ></app-add-waiter>
+  <app-assign-tables *ngIf="openTab === OpenTab.ASSTA" ></app-assign-tables>
+  <app-create-report *ngIf="openTab === OpenTab.CREATERE" ></app-create-report>
+  <app-edit-menu *ngIf="openTab === OpenTab.EDITMEN" ></app-edit-menu>
+  
+</body>
