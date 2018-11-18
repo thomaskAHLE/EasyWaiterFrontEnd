@@ -20,9 +20,7 @@ export class TableViewComponent implements OnInit {
     this.selectedId = this.route.snapshot.params['id'];
     console.log(this.selectedId)
     this.table = this._restaurantService.tables.find(t => t.tableNumber == this.selectedId);
-    console.log('table')
-    console.log(this._restaurantService.tables)
-    console.log(this.table)
+    
   }
   onBack() {
     this.router.navigate(['waiter-view']);

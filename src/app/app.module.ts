@@ -16,7 +16,6 @@ import { TableViewComponent } from './waiter-view/table-view/table-view.componen
 import { LoginComponent } from './login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import{AngularFirestoreModule} from '@angular/fire/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AssignTablesComponent } from './manager-view/assign-tables/assign-tables.component';
 import { CreateReportComponent } from './manager-view/create-report/create-report.component';

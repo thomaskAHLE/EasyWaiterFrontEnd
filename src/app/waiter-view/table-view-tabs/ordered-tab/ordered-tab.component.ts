@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit,  Input } from '@angular/core';
 import {OrderModel, ORDER_STATUS} from '../../../models/order-model';
 import { TableModel } from 'src/app/models/table-model';
 import { RestaurantService } from 'src/app/services/restaurant.service';
@@ -7,7 +7,7 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
   templateUrl: './ordered-tab.component.html',
   styleUrls: ['./ordered-tab.component.css']
 })
-export class OrderedTabComponent implements OnInit, OnDestroy {
+export class OrderedTabComponent implements OnInit {
   @Input()
   table: TableModel;
   orderStatus = ORDER_STATUS;
@@ -22,17 +22,11 @@ export class OrderedTabComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this._restaurantService.getOrderObservable().subscribe((orders:OrderModel[])=>{
-      this.orders = orders.filter(o => o.tableNumber == this.table.tableNumber);
-      console.log(orders);
-
+    this._restaurantService.getOrderObservableforTable(this.table.tableNumber).subscribe((orders:OrderModel[])=>{
+      this.orders = orders;
     })
   }
   
-  getOrders():OrderModel[]{
-    return this._restaurantService.getOrdersForTable(this.table.tableNumber);
-  }
-  ngOnDestroy()
-  {
-  }
+  
+
 }

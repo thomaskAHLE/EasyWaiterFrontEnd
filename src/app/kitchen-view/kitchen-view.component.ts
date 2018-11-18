@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Input} from '@angular/core';
+import { Component, OnInit, DoCheck, Input, OnDestroy} from '@angular/core';
 import {RestaurantService} from '../services/restaurant.service';
 import {OrderModel,ORDER_STATUS} from '../models/order-model';
 
@@ -15,18 +15,15 @@ export class KitchenViewComponent implements OnInit {
   inProgOrders:OrderModel[] = [];
   finishedOrders:OrderModel[] = [];
   ngOnInit() {
-    this._restaurantService.getOrderObservable().subscribe((orders:OrderModel[])=>{
-      this.toDoOrders = orders.filter(o => o.status == ORDER_STATUS.TO_DO);
-      this.inProgOrders = orders.filter(o => o.status == ORDER_STATUS.IN_PROGRESS);
-      this.finishedOrders = orders.filter(o => o.status == ORDER_STATUS.FINISHED);
-      console.log("kitchen get orders ");
-      console.log(orders);
-      console.log(this.toDoOrders);
-      console.log(this.inProgOrders);
-  });
-  }
-  getToDoOrders():OrderModel[]{
-    return this._restaurantService.getToDoOrders();
+    this._restaurantService.getToDoOrders().subscribe((toDo:OrderModel[])=>{
+      this.toDoOrders = toDo;
+    });
+    this._restaurantService.getInProgOrders().subscribe((inProg:OrderModel[])=>{
+      this.inProgOrders = inProg;
+    });
+    this._restaurantService.getFinishedOrders().subscribe((fin:OrderModel[])=>{
+      this.finishedOrders = fin;
+    })
   }
 
   moveToToDo(order:OrderModel)
