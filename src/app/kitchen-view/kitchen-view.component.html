@@ -15,10 +15,10 @@
             <h2 class = 'text-center'>In Progress</h2>
         <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
             <div mwlDraggable [dropData] = ip>
-            <li class="list-group-item text-center">{{ip.food.name}} for Table {{ip.tableNumber}}
-            </li>
-        </div>
-          </ul>
+                <li class="list-group-item text-center">{{ip.food.name}} for Table {{ip.tableNumber}}
+                </li>
+            </div>
+        </ul>
       </div>
       <div class="col-4 border" mwlDroppable (drop)='moveToFinished($event.dropData)'>
         <h2 class = 'text-center'>Finished</h2>

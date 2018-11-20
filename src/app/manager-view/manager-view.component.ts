@@ -11,7 +11,7 @@ export class ManagerViewComponent implements OnInit {
   openTab: OPEN_TAB;
   OpenTab = OPEN_TAB;
   constructor() {
-    this.openTab = OPEN_TAB.ADDWA;
+    this.openTab = OPEN_TAB.ASSTA;
    }
 
   ngOnInit() {
