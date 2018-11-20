@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TableModel } from '../../models/table-model'
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from 'src/app/services/restaurant.service';
+import { TableService } from 'src/app/services/table.service';
 export enum OPEN_TAB { MENU, IN_PROGRESS, ORDERED };
 
 @Component({
@@ -15,11 +16,9 @@ export class TableViewComponent implements OnInit {
   selectedId: number;
   openTab: OPEN_TAB;
   OpenTab = OPEN_TAB;
-  constructor(private route: ActivatedRoute, private router: Router, private _restaurantService: RestaurantService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _restaurantService: RestaurantService, private _tableService: TableService) {
     this.openTab = OPEN_TAB.MENU;
     this.selectedId = this.route.snapshot.params['id'];
-    console.log(this.selectedId)
-    this.table = this._restaurantService.tables.find(t => t.tableNumber == this.selectedId);
     
   }
   onBack() {
@@ -28,6 +27,7 @@ export class TableViewComponent implements OnInit {
 
   }
   ngOnInit() {
+  this._tableService.getTableFromTableNum(this.selectedId).subscribe((tables:TableModel[])=>{this.table = tables[0]});
   }
 
 }

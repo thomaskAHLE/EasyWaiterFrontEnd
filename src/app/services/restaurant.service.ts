@@ -17,15 +17,14 @@ export class RestaurantService {
   waiters: UserModel[];
   path:string = "/orders";
   constructor( private afs:AngularFirestore) {
-    this.tables = tableData;
     console.log('Restaurant service constructor');
     this.orderCollection = this.afs.collection('orders');
+    //let tableCollection = this.afs.collection('tables');
+    //this.tables.forEach( t => tableCollection.add(JSON.parse(t.makeJSONString())));  
   }
 
   
-  getWaitersTables(waiter): TableModel[] {
-    return tableData.filter(t => t.assignedTo === waiter);
-  }
+ 
   getToDoOrders():Observable<OrderModel[]>{
     let v:AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref =>{
       return ref.where('status','==',ORDER_STATUS.TO_DO) 
@@ -35,6 +34,8 @@ export class RestaurantService {
 
   addPendingToOrders(ordersToAdd: OrderModel[])
   {
+    console.log('adding pending to orders');
+    ordersToAdd.forEach(o => console.log(JSON.parse(JSON.stringify(o)))); 
     ordersToAdd.forEach( o => this.orderCollection.add(JSON.parse(JSON.stringify(o))));
   }
 
@@ -72,32 +73,3 @@ export class RestaurantService {
 
   }
 }
-
-
-const tableData: TableModel[] = [
-  new TableModel(
-    1,
-    4,
-    waiterData[0],
-    true
-  ),
-  new TableModel(
-    2,
-    5,
-    waiterData[0],
-    true
-  ),
-  new TableModel(
-    3,
-    6,
-    waiterData[0],
-    true
-  ),
-  new TableModel(
-    4,
-    8,
-    waiterData[0],
-    true
-  )
-
-];
