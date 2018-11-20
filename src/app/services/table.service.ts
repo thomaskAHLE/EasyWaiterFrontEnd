@@ -35,4 +35,20 @@ export class TableService {
             }
               )));
   }
+
+  getAllTables():Observable<TableModel[]>
+  {
+   let a:AngularFirestoreCollection<TableModel> = this.afs.collection('tables');
+    return a.snapshotChanges().pipe(map(obj => 
+      obj.map(o => {
+        const data = new TableModel(o.payload.doc.data().tableNumber,o.payload.doc.data().numSeats, o.payload.doc.data().assignedTo, o.payload.doc.data().isActive); data.$key = o.payload.doc.id; 
+        return data;
+      }
+        )));
+  }
+
+  updateTableAssignment(table:TableModel)
+  {
+    this.tableCollection.doc(table.$key).update({assignedTo: table.assignedTo});
+  }
 }

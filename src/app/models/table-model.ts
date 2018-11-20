@@ -16,7 +16,6 @@ constructor(tableNum, numSeats, assignedTo, isActive, key:string = null){
     this.assignedTo = assignedTo;
     this.isActive = isActive;
     this.$key = key;       
-    console.log(this.tableNumber, this.numSeats, this.assignedTo, this.isActive);
 
     }
 

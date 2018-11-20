@@ -39,9 +39,9 @@
           <p>Table 9<br></p>
           <span #table9 (click)='clearTable9()' class="badge badge-secondary">None</span>
         </div> -->
-        <div class = "table-space-item" *ngFor = 'let wl of waiterlist; let i = index' mwlDroppable (drop) = 'updateAssign($event.dropData, i)'> 
+        <div class = "table-space-item" *ngFor = 'let t of tables; let i = index' mwlDroppable (drop) = 'updateAssign($event.dropData, i)'> 
             <p>Table {{i+1}}<br></p>
-            <span #table (click)='clearTable(i)' class="badge badge-secondary">{{i+1}}</span>
+            <span #table (click)='clearTable(i)' class="badge badge-secondary">{{t.assignedTo}}</span>
         </div>
       </div>
     </div>
