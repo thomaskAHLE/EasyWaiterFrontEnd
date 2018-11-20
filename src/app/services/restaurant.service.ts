@@ -14,18 +14,12 @@ export class RestaurantService {
 
   tables: TableModel[];
   orderCollection: AngularFirestoreCollection<OrderModel>;
-  o: Observable<OrderModel[]>;
   waiters: UserModel[];
   path:string = "/orders";
-  orders:OrderModel[] = [];
-  ordersOb: Observable<OrderModel[]>;
   constructor( private afs:AngularFirestore) {
     this.tables = tableData;
     console.log('Restaurant service constructor');
     this.orderCollection = this.afs.collection('orders');
-    //this.ordersOb = this.getOrderObservable();
-    //this.ordersOb.subscribe((data: OrderModel[]) => {console.log(data); this.orders = data as OrderModel[];});
-
   }
 
   
@@ -61,11 +55,6 @@ export class RestaurantService {
     return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
   }
   
-  
-  tableReadyForPickup(tableNum:number):boolean{
-    return (this.orders.filter(o=> o.status === ORDER_STATUS.FINISHED && o.tableNumber === tableNum).length > 0);
-  }
-
   getOrderObservable(): Observable<OrderModel[]>{
     return this.orderCollection.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status);  data.$key = o.payload.doc.id; return data;}
     )));

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TableModel} from '../models/table-model';
 import {UserService} from '../services/user.service';
 import { RestaurantService } from '../services/restaurant.service';
-import { ORDER_STATUS } from '../models/order-model';
+import { OrderModel, ORDER_STATUS } from '../models/order-model';
 @Component({
   selector: 'app-waiter-view',
   templateUrl: './waiter-view.component.html',
@@ -10,9 +10,10 @@ import { ORDER_STATUS } from '../models/order-model';
 })
 export class WaiterViewComponent implements OnInit {
 
-  allTables: TableModel[];//subscribe to tables to track updates
-  activeTables: TableModel[];
-  inactiveTables:TableModel[];
+  allTables: TableModel[] =[];//subscribe to tables to track updates
+  activeTables: TableModel[] = [];
+  inactiveTables:TableModel[] =[];
+  finishedOrders:OrderModel[] =[];
  
   constructor( private _userService: UserService, private _restaurantService: RestaurantService) {
    }
@@ -22,10 +23,10 @@ export class WaiterViewComponent implements OnInit {
     this.allTables = this._restaurantService.getWaitersTables(waiter);
     this.activeTables = this.allTables.filter(t => t.isActive);
     this.inactiveTables = this.allTables.filter(t => !t.isActive);
+    this._restaurantService.getFinishedOrders().subscribe((finished: OrderModel[])=>{this.finishedOrders = finished});
   }
 
   readyForPickup(tableNum:number):boolean{
-    return this._restaurantService.tableReadyForPickup(tableNum);
-
+    return this.finishedOrders.filter(fo => fo.tableNumber == tableNum).length > 0;
   }
 }
