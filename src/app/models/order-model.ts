@@ -13,7 +13,6 @@ export class OrderModel  {
         this.food = food;
         this.tableNumber = tableNumber;
         this.status = status;
-        console.log("creating ordermodel");
     }
     getStatusString() :string {
         return OrderModel.OrderStatusStrings[this.status];

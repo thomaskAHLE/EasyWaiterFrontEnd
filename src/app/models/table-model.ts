@@ -4,18 +4,20 @@ import { FoodModel } from './food-model';
 export class TableModel {
     tableNumber: number;
     numSeats: number;
-    assignedTo: UserModel;
+    assignedTo: string;
     isActive: boolean;
-    Orders: OrderModel[] = [];
     PendingOrders: OrderModel[] = [];
+    $key:string;
 
-    constructor(tableNumber: number, numSeats: number, assignedTo: UserModel, isActive: boolean, orders: OrderModel[] = [], pendingOrder: OrderModel[] = []) {
-        this.tableNumber = tableNumber;
-        this.numSeats = numSeats;
-        this.assignedTo = assignedTo;
-        this.isActive = isActive;
-        this.Orders = orders;
-        this.PendingOrders = pendingOrder;
+constructor(tableNum, numSeats, assignedTo, isActive, key:string = null){
+    console.log('table constructor called');
+    this.tableNumber = tableNum;
+    this.numSeats = numSeats;
+    this.assignedTo = assignedTo;
+    this.isActive = isActive;
+    this.$key = key;       
+    console.log(this.tableNumber, this.numSeats, this.assignedTo, this.isActive);
+
     }
 
     addToPending(foodItem: FoodModel): void {
@@ -23,16 +25,12 @@ export class TableModel {
         this.PendingOrders.push(order);
     }
     removeFromPending(pendingItem:OrderModel):void{
-        this.PendingOrders.splice(this.PendingOrders.indexOf(pendingItem),1)
+        this.PendingOrders.splice(this.PendingOrders.indexOf(pendingItem),1);
     }
 
-    readyForPickup():boolean {
-
-        for(let o  of this.Orders){
-            if(o.status == ORDER_STATUS.FINISHED)
-            return true;
-        }
-        return false;
-    }
+     makeJSONString(){
+         const jsonobj = { tableNumber: this.tableNumber, numSeats: this.numSeats, assignedTo: this.assignedTo, isActive: this.isActive, key: this.$key}
+         return jsonobj;
+     }
 
 }
