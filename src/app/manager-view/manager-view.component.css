@@ -39,6 +39,16 @@
     background-color: aqua;
 }
 
+.nav-menu-item1-active{
+    background-color: aqua;
+    grid-area: nav-menu-item1;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 .nav-menu-item2{
     grid-area: nav-menu-item2;
     align-self: center;
@@ -50,6 +60,16 @@
 
 .nav-menu-item2:hover{
     background-color: aqua;
+}
+
+.nav-menu-item2-active{
+    background-color: aqua;
+    grid-area: nav-menu-item2;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 25px;
 }
 
 .nav-menu-item3{
@@ -69,6 +89,16 @@
     background-color: aqua;
 }
 
+.nav-menu-item3-active{
+    background-color: aqua;
+    grid-area: nav-menu-item3;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px; 
+}
+
 .nav-menu-item3:after{
     background-color: rgb(55, 0, 255); 
 }
@@ -84,4 +114,14 @@
 
 .nav-menu-item4:hover{
     background-color: aqua;
+}
+
+.nav-menu-item4-active{
+    background-color: aqua;
+    grid-area: nav-menu-item4;
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+    padding-left: 36px;
+    padding-right: 25px;
 }

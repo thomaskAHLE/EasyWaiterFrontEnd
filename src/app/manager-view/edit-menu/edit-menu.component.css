@@ -5,11 +5,14 @@
     "nav-menu edit-grid";
 }
 
-
 .nav-menu{
     grid-area: nav-menu;
 }
 
 .edit-grid{
     grid-area: edit-grid;
-} 
+}
+
+.text-center > button{
+    padding: 10px;
+}
