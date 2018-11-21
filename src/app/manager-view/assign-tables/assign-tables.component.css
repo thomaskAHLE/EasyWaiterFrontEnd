@@ -15,14 +15,11 @@
 }
 
 .table-container{
-    background-image: url("floor.jpg"); 
-    background-repeat: no-repeat;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     height: 100vh;
     width: 70vw;
     position: fixed;
-    /* grid-column-gap: 10%; */
 }
 
 .table-space-item{
@@ -41,12 +38,25 @@
     height: 100vh;
 }
 
+.waiters-nav > .list-group-item.list-group-item-info{
+    background-color: blueviolet;
+}
+
 .waiters-nav > .list-group-item.list-group-item-info > p{
+    padding: 20px;
     text-align: center;
+    color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
 }
 
 .waiters-nav li{
     height: 80px;
+}
+
+.list-group-item.list-group-item-action{
+    text-align: center;
+    padding: 20px;
 }
 
 .badge-secondary{
