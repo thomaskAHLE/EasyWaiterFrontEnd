@@ -1,0 +1,15 @@
+ .back-grid{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-areas: 
+    "nav-menu edit-grid";
+}
+
+
+.nav-menu{
+    grid-area: nav-menu;
+}
+
+.edit-grid{
+    grid-area: edit-grid;
+} 
