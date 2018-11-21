@@ -10,6 +10,12 @@ export enum OPEN_TAB { MENU, IN_PROGRESS, ORDERED };
   templateUrl: './table-view.component.html',
   styleUrls: ['./table-view.component.css']
 })
+
+//todo:
+// check if all orders are finished before doing clear
+// modal for clear table warning that table will become inactive
+// modal warning for back if pending orders exist
+// modal and send back if table is inactive
 export class TableViewComponent implements OnInit {
 
   table: TableModel;

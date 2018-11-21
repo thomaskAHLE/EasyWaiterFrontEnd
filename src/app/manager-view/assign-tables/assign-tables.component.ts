@@ -46,10 +46,24 @@ export class AssignTablesComponent implements OnInit {
     alert("are you sure?");
   }
 
-  updateAssign(waiterlist, i: number) {
-    let tableToAssign: TableModel = this.tables.find(t => t.tableNumber == i);
+  activateTable(tableToActivate:TableModel){
+    console.log('activating table' + tableToActivate);
+    if(!tableToActivate.isActive)
+    {
+      tableToActivate.isActive = true;
+      this._tableService.updateTableisActive(tableToActivate);
+    }
+  }
+
+  updateAssign(waiterlist, tableToAssign:TableModel) {
+    
     tableToAssign.assignedTo = waiterlist;
     this._tableService.updateTableAssignment(tableToAssign);
+    if(!tableToAssign.isActive)
+    {
+      tableToAssign.isActive = true;
+      this._tableService.updateTableisActive(tableToAssign);
+    }
   }
 }
 
