@@ -21,9 +21,7 @@ export class WaiterViewComponent implements OnInit {
 
   ngOnInit() {
     const waiter = this._userService.getCurrentUser();
-    this._tableService.getTablesForWaiter(waiter.userName).subscribe((tables:TableModel[])=>{this.allTables = tables; tables.forEach(t=>console.log(t))});
-    console.log('logging all tables ' );
-    console.log(this.allTables);
+    this._tableService.getTablesForWaiter(waiter.userName).subscribe((tables:TableModel[])=>{this.allTables = tables; this.allTables.sort((a,b)=> a.tableNumber - b.tableNumber); tables.forEach(t=>console.log(t))});
     this.activeTables = this.allTables.filter(t => t.isActive);
     this.inactiveTables = this.allTables.filter(t => !t.isActive);
     console.log(this.allTables.filter(t => t.isActive));

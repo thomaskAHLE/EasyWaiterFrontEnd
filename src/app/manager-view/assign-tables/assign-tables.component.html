@@ -2,7 +2,7 @@
 <body>
   <div class="back-grid">
     <div class = "table-space"> 
-      <div class = "table-container" >
+      <div class = "table-container">
         <!-- <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign1($event.dropData)'> 
           <p>Table 1<br></p>
           <span #table1 (click)='clearTable1()' class="badge badge-secondary">None</span>
@@ -39,9 +39,9 @@
           <p>Table 9<br></p>
           <span #table9 (click)='clearTable9()' class="badge badge-secondary">None</span>
         </div> -->
-        <div class = "table-space-item" *ngFor = 'let t of tables; let i = index' mwlDroppable (drop) = 'updateAssign($event.dropData, i)'> 
-            <p>Table {{i+1}}<br></p>
-            <span #table (click)='clearTable(i)' class="badge badge-secondary">{{t.assignedTo}}</span>
+        <div class = "table-space-item" *ngFor = 'let t of tables; let i = index' mwlDroppable (drop) = 'updateAssign($event.dropData, t.tableNumber)'> 
+            <p>Table {{t.tableNumber}}<br></p>
+            <span #table (click)='clearTable(t.tableNumber)' class="badge badge-secondary">{{t.assignedTo}}</span>
         </div>
       </div>
     </div>

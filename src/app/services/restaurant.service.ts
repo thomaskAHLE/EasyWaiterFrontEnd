@@ -67,9 +67,10 @@ export class RestaurantService {
   }
   getOrderObservableforTable(tableNum:number):Observable<OrderModel[]>{
    let v:AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref =>{
-      return ref.where('tableNumber','==',tableNum) 
+      return ref.where('tableNumber','==',tableNum.toString()) 
     });
-    return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
+    return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; 
+    console.log('tableNumber:'+ data.tableNumber);return data;})));
 
   }
 }

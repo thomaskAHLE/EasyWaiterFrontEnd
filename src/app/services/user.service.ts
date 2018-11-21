@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserModel, USER_TYPE } from '../models/user-model';
 
 export const waiterData: UserModel[] = [{
-  userName: 'thill1',
+  userName: 'Waiter 1',
   userPassword: 'password',
   userEmail: 'thomas@easywaiter.com',
   userType: USER_TYPE.WAITER

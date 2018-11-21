@@ -9,9 +9,9 @@ export class TableModel {
     PendingOrders: OrderModel[] = [];
     $key:string;
 
-constructor(tableNum, numSeats, assignedTo, isActive, key:string = null){
+constructor(tableNumber, numSeats, assignedTo, isActive, key:string = null){
     console.log('table constructor called');
-    this.tableNumber = tableNum;
+    this.tableNumber = tableNumber;
     this.numSeats = numSeats;
     this.assignedTo = assignedTo;
     this.isActive = isActive;
