@@ -23,7 +23,7 @@ export class OrderedTabComponent implements OnInit {
   
   ngOnInit() {
     this._restaurantService.getOrderObservableforTable(this.table.tableNumber).subscribe((orders:OrderModel[])=>{
-      this.orders = orders;
+      this.orders = orders.sort((a,b)=> a.status - b.status);
     })
   }
   
