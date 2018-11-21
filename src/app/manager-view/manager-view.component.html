@@ -2,10 +2,14 @@
 <body>
   <div class="back-grid">
     <div class = "nav-menu">
-      <div class = "nav-menu-item1"> <a class="far fa-list-alt" (click)='openTab = OpenTab.EDITMEN' [ngClass]="{'active':openTab== OpenTab.EDITMEN}" ></a></div>
-      <div class = "nav-menu-item2"> <a class="fas fa-chair" (click)='openTab = OpenTab.ASSTA' [ngClass]="{'active':openTab== OpenTab.ASSTA}" ></a></div>
-      <div class = "nav-menu-item3"> <a class="fas fa-user-alt" (click)='openTab = OpenTab.ADDWA' [ngClass]="{'active':openTab== OpenTab.ADDWA}"></a></div>
-      <div class = "nav-menu-item4"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATRE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
+      <div class = "nav-menu-item1" *ngIf="openTab !== OpenTab.EDITMEN"> <a class="far fa-list-alt" (click)='openTab = OpenTab.EDITMEN' [ngClass]="{'active':openTab== OpenTab.EDITMEN}" ></a></div>
+      <div class = "nav-menu-item1-active" *ngIf="openTab === OpenTab.EDITMEN" > <a class="far fa-list-alt" (click)='openTab = OpenTab.EDITMEN' [ngClass]="{'active':openTab== OpenTab.EDITMEN}" ></a></div>
+      <div class = "nav-menu-item2" *ngIf="openTab !== OpenTab.ASSTA" > <a class="fas fa-chair" (click)='openTab = OpenTab.ASSTA' [ngClass]="{'active':openTab== OpenTab.ASSTA}" ></a></div>
+      <div class = "nav-menu-item2-active" *ngIf="openTab === OpenTab.ASSTA" > <a class="fas fa-chair" (click)='openTab = OpenTab.ASSTA' [ngClass]="{'active':openTab== OpenTab.ASSTA}" ></a></div>
+      <div class = "nav-menu-item3" *ngIf="openTab !== OpenTab.ADDWA" > <a class="fas fa-user-alt" (click)='openTab = OpenTab.ADDWA' [ngClass]="{'active':openTab== OpenTab.ADDWA}"></a></div>
+      <div class = "nav-menu-item3-active" *ngIf="openTab === OpenTab.ADDWA" > <a class="fas fa-user-alt" (click)='openTab = OpenTab.ADDWA' [ngClass]="{'active':openTab== OpenTab.ADDWA}"></a></div>
+      <div class = "nav-menu-item4" *ngIf="openTab !== OpenTab.CREATERE"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATERE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
+      <div class = "nav-menu-item4-active" *ngIf="openTab === OpenTab.CREATERE"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATERE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
     </div>
   </div>
   <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" ></app-add-waiter>
