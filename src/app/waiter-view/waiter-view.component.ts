@@ -40,6 +40,8 @@ export class WaiterViewComponent implements OnInit {
     return this.allTables.filter(t => !t.isActive);
   }
   readyForPickup(tableNum:number):boolean{
+    console.log("bleh");
+    console.log(this.finishedOrders.filter(fo => fo.tableNumber == tableNum));
     return this.finishedOrders.filter(fo => fo.tableNumber == tableNum).length > 0;
   }
 }

@@ -3,42 +3,6 @@
   <div class="back-grid">
     <div class = "table-space"> 
       <div class = "table-container" >
-        <!-- <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign1($event.dropData)'> 
-          <p>Table 1<br></p>
-          <span #table1 (click)='clearTable1()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign2($event.dropData)' > 
-          <p>Table 2<br></p>
-          <span #table2 (click)='clearTable2()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign3($event.dropData)' > 
-          <p>Table 3<br></p>
-          <span #table3 (click)='clearTable3()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign4($event.dropData)' > 
-          <p>Table 4<br></p>
-          <span #table4 (click)='clearTable4()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign5($event.dropData)' > 
-          <p>Table 5<br></p>
-          <span #table5 (click)='clearTable5()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign6($event.dropData)' > 
-          <p>Table 6<br></p>
-          <span #table6 (click)='clearTable6()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign7($event.dropData)' > 
-          <p>Table 7<br></p>
-          <span #table7 (click)='clearTable7()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign8($event.dropData)' > 
-          <p>Table 8<br></p>
-          <span #table8 (click)='clearTable8()' class="badge badge-secondary">None</span>
-        </div>
-        <div class = "table-space-item" mwlDroppable (drop) = 'updateAssign9($event.dropData)' > 
-          <p>Table 9<br></p>
-          <span #table9 (click)='clearTable9()' class="badge badge-secondary">None</span>
-        </div> -->
         <div class = "table-space-item" *ngFor = 'let t of tables; let i = index' mwlDroppable (drop) = 'updateAssign($event.dropData, i)'> 
             <p>Table {{i+1}}<br></p>
             <span #table (click)='clearTable(i)' class="badge badge-secondary">{{t.assignedTo}}</span>

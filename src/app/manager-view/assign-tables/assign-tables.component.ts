@@ -27,10 +27,7 @@ export class AssignTablesComponent implements OnInit {
 
   ngOnInit() {
    // console.log(this.table2.nativeElement.innerHTML);
-    this._tableService.getAllTables().subscribe((alltables:TableModel[])=>{this.tables = alltables; this.tables.forEach(t => console.log(t.assignedTo))});
-  console.log('work plz');
-    console.log(this.tables);
-    console.log(this.tables.length);
+    this._tableService.getAllTables().subscribe((alltables:TableModel[])=>{this.tables = alltables;});
   }
   
   clearTable(i){
