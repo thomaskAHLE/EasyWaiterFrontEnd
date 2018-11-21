@@ -33,5 +33,11 @@ export class TableViewComponent implements OnInit {
         this.table = tables[0]
       });
   }
+  onClearTables(){
+    this._restaurantService.clearTablesOrders(this.table.tableNumber);
+    this.table.isActive = false;
+    this._tableService.updateTableisActive(this.table);
+    this.router.navigate(['waiter-view']);
+  }
 
 }
