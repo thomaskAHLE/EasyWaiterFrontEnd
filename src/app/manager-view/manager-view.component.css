@@ -18,7 +18,7 @@
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr ;
-    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-rows: minmax(1fr, auto) minmax(1fr, auto) minmax(1fr, auto) minmax(1fr, auto);
     grid-template-areas: 
     "nav-menu-item1"
     "nav-menu-item2"

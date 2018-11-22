@@ -4,7 +4,8 @@ import {MenuModel} from '../../models/menu-model';
 import { TableModel } from 'src/app/models/table-model';
 import {FoodModel, FOOD_CATEGORY} from '../../models/food-model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {AfterViewInit, ViewChild, ElementRef} from '@angular/core'
+import {AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import { EMmodalComponent } from '../emmodal/emmodal.component';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class EditMenuComponent implements OnInit {
   menuDesserts:FoodModel[]=[];
   menu: MenuModel;
 
-  constructor(private _menuService: MenuService, private modalService: NgbModal) { 
+  constructor(private _menuService: MenuService, private modal: NgbModal) { 
   }
 
   
@@ -36,52 +37,11 @@ export class EditMenuComponent implements OnInit {
       this.menuDesserts = menuItems.filter(f => f.category == FOOD_CATEGORY.DESSERT);
   });
   }
-
-  ngAfterViewInit() {
-    console.log(this.nameval);
-}
-
-  closeResult: string;
-  
-
-  open(content, foodItem) {
-    this.modalReference = this.modalService.open(content);
-    const modalRef = this.modalService.open(EditMenuComponent);
-    modalRef.componentInstance.id = 10;
-    this.modalReference.result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-    //this.modalReference.componentInstance = 10;
-    //console.log(content.elementRef.nativeElement.ownerDocument.all[105]);
-    //this.input.nativeElement.value = foodItem.name;
-    
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
-
-  closeModal(){
-    this.modalReference.close();
-  }
-
-  openA(content) {
-    this.modalReference = this.modalService.open(content);
-    this.modalReference.result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-
-    console.log("Kappa");
+  onClick(foodItem) {
+    const modalRef = this.modal.open(EMmodalComponent);
+    modalRef.componentInstance.name = foodItem.name;
+    modalRef.componentInstance.description = foodItem.description;
+    modalRef.componentInstance.price = foodItem.price;
   }
 
 

@@ -3,10 +3,17 @@
   <div class="back-grid">
     <div class = "table-space"> 
       <div class = "table-container">
-        <div class = "table-space-item" *ngFor = 'let t of tables' mwlDroppable (drop) = 'updateAssign($event.dropData, t)'> 
-            <p>Table {{t.tableNumber}}<br></p>
-            <span #table (click)='activateTable(t)' class="badge badge-secondary">{{t.assignedTo}}</span>
+        <div  *ngFor = 'let t of tables' mwlDroppable (drop) = 'updateAssign($event.dropData, t)'> 
+            <div class = "table-space-item-active" *ngIf = 't.isActive' >
+              <p>Table {{t.tableNumber}} <br></p>
+              <span #table (click)='activateTable(t)' class="badge badge-secondary">{{t.assignedTo}}</span>
+            </div>
+            <div class = "table-space-item-inactive" *ngIf = '!t.isActive' >
+                <p>Table {{t.tableNumber}} <br></p>
+                <span #table (click)='activateTable(t)' class="badge badge-secondary">{{t.assignedTo}}</span>
+              </div>
         </div>
+
       </div>
     </div>
     <div class = "waiters-nav">

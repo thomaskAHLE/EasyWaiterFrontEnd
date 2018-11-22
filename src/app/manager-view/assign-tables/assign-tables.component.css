@@ -22,10 +22,25 @@
     position: fixed;
 }
 
-.table-space-item{
+.table-container >div{
+    align-self: center;
+    justify-self: center;
+}
+.table-space-item-active{
     align-self: center;
     justify-self: center;
     background-color: blueviolet;
+    height: 110px;
+    width: 110px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.table-space-item-inactive{
+    align-self: center;
+    justify-self: center;
+    background-color: grey;
     height: 110px;
     width: 110px;
     border-radius: 10px;
