@@ -3,7 +3,7 @@ import { TableModel } from '../models/table-model';
 import { UserModel, USER_TYPE } from '../models/user-model';
 import { UserService, waiterData } from './user.service';
 import { OrderModel,ORDER_STATUS } from '../models/order-model';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 @Injectable({
@@ -17,10 +17,7 @@ export class RestaurantService {
   waiters: UserModel[];
   path:string = "/orders";
   constructor( private afs:AngularFirestore) {
-    console.log('Restaurant service constructor');
     this.orderCollection = this.afs.collection('orders');
-    //let tableCollection = this.afs.collection('tables');
-    //this.tables.forEach( t => tableCollection.add(JSON.parse(t.makeJSONString())));  
   }
 
   
@@ -70,7 +67,17 @@ export class RestaurantService {
       return ref.where('tableNumber','==',tableNum.toString()) 
     });
     return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; 
-    console.log('tableNumber:'+ data.tableNumber);return data;})));
+    return data;})));
+  }
+
+  clearTablesOrders(tableNum:number){
+    let deliveredOrdersCollection:AngularFirestoreCollection<OrderModel> = this.afs.collection('deliveredOrders');
+    this.getOrderObservableforTable(tableNum).subscribe((orders:OrderModel[])=>{
+      orders.forEach(o=> deliveredOrdersCollection.add(JSON.parse(JSON.stringify(o)))); 
+      orders.forEach(o =>{let orderDocument:AngularFirestoreDocument<OrderModel> = this.afs.doc<OrderModel>(`orders/${o.$key}`);
+      orderDocument.delete();
+    })
+    })
 
   }
 }

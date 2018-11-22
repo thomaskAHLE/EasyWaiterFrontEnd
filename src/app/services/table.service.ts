@@ -59,6 +59,11 @@ export class TableService {
       }
       )));
   }
+  updateTableisActive(table:TableModel)
+  {
+    this.tableCollection.doc(table.$key).update({isActive: table.isActive});
+
+  }
 
   updateTableAssignment(table: TableModel) {
     this.tableCollection.doc(table.$key).update({ assignedTo: table.assignedTo });
