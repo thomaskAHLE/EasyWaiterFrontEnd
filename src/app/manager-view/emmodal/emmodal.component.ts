@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {ViewChild, ElementRef} from '@angular/core';
+import  {FoodModel, FOOD_CATEGORY} from '../../models/food-model';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-emmodal',
@@ -9,24 +11,26 @@ import {ViewChild, ElementRef} from '@angular/core';
   styleUrls: ['./emmodal.component.css']
 })
 export class EMmodalComponent implements OnInit {
-  constructor(public activeModal: NgbActiveModal, private modal: NgbModal) { }
-  name : string;
-  description: string;
-  price: number;
-  @ViewChild('itemName') itemName: ElementRef;
-  @ViewChild('itemDescription') itemDesc: ElementRef;
-  @ViewChild('itemPrice') itemPrice: ElementRef;
+  constructor(public activeModal: NgbActiveModal, private modal: NgbModal, private _menuService: MenuService) { }
+  @Input()
+  food:FoodModel;
+  @Input()
+  emModalType:number;
+
   ngOnInit() {
   }
 
   saveVal(){
-    this.name = this.itemName.nativeElement.value;
-    this.description = this.itemDesc.nativeElement.value;
-    this.price = this.itemPrice.nativeElement.value;
-    //You can store the above values in the database
-    console.log(this.name);
-    console.log(this.description);
-    console.log(this.price);
+      console.log(this.food);
+      if(this.emModalType ==0)
+      {
+      this._menuService.updateMenuItem(this.food);
+      }
+      else {
+        this._menuService.addToMenu(this.food);
+      }
+    
+    
     this.activeModal.dismiss();
   }
 

@@ -3,7 +3,7 @@
   <div class="nav-menu"></div>
   <div class="edit-grid">  
     <br>
-    <button class="btn btn-primary add-btn " (click)="onClick()" >Add Item</button>  
+    <button class="btn btn-primary add-btn " (click)="onAddMenuItem()" >Add Item</button>  
     
     <table class="table table-bordered ">
         <thead>
@@ -20,8 +20,8 @@
               </div>
             </td>
             <td class="text-center" width="50%"> 
-              <button type="button" class="btn btn-primary" (click)="onClick(a)">Edit</button>
-              <button type="button" class="btn btn-danger" >Remove</button>
+              <button type="button" class="btn btn-primary" (click)="onEditMenuItem(a)">Edit</button>
+              <button type="button" class="btn btn-danger" (click)="onRemoveMenuItem(a)" >Remove</button>
             </td>
           </tr>
         </tbody>
@@ -40,7 +40,7 @@
                   </div>
             </td>
             <td class="text-center" width="50%">
-                <button class="btn btn-primary" (click)="onClick(s)">Edit</button>
+                <button class="btn btn-primary" (click)="onEditMenuItem(s)">Edit</button>
                 <button type="button" class="btn btn-danger" >Remove</button>
             </td>
             
@@ -61,7 +61,7 @@
                   </div>
             </td>
             <td class="text-center" width="50%">
-                <button class="btn btn-primary" (click)="onClick(e)">Edit</button>
+                <button class="btn btn-primary" (click)="onEditMenuItem(e)">Edit</button>
                 <button type="button" class="btn btn-danger" >Remove</button>
             </td>
           </tr>

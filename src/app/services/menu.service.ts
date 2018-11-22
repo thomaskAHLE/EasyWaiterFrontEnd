@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {MenuModel} from '../models/menu-model';
 import {FoodModel, FOOD_CATEGORY} from '../models/food-model';
-import {AngularFirestore, AngularFirestoreCollection} from'@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from'@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -64,7 +64,19 @@ export class MenuService {
     return this.menuCollection.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new FoodModel(o.payload.doc.data().name,o.payload.doc.data().price, o.payload.doc.data().category, o.payload.doc.data().description);  data.$key = o.payload.doc.id; return data;}
     )));
   }
+
+  updateMenuItem(food:FoodModel)
+  {
+    this.menuCollection.doc(food.$key).update({name:food.name, price: food.price, category: food.category, description: food.description});
+  }
+
+  removeMenuItem(food:FoodModel)
+  {
+    let foodToRemoveDoc:AngularFirestoreDocument<FoodModel> = this._afs.doc<FoodModel>(`menu/${food.$key}`);
+    foodToRemoveDoc.delete();
+  }
 }
+
 
 
 

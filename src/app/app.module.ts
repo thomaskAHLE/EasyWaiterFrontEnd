@@ -21,7 +21,8 @@ import { AssignTablesComponent } from './manager-view/assign-tables/assign-table
 import { CreateReportComponent } from './manager-view/create-report/create-report.component';
 import { EditMenuComponent } from './manager-view/edit-menu/edit-menu.component';
 import { AddWaiterComponent } from './manager-view/add-waiter/add-waiter.component';
-
+import { ModalComponent } from './manager-view/modal/modal.component';
+import { EMmodalComponent } from './manager-view/emmodal/emmodal.component';
 
 
 const appRoute: Routes = [
@@ -48,6 +49,8 @@ const appRoute: Routes = [
     CreateReportComponent,
     EditMenuComponent,
     AddWaiterComponent,
+    ModalComponent,
+    EMmodalComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,9 @@ const appRoute: Routes = [
     , AngularFirestoreModule
   ],
   providers: [],
+  entryComponents: [
+    ModalComponent,
+    EMmodalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
