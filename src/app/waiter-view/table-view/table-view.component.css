@@ -35,3 +35,7 @@
     grid-area: clearbtn;
     margin: 1em;
 }
+
+.nav-item > .nav-link{
+    cursor: pointer;
+}

@@ -17,3 +17,10 @@
     float: right;
     margin: 1em;
 }
+
+@media (max-width: 1000px){
+    .other-stuff{
+        grid-area: other-stuff;
+        padding-left: 3.5em;
+    }
+}

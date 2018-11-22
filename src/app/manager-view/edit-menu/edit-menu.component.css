@@ -1,8 +1,8 @@
  .back-grid{
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 10% 89% 1%;
     grid-template-areas: 
-    "nav-menu edit-grid";
+    "nav-menu edit-grid .";
 }
 
 .nav-menu{
@@ -21,4 +21,18 @@
     float: right;
     margin-bottom: 1em;
     margin-right: 1em;
+}
+
+@media (max-width: 1070px){
+    .edit-grid{
+        grid-area: edit-grid;
+        padding-left: 1em;
+    }
+}
+
+@media (max-width: 950px){
+    .edit-grid{
+        grid-area: edit-grid;
+        padding-left: 3em;
+    }
 }

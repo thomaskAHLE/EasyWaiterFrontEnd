@@ -78,3 +78,10 @@
 .badge-secondary{
     padding: 10px;
  }
+
+ @media (max-width: 950px){
+    .table-container{
+        grid-area: table-container;
+        padding-left: 3em;
+    }
+}
