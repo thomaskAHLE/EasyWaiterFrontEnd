@@ -5,9 +5,9 @@
 
 .back-grid {
     display: grid;
-    grid-template-columns: 10% 70% 20%;
+    grid-template-columns: 10% 70% 19% 1%;
     grid-template-areas:
-    "nav-menu table-space waiters-nav"; 
+    "nav-menu table-space waiters-nav ."; 
 }
 
 .table-space{
@@ -36,6 +36,7 @@
 .waiters-nav{
     grid-area: waiters-nav;
     height: 100vh;
+    
 }
 
 .waiters-nav > .list-group-item.list-group-item-info{

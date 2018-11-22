@@ -14,5 +14,11 @@
 }
 
 .text-center > button{
-    padding: 10px;
+    margin: 10px;
+}
+
+.btn.btn-primary.add-btn{
+    float: right;
+    margin-bottom: 1em;
+    margin-right: 1em;
 }

@@ -1,0 +1,19 @@
+.back-grid{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-areas: 
+    "nav-menu other-stuff"
+}
+
+.nav-menu{
+    grid-area: nav-menu;
+}
+
+.other-stuff{
+    grid-area: other-stuff;
+}
+
+.btn.btn-primary.add-btn{
+    float: right;
+    margin: 1em;
+}

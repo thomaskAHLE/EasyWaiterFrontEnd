@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-waiter.component.css']
 })
 export class AddWaiterComponent implements OnInit {
-
+  waiterlist: string[] = ['Waiter 1', 'Waiter 2', 'Waiter 3', 'Waiter 4'];
   constructor() { }
 
   ngOnInit() {

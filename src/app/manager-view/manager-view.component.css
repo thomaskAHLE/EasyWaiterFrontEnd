@@ -32,7 +32,7 @@
     justify-self: center;
     padding: 15px;
     padding-left: 25px;
-    padding-right: 25px;
+    padding-right: 25px; 
 }
 
 .nav-menu-item1:hover{
@@ -96,7 +96,7 @@
     justify-self: center;
     padding: 15px;
     padding-left: 25px;
-    padding-right: 25px; 
+    padding-right: 25px;
 }
 
 .nav-menu-item3:after{

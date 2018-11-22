@@ -10,15 +10,6 @@ import { TableService } from 'src/app/services/table.service';
   styleUrls: ['./assign-tables.component.css']
 })
 export class AssignTablesComponent implements OnInit {
-  // @ViewChild('table') table: ElementRef;
-  // @ViewChild('table2') table2: ElementRef;
-  // @ViewChild('table3') table3: ElementRef;
-  // @ViewChild('table4') table4: ElementRef;
-  // @ViewChild('table5') table5: ElementRef;
-  // @ViewChild('table6') table6: ElementRef;
-  // @ViewChild('table7') table7: ElementRef;
-  // @ViewChild('table8') table8: ElementRef;
-  // @ViewChild('table9') table9: ElementRef;
   mytable: TableModel;
   // waiterlist : UserModel[] = [];
   waiterlist: string[] = ['Waiter 1', 'Waiter 2', 'Waiter 3', 'Waiter 4'];
