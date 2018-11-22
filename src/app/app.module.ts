@@ -23,7 +23,10 @@ import { EditMenuComponent } from './manager-view/edit-menu/edit-menu.component'
 import { AddWaiterComponent } from './manager-view/add-waiter/add-waiter.component';
 import { ModalComponent } from './manager-view/modal/modal.component';
 import { EMmodalComponent } from './manager-view/emmodal/emmodal.component';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3bd5f9a75234af958efbad5a3d75fcb47000610b
 
 
 const appRoute: Routes = [
@@ -51,7 +54,11 @@ const appRoute: Routes = [
     EditMenuComponent,
     AddWaiterComponent,
     ModalComponent,
+<<<<<<< HEAD
     EMmodalComponent,
+=======
+    EMmodalComponent
+>>>>>>> 3bd5f9a75234af958efbad5a3d75fcb47000610b
   ],
   imports: [
     BrowserModule,

@@ -6,21 +6,23 @@
   </div>
   <div class="modal-body">
     <p>Item Name</p>
-    <input #itemName value={{name}} id="typeahead-basic" type="text" class="form-control"/>
+    <input #itemName value={{food.name}} [(ngModel)]="food.name" id="typeahead-basic" type="text" class="form-control"/>
     <hr>
     <p>Item Description</p>
-    <input #itemDescription value={{description}} id="typeahead-basic" type="text" class="form-control" />
+    <input #itemDescription value={{food.description}} [(ngModel)]="food.description" id="typeahead-basic" type="text" class="form-control" />
     <hr>
     <p>Item Price</p>
-    <input #itemPrice value={{price}} id="typeahead-basic" type="text" class="form-control"/>
+    <input #itemPrice value={{food.price}} [(ngModel)]="food.price" id="typeahead-basic" type="text" class="form-control"/>
     <hr>
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Category</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button class="dropdown-item">Appetizers</button>
-          <button class="dropdown-item">Sides</button>
-          <button class="dropdown-item">Entrees</button>
-          <button class="dropdown-item">Dessertes</button>
+        <div>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option value='1'>Appetizer</option>
+            <option value='2'>Side</option>
+            <option value='3'>Entree</option>
+            <option value='4'>Dessert</option>
+          </select>
         </div>
       </div>
   </div>
