@@ -5,7 +5,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 import { AppComponent } from './app.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WaiterViewComponent } from './waiter-view/waiter-view.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ManagerViewComponent } from './manager-view/manager-view.component';
@@ -14,6 +14,8 @@ import { PendingTabComponent } from './waiter-view/table-view-tabs/pending-tab/p
 import { OrderedTabComponent } from './waiter-view/table-view-tabs/ordered-tab/ordered-tab.component';
 import { TableViewComponent } from './waiter-view/table-view/table-view.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 
 const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
@@ -34,6 +36,7 @@ const appRoute: Routes = [
     OrderedTabComponent,
     TableViewComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

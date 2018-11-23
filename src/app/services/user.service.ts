@@ -24,6 +24,12 @@ export class UserService {
   getCurrentUser(): UserModel {
     return this.user;
   }
+
+  register(user: User) {
+    return this.http.post(`${environment.apiUrl}/users/register`, user);
+}
   constructor() { }
+
+  
 
 }
