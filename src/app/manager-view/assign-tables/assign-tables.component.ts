@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TableModel } from '../../models/table-model';
 import { RestaurantService } from '../../services/restaurant.service';
-import { UserModel } from '../../models/user-model';
+import { UserModel, USER_TYPE } from '../../models/user-model';
 import { TableService } from 'src/app/services/table.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-assign-tables',
@@ -13,18 +14,21 @@ export class AssignTablesComponent implements OnInit {
   mytable: TableModel;
   // waiterlist : UserModel[] = [];
   waiterlist: string[] = ['Waiter 1', 'Waiter 2', 'Waiter 3', 'Waiter 4'];
+  waiterList: UserModel[] = [];
   tables: TableModel[] = [];
-  constructor(private _tableService: TableService) { }
+  constructor(private _tableService: TableService, private _userService: UserService) {
+   }
 
   ngOnInit() {
-    // console.log(this.table2.nativeElement.innerHTML);
     this._tableService.getAllTables()
       .subscribe((alltables: TableModel[]) => {
-        console.log(alltables)
         this.tables = alltables; 
-        this.tables.forEach(t => console.log(t.assignedTo))
       });
-    console.log('work plz');
+    this._userService.getUsers().subscribe((allUsers:UserModel[])=>
+    {
+      this.waiterList = allUsers.filter(u => u.userType == USER_TYPE.WAITER);
+      console.log(this.waiterList);
+    })
     
   }
 

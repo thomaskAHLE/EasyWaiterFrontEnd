@@ -1,5 +1,11 @@
 <div class="page-header">
   <h1>Easy Waiter</h1>
+  <h2 *ngIf= 'auth.user | async as user; else other'>{{user.displayName}}</h2>
+  <ng-template #other>
+       not logged in
+  </ng-template>
+  
+
 </div>
 
 <div class='table-responsive'>
@@ -43,6 +49,7 @@
   
 </table>
 </div>
+<pre>{{auth.user | async | json}}</pre>
 <!-- <pre>{{my_tables|json}}</pre> -->
 
 

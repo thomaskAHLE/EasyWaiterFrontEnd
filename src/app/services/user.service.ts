@@ -1,29 +1,21 @@
 import { Injectable } from '@angular/core';
 import { UserModel, USER_TYPE } from '../models/user-model';
-
-export const waiterData: UserModel[] = [{
-  userName: 'Waiter 1',
-  userPassword: 'password',
-  userEmail: 'thomas@easywaiter.com',
-  userType: USER_TYPE.WAITER
-},
-{
-  userName: 'kahle2',
-  userPassword: 'password2',
-  userEmail: 'kahle2@easywaiter.com',
-  userType: USER_TYPE.WAITER
-}];
-
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  user: UserModel = waiterData[0];
-  //might call database on initialization
-  getCurrentUser(): UserModel {
-    return this.user;
+  constructor(private afs:AngularFirestore) { 
   }
-  constructor() { }
+
+  getUsers():Observable<UserModel[]>
+  {
+    let col: AngularFirestoreCollection<UserModel> = this.afs.collection('users', ref => ref.orderBy('displayName'));
+    return col.snapshotChanges().pipe(map(user=> user.map(u=>
+      {const data = new UserModel(u.payload.doc.data().displayName, u.payload.doc.data().email, u.payload.doc.data().password, u.payload.doc.data().userType, u.payload.doc.id); return data})));
+  }
 
 }
