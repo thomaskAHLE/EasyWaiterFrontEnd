@@ -1,7 +1,33 @@
-  <div class="page-header">
-    <h1>Easy Waiter</h1>
-    <hr>
+<div class="page-header">
+  <h1>Easy Waiter</h1>
+  <hr>
+</div>
+
+<!-- <button class="waiter-btn" routerLink = "/waiter-view/">Login Waiter</button> -->
+<button class="waiter-btn" (click)='signInEmail()'>Login Waiter</button>
+<button class="kitchen-btn" routerLink="/kitchen-view/">Login Kitchen</button>
+<button class="kitchen-btn" (click)='authenticationService.logout()'>Logout</button>
+
+<form [formGroup]="loginForm" (ngSubmit)="signInEmail()">
+  <!-- <div class="form-group"> -->
+  <label for="email">Email address</label>
+  <input type="email" class="form-control" formConrtrolName="usrEmail" >
+  <!-- </div> -->
+  <div *ngIf="formErrors.usrEmail" class="notification is-danger">
+    {{ formErrors.usrEmail }}
   </div>
 
-<button class="waiter-btn" routerLink = "/waiter-view/">Login Waiter</button>
-<button class="kitchen-btn" routerLink = "/kitchen-view/">Login Kitchen</button>
+  <!-- <div class="form-group"> -->
+  <label for="password">Password</label>
+  <input type="password" class="form-control" formConrtrolName="usrPassword" >
+  <!-- </div> -->
+  <div *ngIf="formErrors.usrPassword" class="notification is-danger">
+    {{ formErrors.usrPassword }}
+  </div>
+
+  <div *ngIf="loginForm.valid" class="notification is-success">Form is valid</div>
+  <button type="submit"  class="btn btn-primary">Login</button>
+
+  {{loginForm.value | json}}
+  {{loginForm.status}}
+</form>

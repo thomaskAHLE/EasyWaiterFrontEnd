@@ -19,9 +19,9 @@
     <div class = "waiters-nav">
       <div> &nbsp; </div>
       <li class="list-group-item list-group-item-info"><p>Waiters</p></li>
-      <ul class ="list-group" *ngFor = 'let wl of waiterlist'>
-        <div mwlDraggable [dropData] = wl>
-          <li href="#" class="list-group-item list-group-item-action">{{wl}}</li>
+      <ul class ="list-group" *ngFor = 'let wl of waiterList'>
+        <div mwlDraggable [dropData] = wl.displayName>
+          <li href="#" class="list-group-item list-group-item-action">{{wl.displayName}}</li>
         </div>
       </ul>
     </div>
