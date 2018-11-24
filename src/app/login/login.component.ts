@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { USER_TYPE } from '../models/user-model';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-type UserFields = 'usrEmail' | 'usrPassword';
-type FormErrors = { [u in UserFields]: string };
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -13,91 +11,50 @@ type FormErrors = { [u in UserFields]: string };
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm = this.formBuilder.group({
-    usrEmail: ['', [
-      Validators.required,
-      Validators.email,
-    ]],
-    usrPassword: ['', [
-      Validators.minLength(6),
-      Validators.maxLength(25),
-    ]]
-  });
-  userType: USER_TYPE;
-  formErrors: FormErrors = {
-    usrEmail: '',
-    usrPassword: ''
-  }
-  validationMessages = {
-    usrEmail: {
-      'required': 'Email is required.',
-      'email': 'Email must be a valid email',
-    },
-    usrPassword: {
-      'required': 'Password is required.',
-      'pattern': 'Password must be include at one letter and one number.',
-      'minlength': 'Password must be at least 4 characters long.',
-      'maxlength': 'Password cannot be more than 40 characters long.',
-    },
-  };
-  constructor(public authenticationService: AuthenticationService, 
-              private router: Router, 
-              private formBuilder: FormBuilder) {
+
+  loginForm: FormGroup;
+  email: string = '';
+  password: string = '';
+  constructor(public authenticationService: AuthenticationService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
   }
 
   ngOnInit() {
-    this.loginForm.valueChanges.subscribe((data) => this.onValueChanged(data));
-    this.onValueChanged();  
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    })
   }
-
-  // Updates validation state on form changes.
-  onValueChanged(data?: any) {
-    console.log('value changed');
-    console.log(data);
-    if (!this.loginForm) { return; }
-    const form = this.loginForm;
-    for (const field in this.formErrors) {
-      console.log('field: ' + field)
-      if (Object.prototype.hasOwnProperty.call(this.formErrors, field) && (field === 'usrEmail' || field === 'usrPassword')) {
-        // clear previous error message (if any)
-        this.formErrors[field] = '';
-        const control = form.get(field);
-        if (control && control.dirty && !control.valid) {
-          const messages = this.validationMessages[field];
-          if (control.errors) {
-            for (const key in control.errors) {
-              if (Object.prototype.hasOwnProperty.call(control.errors, key)) {
-                this.formErrors[field] += `${(messages as { [key: string]: string })[key]} `;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  get f() { return this.loginForm.controls; }
 
   async signInEmail() {
-    console.log('signinemail: ' + this.loginForm.value['usrEmail']);
-    console.log('password: ' + this.loginForm.value['usrPassword']);
-    console.log(this.loginForm)
-    this.authenticationService.login(this.loginForm.value['usrEmail'], this.loginForm.value['usrPassword']);
-
+    this.authenticationService.login(this.loginForm.value['email'], this.loginForm.value['password']);
     return await this.afterSignIn();
   }
 
   private afterSignIn() {
-    let view: string = '/login';
-    this.authenticationService.user.subscribe(u => {
-      if (u.userType == USER_TYPE.WAITER) {
-        view = '/waiter-view/';
-      }
-      else if (u.userType == USER_TYPE.KITCHEN) {
-        view = '/kitchen-view/';
-      }
-      else if (u.userType == USER_TYPE.MANAGER) {
-        view = '/manager-view/';
+    console.log('after sign in')
+    this.authenticationService.user.subscribe(user => {
+      console.log(user)
+      if (user) {
+        switch (user.userType) {
+          case USER_TYPE.WAITER:
+            this.router.navigate(['/waiter-view']);;
+            break;
+          case USER_TYPE.KITCHEN:
+            this.router.navigate(['/kitchen-view']);;
+            break;
+          case USER_TYPE.MANAGER:
+            this.router.navigate(['/manager-view']);;
+            break;
+          default:
+            console.log('default')
+            break;
+        }
       }
     })
-    return this.router.navigate([view]);
   }
+
 }

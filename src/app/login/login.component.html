@@ -9,25 +9,27 @@
 <button class="kitchen-btn" (click)='authenticationService.logout()'>Logout</button>
 
 <form [formGroup]="loginForm" (ngSubmit)="signInEmail()">
-  <!-- <div class="form-group"> -->
-  <label for="email">Email address</label>
-  <input type="email" class="form-control" formConrtrolName="usrEmail" >
-  <!-- </div> -->
-  <div *ngIf="formErrors.usrEmail" class="notification is-danger">
-    {{ formErrors.usrEmail }}
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" formControlName="email">
+  </div>
+  <div *ngIf="f.email.errors" class="notification is-danger">
+    <div *ngIf="f.email.errors.required">Email is required</div>
+    <div *ngIf="f.email.errors.email">Not a valid email.</div>
   </div>
 
-  <!-- <div class="form-group"> -->
+  <div class="form-group">
   <label for="password">Password</label>
-  <input type="password" class="form-control" formConrtrolName="usrPassword" >
-  <!-- </div> -->
-  <div *ngIf="formErrors.usrPassword" class="notification is-danger">
-    {{ formErrors.usrPassword }}
+  <input type="password" class="form-control" formControlName="password">
   </div>
+  <div *ngIf="f.password.errors" class="notification is-danger">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+    </div>
 
-  <div *ngIf="loginForm.valid" class="notification is-success">Form is valid</div>
-  <button type="submit"  class="btn btn-primary">Login</button>
+  <!-- <div *ngIf="loginForm.valid" class="notification is-success">Form is valid</div> -->
+  <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
 
   {{loginForm.value | json}}
   {{loginForm.status}}
+  <pre>{{authenticationService.user | async | json}}</pre>
 </form>

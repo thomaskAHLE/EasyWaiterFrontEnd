@@ -4,9 +4,10 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { switchMap, take, map } from 'rxjs/operators';
-import { UserModel } from '../models/user-model';
+import { UserModel, USER_TYPE } from '../models/user-model';
 import { Router } from '@angular/router';
 import { auth, User } from 'firebase/app';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -14,57 +15,40 @@ import { auth, User } from 'firebase/app';
 })
 export class AuthenticationService {
 
-  user: Observable< UserModel| null>;
+  user: Observable<UserModel | null>;
+  userRef: AngularFirestoreDocument<UserModel>;
   constructor(private afs: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
     console.log('authentication service constructor');
     this.user = afsAuth.authState.pipe(switchMap(user => {
       console.log('IN SWITCH MAP');
-      if (user)
-      {
+      if (user) {
         console.log('user found');
         console.log(user);
-        return this.afs.doc<UserModel>(`user/${user.uid}`).valueChanges();
-        
+        return this.afs.doc<UserModel>(`users/${user.uid}`).valueChanges();
       }
-      else{
+      else {
         console.log('user not found');
         return of(null);
       }
     }));
   }
 
-  private updateUserData(user: User){
-    const userRef: AngularFirestoreDocument<UserModel>= this.afs.doc(`users/${user.uid}`);
-
-    const data: UserModel= {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      userType: 3,
-      password: null
-    }
-    return userRef.set(data);
+  private updateUserData(user: User) {
+    // this.userRef = this.afs.doc(`users/${user.uid}`);
   }
 
-  login(email:string, password:string) {
-    console.log('email'+ email);
-    console.log('password'+ password);
-    this.user.pipe(
-      take(1),
-      map(user => console.log(user))
-    )
-    // const provider = new auth.EmailAuthProvider()
-    // this.oAuthLogin(provider);
-    // console.log('USER: ')
-    return this.afsAuth.auth.signInWithEmailAndPassword(email, password).then(credential =>{return this.updateUserData(credential.user);})
+  login(email: string, password: string) {
+    this.afsAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then( () =>{
+      return this.afsAuth.auth.signInWithEmailAndPassword(email, password).then(credential => { return this.updateUserData(credential.user); })
+    });
   }
 
   logout() {
+    console.log('logout')
     this.afsAuth.auth.signOut();
   }
   private oAuthLogin(provider) {
     return this.afsAuth.auth.signInWithPopup(provider).then((crentential) => this.updateUserData(crentential.user));
-
   }
-  
+
 }
