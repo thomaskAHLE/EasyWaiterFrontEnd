@@ -4,6 +4,9 @@ import {UserService} from '../services/user.service';
 import { RestaurantService } from '../services/restaurant.service';
 import{TableService} from '../services/table.service';
 import { OrderModel, ORDER_STATUS } from '../models/order-model';
+import { AuthenticationService } from '../services/authentication.service';
+import { UserModel } from '../models/user-model';
+import {take} from 'rxjs/operators';
 @Component({
   selector: 'app-waiter-view',
   templateUrl: './waiter-view.component.html',
@@ -15,18 +18,19 @@ export class WaiterViewComponent implements OnInit {
   activeTables: TableModel[] = [];
   inactiveTables:TableModel[] =[];
   finishedOrders:OrderModel[] =[];
+  waiter:UserModel;
  
-  constructor( private _userService: UserService, private _restaurantService: RestaurantService, private _tableService: TableService) {
-   }
+  constructor( private _userService: UserService, private _restaurantService: RestaurantService, private _tableService: TableService, public auth: AuthenticationService) {
+    
+  }
 
   ngOnInit() {
-    const waiter = this._userService.getCurrentUser();
-    this._tableService.getTablesForWaiter(waiter.userName).subscribe((tables:TableModel[])=>{this.allTables = tables; this.allTables.sort((a,b)=> a.tableNumber - b.tableNumber); tables.forEach(t=>console.log(t))});
-    this.activeTables = this.allTables.filter(t => t.isActive);
-    this.inactiveTables = this.allTables.filter(t => !t.isActive);
-    console.log(this.allTables.filter(t => t.isActive));
-    console.log(this.inactiveTables = this.allTables.filter(t => !t.isActive));
-    console.log(this.activeTables);
+    this.auth.user.pipe(take(1)).subscribe(user => {
+      this.waiter = user;
+      this._tableService.getTablesForWaiter(this.waiter.displayName).subscribe((tables:TableModel[])=>{this.allTables = tables; this.allTables.sort((a,b)=> a.tableNumber - b.tableNumber); tables.forEach(t=>console.log(t))});
+      this.activeTables = this.allTables.filter(t => t.isActive);
+      this.inactiveTables = this.allTables.filter(t => !t.isActive);
+     });
     this._restaurantService.getFinishedOrders().subscribe((finished: OrderModel[])=>{this.finishedOrders = finished});
   }
 
@@ -38,8 +42,6 @@ export class WaiterViewComponent implements OnInit {
     return this.allTables.filter(t => !t.isActive);
   }
   readyForPickup(tableNum:number):boolean{
-    console.log("bleh");
-    console.log(this.finishedOrders.filter(fo => fo.tableNumber == tableNum));
     return this.finishedOrders.filter(fo => fo.tableNumber == tableNum).length > 0;
   }
 }

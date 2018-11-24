@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TableModel } from '../models/table-model';
 import { UserModel, USER_TYPE } from '../models/user-model';
-import { UserService, waiterData } from './user.service';
+import { UserService } from './user.service';
 import { OrderModel,ORDER_STATUS } from '../models/order-model';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';

@@ -8,10 +8,10 @@
               <th colspan="2" class = "text-center">Waiters</th>
             </thead>
             <tbody>
-              <tr *ngFor="let w of waiterlist">
+              <tr *ngFor="let w of waiterList">
                 <td width="50%">
                     <div #nameval class="panel">
-                        {{w}} 
+                        {{w.displayName}} 
                       </div>
                 </td>
                 <td class="text-center" width="50%">
