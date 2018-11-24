@@ -13,8 +13,12 @@ export class CreateReportComponent implements OnInit {
   ngOnInit() {
   }
 
-  onGenerate() {
-    this._reportService.generateReport(); 
+  onSalesGenerate() {
+    this._reportService.generateSalesReport(); 
+  }
+
+  onEmployeeGenerate() {
+    this._reportService.generateEmployeeReport(); 
   }
 
 }

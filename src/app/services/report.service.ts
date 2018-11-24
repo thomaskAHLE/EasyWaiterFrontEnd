@@ -16,10 +16,10 @@ export class ReportService {
     this.ordersCollection = this._afs.collection('deliveredOrders');
   } 
 
-  generateReport()
+  generateSalesReport()
   {
     var allOrders = this.ordersCollection.snapshotChanges() as Observable<any[]>;
-    var csv = 'Report'; 
+    var csv = ' ,Times Sold,Gross Sales'; 
     allOrders.forEach(function(row){
       csv+=row.join(','); 
       csv+="\n"; 
@@ -29,8 +29,25 @@ export class ReportService {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'report.csv';
+    hiddenElement.download = 'Sales_Report.csv';
     hiddenElement.click();
 
+}
+
+generateEmployeeReport()
+{
+    var allOrders = this.ordersCollection.snapshotChanges() as Observable<any[]>;
+    var csv = ' ,Total Tables, Total Sales'; 
+    allOrders.forEach(function(row){
+      csv+=row.join(','); 
+      csv+="\n"; 
+    }); 
+
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'Employee_Report.csv';
+    hiddenElement.click();
 }
 }
