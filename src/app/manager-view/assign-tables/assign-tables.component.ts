@@ -29,7 +29,6 @@ export class AssignTablesComponent implements OnInit {
       this.waiterList = allUsers.filter(u => u.userType == USER_TYPE.WAITER);
       console.log(this.waiterList);
     })
-    console.log('work plz');
     
   }
 
