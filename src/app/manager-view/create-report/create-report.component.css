@@ -4,28 +4,38 @@
     display: grid;
     grid-template-columns: 10% 70% 19% 1%;
     grid-template-areas: 
-    "nav-menu create-grid .";
+    "nav-menu report-container"
 }
 
-.create-grid{
-    grid-area: create-grid;
+
+.nav-menu{
+    grid-area: nav-menu;
 }
 
-.report-spacing{
-    grid-area: report-spacing;
-    border-radius: 10px;
-    align-self: center; 
+.card {
+    display:inline-block;
 }
+
+.big-icon {
+    padding-top: 0.5em; 
+    font-size: 65px;
+}
+
 
 .report-container{
     display: grid;
-    grid-template-columns: 3fr 3fr;
+    grid-template-columns: 2fr 2fr;
     height: 100vh;
     width: 70vw;
     position: fixed;
+    padding-left: 20em; 
 }
 
 .report-container >div{
     align-self: center;
-    justify-self: center;
+    justify-self: center; 
+}
+
+.card-subtitle{
+    padding-top: 3em; 
 }
