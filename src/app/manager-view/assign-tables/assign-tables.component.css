@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.back-grid {
+    display: grid;
+    grid-template-columns: 10% 70% 19% 1%;
+    grid-template-areas:
+    "nav-menu table-space waiters-nav ."; 
+}
+
+.table-space{
+    grid-area: table-space;
+}
+
+.table-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100vh;
+    width: 70vw;
+    position: fixed;
+}
+
+.table-container >div{
+    align-self: center;
+    justify-self: center;
+}
+.table-space-item-active{
+    align-self: center;
+    justify-self: center;
+    background-color: blueviolet;
+    height: 110px;
+    width: 110px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.table-space-item-inactive{
+    align-self: center;
+    justify-self: center;
+    background-color: grey;
+    height: 110px;
+    width: 110px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.waiters-nav{
+    grid-area: waiters-nav;
+    height: 100vh;
+    
+}
+
+.waiters-nav > .list-group-item.list-group-item-info{
+    background-color: blueviolet;
+}
+
+.waiters-nav > .list-group-item.list-group-item-info > p{
+    padding: 20px;
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+.waiters-nav li{
+    height: 80px;
+}
+
+.list-group-item.list-group-item-action{
+    text-align: center;
+    padding: 20px;
+}
+
+.badge-secondary{
+    padding: 10px;
+ }
+
+ @media (max-width: 950px){
+    .table-container{
+        grid-area: table-container;
+        padding-left: 3em;
+    }
+}

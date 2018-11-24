@@ -6,7 +6,7 @@
     <tbody>
       <tr *ngFor="let p of table.PendingOrders">
         <td width="50%">
-            {{p.name}} 
+            {{p.food.name}} 
         </td>
         <td class="text-center" width="50%">
             <button class="btn btn-danger" (click) = 'removeFoodFromPending(p)'>Remove</button>
@@ -22,5 +22,9 @@
 <ng-template #noPending>
     <button class = "btn btn-secondary" disabled>Send</button>
 </ng-template>
+
 </tfoot>
 </table>
+<!-- <div *ngFor="let o of orderUpdate">
+  <p>o</p>
+</div> -->

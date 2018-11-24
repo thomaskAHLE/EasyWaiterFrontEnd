@@ -1,0 +1,28 @@
+.page-header{
+    margin: 1em;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas: "brand-title back-button";
+}
+
+.page-header > h1{
+    color: rgba(20, 20, 167, 0.795);
+}
+
+.brand-title{
+    grid-area: brand-title;
+}
+
+.back-btn{
+    justify-self: right;
+    margin: 0.5em;
+    grid-area: back-button;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+@media (max-width: 950px){
+    .text-center{
+        font-size: 1.2em;
+    }
+}

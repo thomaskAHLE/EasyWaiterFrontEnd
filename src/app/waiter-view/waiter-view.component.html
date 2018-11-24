@@ -1,3 +1,6 @@
+<div class="page-header">
+  <h1>Easy Waiter</h1>
+</div>
 
 <div class='table-responsive'>
 <table class="table">
@@ -5,7 +8,7 @@
     <th colspan="2" class = "text-center">Active</th>
   </thead>
   <tbody>
-    <tr *ngFor="let t of activeTables">
+    <tr *ngFor="let t of getActiveTables()">
       <td>
         <a routerLink = "/table-view/{{t.tableNumber}}">Table #{{t.tableNumber}}</a>
       </td>
@@ -28,12 +31,12 @@
     <th colspan="2" class = "text-center">Inactive</th>
   </thead>
   <tbody>
-    <tr *ngFor="let t of inactiveTables">
+    <tr *ngFor="let t of getInactiveTables()">
       <td>
         Table #{{t.tableNumber}}
       </td>
       <td class="text-center"> 
-        <button class="btn btn-secondary" [disabled]="!t.is_active">{{t.numSeats}}</button>
+        <button class="btn btn-secondary" [disabled]="!t.is_active">Ready For Pickup</button>
       </td>
     </tr>
   </tbody>

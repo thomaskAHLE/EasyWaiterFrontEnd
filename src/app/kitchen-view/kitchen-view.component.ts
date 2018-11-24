@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Input} from '@angular/core';
+import { Component, OnInit, DoCheck, Input, OnDestroy} from '@angular/core';
 import {RestaurantService} from '../services/restaurant.service';
 import {OrderModel,ORDER_STATUS} from '../models/order-model';
 
@@ -7,43 +7,39 @@ import {OrderModel,ORDER_STATUS} from '../models/order-model';
   templateUrl: './kitchen-view.component.html',
   styleUrls: ['./kitchen-view.component.css']
 })
-export class KitchenViewComponent implements OnInit, DoCheck {
+export class KitchenViewComponent implements OnInit {
 
   constructor(private _restaurantService :RestaurantService) { }
  
-  toDoOrders:OrderModel[];
-  inProgOrders:OrderModel[];
-  finishedOrders:OrderModel[];
+  toDoOrders:OrderModel[] = [];
+  inProgOrders:OrderModel[] = [];
+  finishedOrders:OrderModel[] = [];
   ngOnInit() {
-    this.toDoOrders = this._restaurantService.getToDoOrders();
-    this.inProgOrders = this._restaurantService.getInProgOrders();
-    this.finishedOrders = this._restaurantService.getFinishedOrders();
-  }
-
-  getToDoOrders():OrderModel[]{
-    return this._restaurantService.getToDoOrders();
+    this._restaurantService.getToDoOrders().subscribe((toDo:OrderModel[])=>{
+      this.toDoOrders = toDo;
+    });
+    this._restaurantService.getInProgOrders().subscribe((inProg:OrderModel[])=>{
+      this.inProgOrders = inProg;
+    });
+    this._restaurantService.getFinishedOrders().subscribe((fin:OrderModel[])=>{
+      this.finishedOrders = fin;
+    })
   }
 
   moveToToDo(order:OrderModel)
   {
     order.status = ORDER_STATUS.TO_DO;
-    this.toDoOrders=this._restaurantService.getToDoOrders();
-    this.inProgOrders = this._restaurantService.getInProgOrders();
+    this._restaurantService.updateOrderStatus(order);
 
   }
   moveToInProg(order:OrderModel){
     order.status = ORDER_STATUS.IN_PROGRESS;
-    this.toDoOrders = this._restaurantService.getToDoOrders();
-    this.inProgOrders = this._restaurantService.getInProgOrders();
+    this._restaurantService.updateOrderStatus(order);
   }
 
   moveToFinished(order:OrderModel){
     order.status = ORDER_STATUS.FINISHED;
-    this.inProgOrders = this._restaurantService.getInProgOrders();
-    this.finishedOrders = this._restaurantService.getFinishedOrders();
+    this._restaurantService.updateOrderStatus(order);
   }
-  ngDoCheck()
-  {
-    this.toDoOrders = this._restaurantService.getToDoOrders();
-  }
+
 }

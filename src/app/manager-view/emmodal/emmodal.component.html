@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Menu</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Item Name</p>
+    <input #itemName value={{food.name}} [(ngModel)]="food.name" id="typeahead-basic" type="text" class="form-control"/>
+    <hr>
+    <p>Item Description</p>
+    <input #itemDescription value={{food.description}} [(ngModel)]="food.description" id="typeahead-basic" type="text" class="form-control" />
+    <hr>
+    <p>Item Price</p>
+    <input #itemPrice value={{food.price}} [(ngModel)]="food.price" id="typeahead-basic" type="text" class="form-control"/>
+    <hr>
+      <div ngbDropdown class="d-inline-block">
+        <label>Category</label>
+        <div>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option value='1'>Appetizer</option>
+            <option value='2'>Side</option>
+            <option value='3'>Entree</option>
+            <option value='4'>Dessert</option>
+          </select>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="saveVal()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
+</div>

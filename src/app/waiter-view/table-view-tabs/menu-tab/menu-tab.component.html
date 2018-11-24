@@ -1,19 +1,26 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <table class="table table-bordered ">
   <thead>
     <th colspan="2" class = "text-center">Appetizers</th>
     
   </thead>
   <tbody>
-    <tr *ngFor="let a of menu.appetizers">
+     
+    <tr *ngFor="let a of menuApps">
+        
       <td width="50%"> 
-        {{a.name}} {{a.price}}
+        <div class="panel">
+          {{a.name}} {{a.price}}
+          <i class="fas fa-info-circle"></i>
+          <p>{{a.description}}</p> 
+        </div>
       </td>
       <td class="text-center" width="50%"> 
         <button class="btn btn-success" (click) = 'addFoodToPending(a)'>Add</button>
       </td>
     </tr>
   </tbody>
-  
+
 </table>
 
 <table class="table table-bordered ">
@@ -21,9 +28,13 @@
     <th colspan="2" class = "text-center">Sides</th>
   </thead>
   <tbody>
-    <tr *ngFor="let s of menu.sides">
+    <tr *ngFor="let s of menuSides">
       <td width="50%">
-        {{s.name}} {{s.price}}
+          <div class="panel">
+              {{s.name}} {{s.price}}
+              <i class="fas fa-info-circle"></i>
+              <p>{{s.description}}</p> 
+            </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(s)'>Add</button>
@@ -39,9 +50,13 @@
     <th colspan="2" class = "text-center">Entrees</th>
   </thead>
   <tbody>
-    <tr *ngFor="let e of menu.entrees">
+    <tr *ngFor="let e of menuEntrees">
       <td width="50%">
-        {{e.name}} {{e.price}}
+          <div class="panel">
+              {{e.name}} {{e.price}}
+              <i class="fas fa-info-circle"></i>
+              <p>{{e.description}}</p> 
+            </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(e)'>Add</button>
@@ -56,9 +71,13 @@
     <th colspan="2" class = "text-center">Desserts</th>
   </thead>
   <tbody>
-    <tr *ngFor="let d of menu.desserts">
+    <tr *ngFor="let d of menuDesserts">
       <td width="50%"> 
-        {{d.name}} {{d.price}}
+          <div class="panel">
+              {{d.name}} {{d.price}}
+              <i class="fas fa-info-circle"></i>
+              <p>{{d.description}}</p> 
+            </div>
       </td>
       <td class="text-center" width="50%">
           <button class="btn btn-success" (click) = 'addFoodToPending(d)'>Add</button>
