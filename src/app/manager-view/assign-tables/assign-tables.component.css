@@ -13,7 +13,7 @@
 .table-space{
     grid-area: table-space;
 }
-
+    
 .table-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

@@ -19,6 +19,12 @@ button {
     border-radius: 8px;
 }
 
+.manager-btn{
+    background-color: #0090c5;
+    border-radius: 8px;
+}
+
+
 .page-header{
     color: rgba(20, 20, 167, 0.795);
     margin: 1em;
