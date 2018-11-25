@@ -6,8 +6,24 @@
 .back-grid {
     display: grid;
     grid-template-columns: 10% 70% 20%;
+    grid-template-rows: 10% 90%;
     grid-template-areas:
+    "nav-menu page-header page-header"
     "nav-menu table-space waiters-nav"; 
+}
+
+.page-header{
+    grid-area: page-header;
+}
+
+.page-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.page-details > div{
+    justify-self: center;
+    align-self: center;
 }
 
 .nav-menu{
