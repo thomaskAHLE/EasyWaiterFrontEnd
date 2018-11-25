@@ -18,33 +18,23 @@ export class AuthenticationService {
   user: Observable<UserModel | null>;
   userRef: AngularFirestoreDocument<UserModel>;
   constructor(private afs: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
-    console.log('authentication service constructor');
     this.user = afsAuth.authState.pipe(switchMap(user => {
-      console.log('IN SWITCH MAP');
       if (user) {
-        console.log('user found');
-        console.log(user);
         return this.afs.doc<UserModel>(`users/${user.uid}`).valueChanges();
       }
       else {
-        console.log('user not found');
         return of(null);
       }
     }));
   }
 
-  private updateUserData(user: User) {
-    // this.userRef = this.afs.doc(`users/${user.uid}`);
-  }
-
- login(email: string, password: string) {
+ login(email: string, password: string):void {
     this.afsAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then( () =>{
-      return this.afsAuth.auth.signInWithEmailAndPassword(email, password).then(credential => { return this.updateUserData(credential.user); })
-    });
-  }
+      return this.afsAuth.auth.signInWithEmailAndPassword(email, password); })
+  };
+  
 
   logout() {
-    console.log('logout')
     this.afsAuth.auth.signOut();
   }
 

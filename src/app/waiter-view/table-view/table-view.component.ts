@@ -54,7 +54,7 @@ export class TableViewComponent implements OnInit {
           this.openTab = OPEN_TAB.MENU;
         }
       });
-      this._menuService.getOrderObservable().subscribe((menuItems:FoodModel[])=>{
+      this._menuService.getMenuObservable().subscribe((menuItems:FoodModel[])=>{
         this.menuApps = menuItems.filter(f => f.category == FOOD_CATEGORY.APPETIZER);
         this.menuSides = menuItems.filter(f => f.category == FOOD_CATEGORY.SIDE);
         this.menuEntrees = menuItems.filter(f => f.category == FOOD_CATEGORY.ENTREE);

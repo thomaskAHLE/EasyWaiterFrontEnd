@@ -20,9 +20,18 @@
       </div>
     </div>
   </div>
-  <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" ></app-add-waiter>
-  <app-assign-tables *ngIf="openTab === OpenTab.ASSTA" ></app-assign-tables>
+  <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" 
+  [waiterList] = "waiterList" 
+  ></app-add-waiter>
+  <app-assign-tables *ngIf="openTab === OpenTab.ASSTA" 
+  [tables] = "tables" 
+  [waiterList] = "waiterList" 
+  ></app-assign-tables>
   <app-create-report *ngIf="openTab === OpenTab.CREATERE" ></app-create-report>
-  <app-edit-menu *ngIf="openTab === OpenTab.EDITMEN" ></app-edit-menu>
+  <app-edit-menu *ngIf="openTab === OpenTab.EDITMEN" 
+  [menuApps] = "menuApps"
+  [menuSides] = "menuSides"
+  [menuEntrees] = "menuEntrees"
+  [menuDesserts] = "menuDesserts" ></app-edit-menu>
   
 </body>
