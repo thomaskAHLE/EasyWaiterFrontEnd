@@ -8,29 +8,22 @@ import { Observable } from 'rxjs';
   templateUrl: './pending-tab.component.html',
   styleUrls: ['./pending-tab.component.css']
 })
-export class PendingTabComponent implements OnInit  {
+export class PendingTabComponent  {
 
   @Input()
   table: TableModel;
   orderStatus = ORDER_STATUS;
-  orderUpdate: Observable<any[]>;
   
   constructor(private _restaurantService: RestaurantService) { }
 
   removeFoodFromPending(order:OrderModel):void
   {
     this.table.removeFromPending(order);
-  
   }
-
-  send():void //temperary function 
+  send():void
   {
     this._restaurantService.addPendingToOrders(this.table.PendingOrders);
     this.table.PendingOrders = [];
-  }
-
-  ngOnInit() {
-   // this.orderUpdate = this._restaurantService.getOrderObservable();
   }
 
 }

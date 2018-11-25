@@ -19,7 +19,7 @@
         <div *ngIf = 'readyForPickup(t.tableNumber);else notready'>
         <button 
         routerLink = "/table-view/{{t.tableNumber}}" 
-        [queryParams] = "{finishedOrders: '1'}"
+        [queryParams] = "{readyForPickup: '1'}"
         class="btn btn-success">Ready For Pickup</button>
       </div>
         <ng-template #notready>

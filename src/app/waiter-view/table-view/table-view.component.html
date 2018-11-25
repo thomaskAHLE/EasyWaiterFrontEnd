@@ -9,7 +9,12 @@
 <div class = 'row'>
 <div class='col-sm-12 text-center'>
   <h1 id="TableHeader">Table {{selectedId}}</h1>
-  <button id="clearBtn" class = 'btn btn-danger float-sm-right' (click) = 'onClickClr()'>Clear Table</button>
+  <div *ngIf='canClear;else cantClear'>
+      <button id="clearBtn" class = 'btn btn-danger float-sm-right' (click) = 'onClickClr()'>Clear Table</button>
+    </div>
+    <ng-template #cantClear>
+        <button id="clearBtn" class = 'btn btn-danger float-sm-right' disabled>Clear Table</button> 
+    </ng-template>
 </div>
 </div>
 <ul class="nav nav-pills">
@@ -25,6 +30,4 @@
 </ul>
 <app-menu-tab *ngIf="openTab === OpenTab.MENU" [table]="table"></app-menu-tab>
 <app-pending-tab *ngIf="openTab === OpenTab.IN_PROGRESS" [table]="table"></app-pending-tab>
-<app-ordered-tab *ngIf="openTab === OpenTab.ORDERED" [table]="table"></app-ordered-tab>
-
-<!-- <pre>{{table|json}}</pre> -->
+<app-ordered-tab *ngIf="openTab === OpenTab.ORDERED" [table]="table" [tableOrders] = "tableOrders"></app-ordered-tab>
