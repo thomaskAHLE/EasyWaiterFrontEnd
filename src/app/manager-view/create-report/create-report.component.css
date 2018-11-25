@@ -2,7 +2,7 @@
 
 .back-grid{
     display: grid;
-    grid-template-columns: 10% 70% 19% 1%;
+    grid-template-columns: 10% 90%;
     grid-template-areas: 
     "nav-menu report-container"
 }
@@ -11,6 +11,21 @@
 .nav-menu{
     grid-area: nav-menu;
 }
+
+.report-container{
+    grid-area: report-container;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    height: 100vh;
+    width: 70vw;
+    padding-left: 20em; 
+}
+
+.report-container >div{
+    align-self: center;
+    justify-self: center; 
+}
+
 
 .card {
     display:inline-block;
@@ -22,19 +37,6 @@
 }
 
 
-.report-container{
-    display: grid;
-    grid-template-columns: 2fr 2fr;
-    height: 100vh;
-    width: 70vw;
-    position: fixed;
-    padding-left: 20em; 
-}
-
-.report-container >div{
-    align-self: center;
-    justify-self: center; 
-}
 
 .card-subtitle{
     padding-top: 3em; 

@@ -3,6 +3,8 @@ import { TableModel } from '../../models/table-model'
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { TableService } from 'src/app/services/table.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ClrModalComponent} from '../clr-modal/clr-modal.component';
 export enum OPEN_TAB { MENU, IN_PROGRESS, ORDERED };
 
 @Component({
@@ -22,7 +24,7 @@ export class TableViewComponent implements OnInit {
   selectedId: number;
   openTab: OPEN_TAB;
   OpenTab = OPEN_TAB;
-  constructor(private route: ActivatedRoute, private router: Router, private _restaurantService: RestaurantService, private _tableService: TableService) {
+  constructor(private route: ActivatedRoute, private router: Router, private _restaurantService: RestaurantService, private _tableService: TableService, private modal: NgbModal) {
     this.openTab = OPEN_TAB.MENU;
     this.selectedId = this.route.snapshot.params['id'];
     
@@ -44,6 +46,11 @@ export class TableViewComponent implements OnInit {
     this.table.isActive = false;
     this._tableService.updateTableisActive(this.table);
     this.router.navigate(['waiter-view']);
+  }
+
+  onClick() {
+    const tableref = this.modal.open(ClrModalComponent);
+    tableref.componentInstance.tableNum = this.table.tableNumber;
   }
 
 }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from'@angular/fire/firestore';
 import { OrderModel,ORDER_STATUS } from '../models/order-model';
 import { FoodModel } from '../models/food-model'; 
-import { DeliveredOrderModel } from '../models/deliveredorder-model'; 
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -11,15 +10,28 @@ import {map} from 'rxjs/operators';
 })
 export class ReportService {
 
-  ordersCollection: AngularFirestoreCollection<DeliveredOrderModel>; 
+  ordersCollection: AngularFirestoreCollection<OrderModel>; 
+  orders: Observable<OrderModel[]>; 
   constructor(private _afs:AngularFirestore) { 
-    this.ordersCollection = this._afs.collection('deliveredOrders');
+    this.ordersCollection = this._afs.collection('deliveredOrders'); 
+    this.orders = this.ordersCollection.valueChanges(); 
+    //, ref => {
+      //return ref.orderBy('food', 'desc')
+    //});
+    
   } 
+
 
   generateSalesReport()
   {
-    var allOrders = this.ordersCollection.snapshotChanges() as Observable<any[]>;
-    var csv = ' ,Times Sold,Gross Sales'; 
+    
+    //var allOrders = delivered.
+    
+    //.forEach(doc => {
+      //console.log(doc.id, '=>', doc.data());  
+    //console.log(allOrders); 
+
+    /*var csv = ' ,Times Sold,Gross Sales'; 
     allOrders.forEach(function(row){
       csv+=row.join(','); 
       csv+="\n"; 
@@ -29,8 +41,8 @@ export class ReportService {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'Sales_Report.csv';
-    hiddenElement.click();
+    hiddenElement.download = 'MenuSales_Report.csv';
+    hiddenElement.click();*/
 
 }
 
