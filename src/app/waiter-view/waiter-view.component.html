@@ -17,7 +17,10 @@
       </td>
       <td class="text-center">
         <div *ngIf = 'readyForPickup(t.tableNumber);else notready'>
-        <button class="btn btn-success">Ready For Pickup</button>
+        <button 
+        routerLink = "/table-view/{{t.tableNumber}}" 
+        [queryParams] = "{finishedOrders: '1'}"
+        class="btn btn-success">Ready For Pickup</button>
       </div>
         <ng-template #notready>
             <button class="btn btn-secondary" disabled >Ready For Pickup</button>

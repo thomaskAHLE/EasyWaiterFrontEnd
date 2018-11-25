@@ -20,16 +20,28 @@ export class TableViewComponent implements OnInit {
   openTab: OPEN_TAB;
   OpenTab = OPEN_TAB;
   constructor(private route: ActivatedRoute, private router: Router, private modal: NgbModal, private _tableService: TableService) {
-    this.openTab = OPEN_TAB.MENU;
+    
     this.selectedId = this.route.snapshot.params['id'];
+    
+
     
   }
   ngOnInit() {
     this._tableService.getTableFromTableNum(this.selectedId)
       .subscribe((tables:TableModel[])=>{
-        console.log(tables)
-        this.table = tables[0]
+        console.log(tables);
+        this.table = tables[0];
+        let finished = this.route.snapshot.queryParams['finishedOrders'];
+    if(finished)
+    {
+      this.openTab = OPEN_TAB.ORDERED;
+    }
+    else
+    {
+      this.openTab = OPEN_TAB.MENU;
+    }
       });
+      
   }
 
   onClickClr() {
