@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { TableModel } from '../../models/table-model';
 import { RestaurantService } from '../../services/restaurant.service';
 import { UserModel, USER_TYPE } from '../../models/user-model';
@@ -12,23 +12,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AssignTablesComponent implements OnInit {
   mytable: TableModel;
-  // waiterlist : UserModel[] = [];
-  waiterlist: string[] = ['Waiter 1', 'Waiter 2', 'Waiter 3', 'Waiter 4'];
+
+  @Input()
   waiterList: UserModel[] = [];
+  @Input()
   tables: TableModel[] = [];
   constructor(private _tableService: TableService, private _userService: UserService) {
    }
 
   ngOnInit() {
-    this._tableService.getAllTables()
-      .subscribe((alltables: TableModel[]) => {
-        this.tables = alltables; 
-      });
-    this._userService.getUsers().subscribe((allUsers:UserModel[])=>
-    {
-      this.waiterList = allUsers.filter(u => u.userType == USER_TYPE.WAITER);
-      console.log(this.waiterList);
-    })
     
   }
 

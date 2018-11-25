@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuService } from 'src/app/services/menu.service';
 import {MenuModel} from '../../models/menu-model';
 import { TableModel } from 'src/app/models/table-model';
@@ -18,12 +18,16 @@ export class EditMenuComponent implements OnInit {
 
   @ViewChild('ipt') nameval: ElementRef;
   modalReference: any;
-  table: TableModel;
+  
+  @Input()
   menuApps: FoodModel[] = [];
+  @Input()
   menuSides:FoodModel[] = [];
+  @Input()
   menuEntrees:FoodModel[]=[];
+  @Input()
   menuDesserts:FoodModel[]=[];
-  menu: MenuModel;
+  
 
   constructor(private _menuService: MenuService, private modal: NgbModal) { 
   }
@@ -31,12 +35,7 @@ export class EditMenuComponent implements OnInit {
   
 
   ngOnInit( ) {
-    this._menuService.getOrderObservable().subscribe((menuItems:FoodModel[])=>{
-      this.menuApps = menuItems.filter(f => f.category == FOOD_CATEGORY.APPETIZER);
-      this.menuSides = menuItems.filter(f => f.category == FOOD_CATEGORY.SIDE);
-      this.menuEntrees = menuItems.filter(f => f.category == FOOD_CATEGORY.ENTREE);
-      this.menuDesserts = menuItems.filter(f => f.category == FOOD_CATEGORY.DESSERT);
-  });
+
   }
   onAddMenuItem() {
     let food:FoodModel = new FoodModel("",0,0,"");
