@@ -41,7 +41,7 @@
             </td>
             <td class="text-center" width="50%">
                 <button class="btn btn-primary" (click)="onEditMenuItem(s)">Edit</button>
-                <button type="button" class="btn btn-danger" >Remove</button>
+                <button type="button" class="btn btn-danger"(click)="onRemoveMenuItem(s)" >Remove</button>
             </td>
             
           </tr>
@@ -62,7 +62,7 @@
             </td>
             <td class="text-center" width="50%">
                 <button class="btn btn-primary" (click)="onEditMenuItem(e)">Edit</button>
-                <button type="button" class="btn btn-danger" >Remove</button>
+                <button type="button" class="btn btn-danger" (click)="onRemoveMenuItem(e)">Remove</button>
             </td>
           </tr>
         </tbody>
@@ -82,7 +82,7 @@
             </td>
             <td class="text-center" width="50%">
                 <button class="btn btn-primary" (click)="onEditMenuItem(d)">Edit</button>
-                <button type="button" class="btn btn-danger" >Remove</button>
+                <button type="button" class="btn btn-danger" (click)="onRemoveMenuItem(d)">Remove</button>
             </td>
           </tr>
         </tbody>
