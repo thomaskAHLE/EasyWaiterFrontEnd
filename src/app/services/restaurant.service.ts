@@ -6,6 +6,7 @@ import { OrderModel,ORDER_STATUS } from '../models/order-model';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { ReportModel } from '../models/report-model';
 @Injectable({
   providedIn: 'root'
 })
@@ -70,10 +71,12 @@ export class RestaurantService {
     return data;})));
   }
 
-  clearTablesOrders(tableNum:number):void{
+  clearTablesOrders(table:TableModel ):void{
     let deliveredOrdersCollection:AngularFirestoreCollection<OrderModel> = this.afs.collection('deliveredOrders');
-    this.getOrderObservableforTable(tableNum).subscribe((orders:OrderModel[])=>{
-      orders.forEach(o=> deliveredOrdersCollection.add(JSON.parse(JSON.stringify(o)))); 
+    this.getOrderObservableforTable(table.tableNumber).subscribe((orders:OrderModel[])=>{
+      orders.forEach(o=> {
+      let reportItem: ReportModel = new ReportModel(table.assignedTo, o.food.name, o.food.price);
+      deliveredOrdersCollection.add(JSON.parse(JSON.stringify(reportItem)))}); 
       orders.forEach(o =>{let orderDocument:AngularFirestoreDocument<OrderModel> = this.afs.doc<OrderModel>(`orders/${o.$key}`);
       orderDocument.delete();
     })

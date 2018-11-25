@@ -24,7 +24,7 @@ export class ClrModalComponent implements OnInit {
   }
 
   onClearTables(){
-    this._restaurantService.clearTablesOrders(this.tableNum);
+    this._restaurantService.clearTablesOrders(this.table);
     this.table.isActive = false;
     this._tableService.updateTableisActive(this.table);
     this.router.navigate(['waiter-view']);
