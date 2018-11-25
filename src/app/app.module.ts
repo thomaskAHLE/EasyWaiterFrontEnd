@@ -24,6 +24,8 @@ import { EditMenuComponent } from './manager-view/edit-menu/edit-menu.component'
 import { AddWaiterComponent } from './manager-view/add-waiter/add-waiter.component';
 import { ModalComponent } from './manager-view/modal/modal.component';
 import { EMmodalComponent } from './manager-view/emmodal/emmodal.component';
+import { ClrModalComponent } from './waiter-view/clr-modal/clr-modal.component';
+import { BackModalComponent } from './waiter-view/back-modal/back-modal.component';
 
 
 const appRoute: Routes = [
@@ -51,7 +53,9 @@ const appRoute: Routes = [
     EditMenuComponent,
     AddWaiterComponent,
     ModalComponent,
-    EMmodalComponent
+    EMmodalComponent,
+    ClrModalComponent,
+    BackModalComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,9 @@ const appRoute: Routes = [
   providers: [],
   entryComponents: [
     ModalComponent,
-    EMmodalComponent],
+    EMmodalComponent,
+    ClrModalComponent,
+    BackModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
