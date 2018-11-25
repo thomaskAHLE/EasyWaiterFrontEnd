@@ -24,3 +24,8 @@
     cursor: pointer;
     display: block;
 }
+
+.table.table-hover.table-bordered{
+    margin: auto;
+    width: 80%;
+}
