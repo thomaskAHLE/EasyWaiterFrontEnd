@@ -31,8 +31,4 @@ export class ClrModalComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
-  test(){
-    console.log(this.tableNum);
-  }
-
 }
