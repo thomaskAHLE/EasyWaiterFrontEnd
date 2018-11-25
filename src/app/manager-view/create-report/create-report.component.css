@@ -14,10 +14,8 @@
 .report-container{
     grid-area: report-container;
     display: grid;
-    grid-template-columns: 2fr 2fr;
-    height: 100vh;
-    width: 70vw;
-    padding-left: 20em; 
+    grid-template-columns: 1fr 1fr;
+    padding: 5em;
 }
 
 .report-container >div{
@@ -35,8 +33,11 @@
     font-size: 65px;
 }
 
-
-
 .card-subtitle{
     padding-top: 3em; 
+}
+
+.btn.btn-primary{
+    background-color: #5680E9;
+    border: #5680E9;
 }

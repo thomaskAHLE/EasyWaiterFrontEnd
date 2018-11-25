@@ -10,7 +10,7 @@
         
       <td width="50%"> 
         <div class="panel">
-          {{a.name}} {{a.price}}
+          {{a.name}} ${{a.price}}
           <i class="fas fa-info-circle"></i>
           <p>{{a.description}}</p> 
         </div>
@@ -31,7 +31,7 @@
     <tr *ngFor="let s of menuSides">
       <td width="50%">
           <div class="panel">
-              {{s.name}} {{s.price}}
+              {{s.name}} ${{s.price}}
               <i class="fas fa-info-circle"></i>
               <p>{{s.description}}</p> 
             </div>
@@ -53,7 +53,7 @@
     <tr *ngFor="let e of menuEntrees">
       <td width="50%">
           <div class="panel">
-              {{e.name}} {{e.price}}
+              {{e.name}} ${{e.price}}
               <i class="fas fa-info-circle"></i>
               <p>{{e.description}}</p> 
             </div>
@@ -74,7 +74,7 @@
     <tr *ngFor="let d of menuDesserts">
       <td width="50%"> 
           <div class="panel">
-              {{d.name}} {{d.price}}
+              {{d.name}} ${{d.price}}
               <i class="fas fa-info-circle"></i>
               <p>{{d.description}}</p> 
             </div>
