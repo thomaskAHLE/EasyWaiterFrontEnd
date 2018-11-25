@@ -18,7 +18,7 @@
 .table-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 100vh;
+    height: 70vh;
     width: 70vw;
     /* position: fixed; */
 }
@@ -57,14 +57,14 @@
 }
 
 .waiters-nav > .list-group-item.list-group-item-info{
-    background-color: blueviolet;
+    background-color: #5680E9;
 }
 
 .waiters-nav > .list-group-item.list-group-item-info > p{
     padding: 20px;
     text-align: center;
     color: whitesmoke;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
 

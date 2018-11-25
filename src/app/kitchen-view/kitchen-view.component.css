@@ -1,12 +1,11 @@
-.page-header{
+.page-header{ 
+    color: #5680E9;
+    font: arial;
     margin: 1em;
-    display: grid;
-    grid-template-columns: 80% 20%;
-    grid-template-areas: "brand-title back-button";
 }
 
 .page-header > h1{
-    color: rgba(20, 20, 167, 0.795);
+    display: inline;
 }
 
 .brand-title{

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <div class="page-header">
-    <h1 class="brand-title">Easy Waiter</h1> 
+    <h1 style="color:black">EASY </h1> <h1> WAITER</h1>
 </div>
 <div class="kitchen-info">
     <div class="kitchen-details">
@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-4 border" mwlDroppable (drop) = 'moveToToDo($event.dropData)' >
-                <h2 class = 'text-center'>To Do</h2>
+                <h3 class = 'text-center'>To Do</h3>
             <ul class="list-group" *ngFor = 'let td of toDoOrders'>
                 <div mwlDraggable [dropData] = td>
                 <li class="list-group-item text-center">{{td.food.name}}  for Table {{td.tableNumber}}
@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="col-4 border" mwlDroppable (drop)='moveToInProg($event.dropData)'>
-                <h2 class = 'text-center'>In Progress</h2>
+                <h3 class = 'text-center'>In Progress</h3>
             <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
                 <div mwlDraggable [dropData] = ip>
                     <li class="list-group-item text-center">{{ip.food.name}} for Table {{ip.tableNumber}}
@@ -30,7 +30,7 @@
             </ul>
         </div>
         <div class="col-4 border" mwlDroppable (drop)='moveToFinished($event.dropData)'>
-            <h2 class = 'text-center'>Finished</h2>
+            <h3 class = 'text-center'>Finished</h3>
         <ul class="list-group" *ngFor = 'let f of finishedOrders'>
                 <li class="list-group-item text-center">{{f.food.name}} for Table {{f.tableNumber}}
                 </li>

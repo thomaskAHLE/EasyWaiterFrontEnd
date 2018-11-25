@@ -35,6 +35,7 @@
 #logo{
     justify-self: left;
     align-self: left;
+    padding-left: 3em;
 }
 
 #logout{
