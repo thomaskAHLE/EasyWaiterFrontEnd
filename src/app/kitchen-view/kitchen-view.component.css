@@ -21,6 +21,37 @@
     font-size: 1.5em;
 }
 
+.back-grid{
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-areas: ". container-fluid ."; 
+}
+
+.container-fluid{
+    grid-area: container-fluid;
+}
+
+.kitchen-info{
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-areas: ". kitchen-details ."
+}
+
+.kitchen-details{
+    grid-area: kitchen-details;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.kitchen-details > div{
+    justify-self: right;
+    margin-bottom: 0.5em;
+}
+
+.kitchen-details > h6{
+    padding-top: 15px;
+}
+
 @media (max-width: 950px){
     .text-center{
         font-size: 1.2em;
