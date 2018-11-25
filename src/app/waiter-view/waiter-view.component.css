@@ -7,3 +7,15 @@
     grid-area: grid-column-start;
     margin: 1em;
 }
+
+.table.table-hover.table-bordered{
+    margin: auto;
+    width: 80%;
+}
+
+@media (max-width: 450px){
+    .table.table-hover.table-bordered{
+        width: 300px;
+        margin: auto;
+    }
+}
