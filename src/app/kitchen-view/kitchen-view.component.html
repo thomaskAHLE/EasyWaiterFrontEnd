@@ -1,39 +1,43 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <div class="page-header">
     <h1 class="brand-title">Easy Waiter</h1> 
-    <h2>Hello, {{kitchen.displayName}}</h2>
-    <button class = 'btn btn-danger' (click) = 'logoutKitchen()'>Logout</button>
 </div>
-
-<a routerLink = "/waiter-view/">Login Waiter</a>
-
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-4 border" mwlDroppable (drop) = 'moveToToDo($event.dropData)' >
-            <h2 class = 'text-center'>To Do</h2>
-        <ul class="list-group" *ngFor = 'let td of toDoOrders'>
-            <div mwlDraggable [dropData] = td>
-            <li class="list-group-item text-center">{{td.food.name}}  for Table {{td.tableNumber}}
-            </li>
-        </div>
-          </ul>
-      </div>
-      <div class="col-4 border" mwlDroppable (drop)='moveToInProg($event.dropData)'>
-            <h2 class = 'text-center'>In Progress</h2>
-        <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
-            <div mwlDraggable [dropData] = ip>
-                <li class="list-group-item text-center">{{ip.food.name}} for Table {{ip.tableNumber}}
+<!-- <a routerLink = "/waiter-view/">Login Waiter</a> -->
+<div class="kitchen-info">
+    <div class="kitchen-details">
+        <h6>Hello, {{kitchen.displayName}}</h6>
+        <div><button class = 'btn btn-danger' (click) = 'logoutKitchen()'>Logout</button></div>
+    </div>
+</div>
+<div class="back-grid">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-4 border" mwlDroppable (drop) = 'moveToToDo($event.dropData)' >
+                <h2 class = 'text-center'>To Do</h2>
+            <ul class="list-group" *ngFor = 'let td of toDoOrders'>
+                <div mwlDraggable [dropData] = td>
+                <li class="list-group-item text-center">{{td.food.name}}  for Table {{td.tableNumber}}
                 </li>
             </div>
-        </ul>
-      </div>
-      <div class="col-4 border" mwlDroppable (drop)='moveToFinished($event.dropData)'>
-        <h2 class = 'text-center'>Finished</h2>
-       <ul class="list-group" *ngFor = 'let f of finishedOrders'>
-            <li class="list-group-item text-center">{{f.food.name}} for Table {{f.tableNumber}}
-            </li>
-            
-          </ul>
-      </div>
+            </ul>
+        </div>
+        <div class="col-4 border" mwlDroppable (drop)='moveToInProg($event.dropData)'>
+                <h2 class = 'text-center'>In Progress</h2>
+            <ul class="list-group" *ngFor = 'let ip of inProgOrders'>
+                <div mwlDraggable [dropData] = ip>
+                    <li class="list-group-item text-center">{{ip.food.name}} for Table {{ip.tableNumber}}
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="col-4 border" mwlDroppable (drop)='moveToFinished($event.dropData)'>
+            <h2 class = 'text-center'>Finished</h2>
+        <ul class="list-group" *ngFor = 'let f of finishedOrders'>
+                <li class="list-group-item text-center">{{f.food.name}} for Table {{f.tableNumber}}
+                </li>
+                
+            </ul>
+        </div>
+        </div>
     </div>
-  </div>
+</div>
