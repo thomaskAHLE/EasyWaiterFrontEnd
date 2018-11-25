@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './assign-tables.component.html',
   styleUrls: ['./assign-tables.component.css']
 })
-export class AssignTablesComponent implements OnInit {
+export class AssignTablesComponent {
   mytable: TableModel;
 
   @Input()
@@ -20,21 +20,7 @@ export class AssignTablesComponent implements OnInit {
   constructor(private _tableService: TableService, private _userService: UserService) {
    }
 
-  ngOnInit() {
-    
-  }
-
-  clearTable(i: number) {
-    console.log(this.tables);
-    let tableToClear: TableModel = this.tables.find(t => t.tableNumber == i);
-    console.log(tableToClear);
-    tableToClear.assignedTo = 'none';
-    this._tableService.updateTableAssignment(tableToClear);
-    alert("are you sure?");
-  }
-
   activateTable(tableToActivate:TableModel){
-    console.log('activating table' + tableToActivate);
     if(!tableToActivate.isActive)
     {
       tableToActivate.isActive = true;

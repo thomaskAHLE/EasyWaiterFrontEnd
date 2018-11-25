@@ -14,7 +14,7 @@ import { NgModuleRef } from '@angular/core/src/render3';
   templateUrl: './edit-menu.component.html',
   styleUrls: ['./edit-menu.component.css']
 })
-export class EditMenuComponent implements OnInit {
+export class EditMenuComponent{
 
   @ViewChild('ipt') nameval: ElementRef;
   modalReference: any;
@@ -32,11 +32,6 @@ export class EditMenuComponent implements OnInit {
   constructor(private _menuService: MenuService, private modal: NgbModal) { 
   }
 
-  
-
-  ngOnInit( ) {
-
-  }
   onAddMenuItem() {
     let food:FoodModel = new FoodModel("",0,0,"");
     const modalRef = this.modal.open(EMmodalComponent);

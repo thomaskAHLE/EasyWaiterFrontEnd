@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {ViewChild, ElementRef} from '@angular/core';
-import  {FoodModel, FOOD_CATEGORY} from '../../models/food-model';
+import  {FoodModel} from '../../models/food-model';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({

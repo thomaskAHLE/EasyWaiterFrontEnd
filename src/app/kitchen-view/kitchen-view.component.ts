@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Input, OnDestroy} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {RestaurantService} from '../services/restaurant.service';
 import {OrderModel,ORDER_STATUS} from '../models/order-model';
 import { AuthenticationService } from '../services/authentication.service';

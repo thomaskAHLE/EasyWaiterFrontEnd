@@ -3,7 +3,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { USER_TYPE } from '../models/user-model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map, take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -39,9 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   private afterSignIn() {
-    console.log('after sign in')
     this.authenticationService.user.subscribe(user => {
-      console.log(user)
       if (user) {
         switch (user.userType) {
           case USER_TYPE.WAITER:

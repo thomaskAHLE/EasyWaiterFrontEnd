@@ -29,7 +29,7 @@ export class RestaurantService {
     return v.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new OrderModel(o.payload.doc.data().food,o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data;})));
   }
 
-  addPendingToOrders(ordersToAdd: OrderModel[])
+  addPendingToOrders(ordersToAdd: OrderModel[]):void
   {
     console.log('adding pending to orders');
     ordersToAdd.forEach(o => console.log(JSON.parse(JSON.stringify(o)))); 
@@ -58,7 +58,7 @@ export class RestaurantService {
     )));
   }
 
-  updateOrderStatus(order:OrderModel)
+  updateOrderStatus(order:OrderModel):void
   {
     this.orderCollection.doc(order.$key).update({status: order.status});
   }
@@ -70,7 +70,7 @@ export class RestaurantService {
     return data;})));
   }
 
-  clearTablesOrders(tableNum:number){
+  clearTablesOrders(tableNum:number):void{
     let deliveredOrdersCollection:AngularFirestoreCollection<OrderModel> = this.afs.collection('deliveredOrders');
     this.getOrderObservableforTable(tableNum).subscribe((orders:OrderModel[])=>{
       orders.forEach(o=> deliveredOrdersCollection.add(JSON.parse(JSON.stringify(o)))); 

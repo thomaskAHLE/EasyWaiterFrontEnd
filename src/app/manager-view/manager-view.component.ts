@@ -41,7 +41,7 @@ export class ManagerViewComponent implements OnInit {
     this.authService.user.pipe(take(1)).subscribe(user => {
       this.manager = user;
      });
-     this.menuService.getOrderObservable().subscribe((menuItems:FoodModel[])=>{
+     this.menuService.getMenuObservable().subscribe((menuItems:FoodModel[])=>{
       this.menuApps = menuItems.filter(f => f.category == FOOD_CATEGORY.APPETIZER);
       this.menuSides = menuItems.filter(f => f.category == FOOD_CATEGORY.SIDE);
       this.menuEntrees = menuItems.filter(f => f.category == FOOD_CATEGORY.ENTREE);
