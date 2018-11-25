@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<div class="page-header">
-    <h1 class="brand-title">Easy Waiter</h1> 
-    <h2>Hello, {{manager.displayName}}</h2>
-    <button class = 'btn btn-danger' (click) = 'logoutManager()'>Logout</button>
-</div>
+
 <body>
   <div class="back-grid">
     <div class = "nav-menu">
@@ -15,6 +11,13 @@
       <div class = "nav-menu-item3-active" *ngIf="openTab === OpenTab.ADDWA" > <a class="fas fa-user-alt" (click)='openTab = OpenTab.ADDWA' [ngClass]="{'active':openTab== OpenTab.ADDWA}"></a></div>
       <div class = "nav-menu-item4" *ngIf="openTab !== OpenTab.CREATERE"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATERE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
       <div class = "nav-menu-item4-active" *ngIf="openTab === OpenTab.CREATERE"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATERE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
+    </div>
+    <div class="page-header">
+      <div class="page-details">
+        <h1 class="brand-title">Easy Waiter</h1> 
+        <h6>Hello, {{manager.displayName}}</h6>
+        <div><button class = 'btn btn-danger' (click) = 'logoutManager()'>Logout</button></div>
+      </div>
     </div>
   </div>
   <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" ></app-add-waiter>
