@@ -7,12 +7,16 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
   templateUrl: './ordered-tab.component.html',
   styleUrls: ['./ordered-tab.component.css']
 })
-export class OrderedTabComponent implements OnInit {
+export class OrderedTabComponent  {
   @Input()
   table: TableModel;
   orderStatus = ORDER_STATUS;
-  orders:OrderModel[] = [];
-  constructor(private _restaurantService: RestaurantService) { }
+  @Input()
+  tableOrders:OrderModel[];
+  constructor(private _restaurantService: RestaurantService) { 
+    console.log('orderedtabConstructor');
+    console.log(this.tableOrders);
+  }
   
   markFoodAsDelivered(order:OrderModel)
   {
@@ -21,11 +25,11 @@ export class OrderedTabComponent implements OnInit {
     this._restaurantService.updateOrderStatus(order);
   }
   
-  ngOnInit() {
-    this._restaurantService.getOrderObservableforTable(this.table.tableNumber).subscribe((orders:OrderModel[])=>{
-      this.orders = orders.sort((a,b)=> a.status - b.status);
-    })
-  }
+  // ngOnInit() {
+  //   this._restaurantService.getOrderObservableforTable(this.table.tableNumber).subscribe((orders:OrderModel[])=>{
+  //     this.tableOrders = orders.sort((a,b)=> a.status - b.status);
+  //   })
+  // }
   
   
 

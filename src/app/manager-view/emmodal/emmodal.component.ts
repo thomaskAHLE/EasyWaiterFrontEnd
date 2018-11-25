@@ -21,7 +21,6 @@ export class EMmodalComponent implements OnInit {
   }
 
   saveVal(){
-      console.log(this.food);
       if(this.emModalType ==0)
       {
       this._menuService.updateMenuItem(this.food);

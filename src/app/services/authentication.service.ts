@@ -37,7 +37,7 @@ export class AuthenticationService {
     // this.userRef = this.afs.doc(`users/${user.uid}`);
   }
 
-  login(email: string, password: string) {
+ login(email: string, password: string) {
     this.afsAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then( () =>{
       return this.afsAuth.auth.signInWithEmailAndPassword(email, password).then(credential => { return this.updateUserData(credential.user); })
     });
@@ -46,9 +46,6 @@ export class AuthenticationService {
   logout() {
     console.log('logout')
     this.afsAuth.auth.signOut();
-  }
-  private oAuthLogin(provider) {
-    return this.afsAuth.auth.signInWithPopup(provider).then((crentential) => this.updateUserData(crentential.user));
   }
 
 }
