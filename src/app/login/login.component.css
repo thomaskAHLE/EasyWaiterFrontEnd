@@ -29,3 +29,30 @@ button {
     color: rgba(20, 20, 167, 0.795);
     margin: 1em;
 }
+
+.card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+
+.form-control{
+    width: 18em;
+}
+
+
+#login-card{
+    width: 25em;
+    height: 25em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#login-body{
+    margin: auto;
+}
+
+.errors{
+    color: red;
+}

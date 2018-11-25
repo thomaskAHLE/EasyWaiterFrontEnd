@@ -3,7 +3,35 @@
     margin: 1em;
 }
 
-#tableButton{
-    grid-area: grid-column-start;
-    margin: 1em;
+.back-grid{
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-areas: ". waiter-info .";
+}
+
+.waiter-info{
+    grid-area: waiter-info;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.waiter-info > div{
+    justify-self: right;
+    margin-bottom: 0.5em;
+}
+
+.waiter-info > h6{
+    padding-top: 15px;
+}
+
+.table.table-hover.table-bordered{
+    margin: auto;
+    width: 80%;
+}
+
+@media (max-width: 450px){
+    .table.table-hover.table-bordered{
+        width: 300px;
+        margin: auto;
+    }
 }
