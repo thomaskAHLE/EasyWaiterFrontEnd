@@ -4,7 +4,8 @@ admin.initializeApp();
 
 exports.csvJsonReport = functions.https.onRequest((request, response) => {
     const db = admin.firestore()
-    var ordersRef = db.collection('deliveredOrders')
+    var ordersRef = db.collection('deliveredOrders').where('food', ref =>{
+        return ref.where('name','==','Ice Cream')})
     var orderObserve = ordersRef.get() 
     .then(querySnapshot => {
        const orders = []
@@ -18,7 +19,7 @@ exports.csvJsonReport = functions.https.onRequest((request, response) => {
     const csv = json2csv(orders)
     response.setHeader(
         "Content-disposition",
-        "attachment; filename=EmployeeReport.csv"
+        "attachment; filename=MenuSalesReport.csv"
     )
     response.set("Content-Type", "text/csv")
     response.status(200).send(csv)
@@ -41,7 +42,7 @@ exports.csvJsonReport = functions.https.onRequest((request, response) => {
     const csv = json2csv(orders)
     response.setHeader(
         "Content-disposition",
-        "attachment; filename=SalesReport.csv"
+        "attachment; filename=EmployeeSalesReport.csv"
     )
     response.set("Content-Type", "text/csv")
     response.status(200).send(csv)
