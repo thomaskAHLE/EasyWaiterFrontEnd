@@ -1,7 +1,10 @@
 import { Component, OnInit, DoCheck, Input, OnDestroy} from '@angular/core';
 import {RestaurantService} from '../services/restaurant.service';
 import {OrderModel,ORDER_STATUS} from '../models/order-model';
-
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
+import { UserModel } from '../models/user-model';
+import {take} from 'rxjs/operators';
 @Component({
   selector: 'app-kitchen-view',
   templateUrl: './kitchen-view.component.html',
@@ -9,12 +12,18 @@ import {OrderModel,ORDER_STATUS} from '../models/order-model';
 })
 export class KitchenViewComponent implements OnInit {
 
-  constructor(private _restaurantService :RestaurantService) { }
+  constructor(private _restaurantService :RestaurantService, private authService: AuthenticationService, private router: Router) { }
  
+  kitchen:UserModel;
   toDoOrders:OrderModel[] = [];
   inProgOrders:OrderModel[] = [];
   finishedOrders:OrderModel[] = [];
-  ngOnInit() {
+  ngOnInit() { 
+    this.authService.user.pipe(take(1)).subscribe(user => {
+    this.kitchen = user;
+   });
+
+    
     this._restaurantService.getToDoOrders().subscribe((toDo:OrderModel[])=>{
       this.toDoOrders = toDo;
     });
@@ -40,6 +49,13 @@ export class KitchenViewComponent implements OnInit {
   moveToFinished(order:OrderModel){
     order.status = ORDER_STATUS.FINISHED;
     this._restaurantService.updateOrderStatus(order);
+  }
+  
+  logoutKitchen()
+  {
+    this.authService.logout();
+    this.router.navigate(['login']);
+
   }
 
 }

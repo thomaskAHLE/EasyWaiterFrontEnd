@@ -7,6 +7,7 @@ import { OrderModel, ORDER_STATUS } from '../models/order-model';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserModel } from '../models/user-model';
 import {take} from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-waiter-view',
   templateUrl: './waiter-view.component.html',
@@ -20,7 +21,7 @@ export class WaiterViewComponent implements OnInit {
   finishedOrders:OrderModel[] =[];
   waiter:UserModel;
  
-  constructor( private _userService: UserService, private _restaurantService: RestaurantService, private _tableService: TableService, public auth: AuthenticationService) {
+  constructor( private _userService: UserService, private _restaurantService: RestaurantService, private _tableService: TableService, public auth: AuthenticationService, private router:Router) {
     
   }
 
@@ -43,5 +44,11 @@ export class WaiterViewComponent implements OnInit {
   }
   readyForPickup(tableNum:number):boolean{
     return this.finishedOrders.filter(fo => fo.tableNumber == tableNum).length > 0;
+  }
+
+  waiterLogout()
+  {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 }

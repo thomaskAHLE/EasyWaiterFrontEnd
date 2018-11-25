@@ -3,11 +3,6 @@
   <hr>
 </div>
 
-<!-- <button class="waiter-btn" routerLink = "/waiter-view/">Login Waiter</button> -->
-<button class="waiter-btn" (click)='signInEmail()'>Login Waiter</button>
-<button class="kitchen-btn" routerLink="/kitchen-view/">Login Kitchen</button>
-<button class="kitchen-btn" (click)='authenticationService.logout()'>Logout</button>
-
 <form [formGroup]="loginForm" (ngSubmit)="signInEmail()">
   <div class="form-group">
     <label for="email">Email address</label>
@@ -28,8 +23,4 @@
 
   <!-- <div *ngIf="loginForm.valid" class="notification is-success">Form is valid</div> -->
   <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
-
-  {{loginForm.value | json}}
-  {{loginForm.status}}
-  <pre>{{authenticationService.user | async | json}}</pre>
 </form>
