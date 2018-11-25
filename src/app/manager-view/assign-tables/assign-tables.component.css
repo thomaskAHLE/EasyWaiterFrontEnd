@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body.noScroll { /* ...or body.dialogShowing */
+    overflow: hidden;
+  }
+
 .back-grid {
     display: grid;
     grid-template-columns: 10% 70% 19% 1%;
@@ -29,7 +33,9 @@
 .table-space-item-active{
     align-self: center;
     justify-self: center;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
+    background-image: url(floor.jpg);
+    background-size: contain; 
     height: 110px;
     width: 110px;
     border-radius: 10px;

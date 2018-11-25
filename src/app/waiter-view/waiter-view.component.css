@@ -1,6 +1,11 @@
-.page-header{
-    color: rgba(20, 20, 167, 0.795);
+.page-header{ 
+    color: #5680E9;
+    font: arial;
     margin: 1em;
+}
+
+.page-header > h1{
+    display: inline;
 }
 
 .back-grid{
