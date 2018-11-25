@@ -7,6 +7,8 @@ import { ClrModalComponent } from '../clr-modal/clr-modal.component';
 import { BackModalComponent } from '../back-modal/back-modal.component';
 import { OrderModel, ORDER_STATUS } from 'src/app/models/order-model';
 import { RestaurantService } from 'src/app/services/restaurant.service';
+import { FoodModel, FOOD_CATEGORY } from 'src/app/models/food-model';
+import { MenuService } from 'src/app/services/menu.service';
 export enum OPEN_TAB { MENU, IN_PROGRESS, ORDERED };
 
 @Component({
@@ -23,8 +25,12 @@ export class TableViewComponent implements OnInit {
   OpenTab = OPEN_TAB;
   canClear:boolean;
   tableOrders: OrderModel[];
+  menuApps: FoodModel[] = [];
+  menuSides:FoodModel[] = [];
+  menuEntrees:FoodModel[]=[];
+  menuDesserts:FoodModel[]=[];
  
-  constructor(private route: ActivatedRoute, private router: Router, private modal: NgbModal, private _tableService: TableService, private restaurantService: RestaurantService) {
+  constructor(private route: ActivatedRoute, private router: Router, private modal: NgbModal, private _tableService: TableService, private restaurantService: RestaurantService, private _menuService: MenuService) {
 
     this.selectedId = this.route.snapshot.params['id'];
   }
@@ -48,6 +54,12 @@ export class TableViewComponent implements OnInit {
           this.openTab = OPEN_TAB.MENU;
         }
       });
+      this._menuService.getOrderObservable().subscribe((menuItems:FoodModel[])=>{
+        this.menuApps = menuItems.filter(f => f.category == FOOD_CATEGORY.APPETIZER);
+        this.menuSides = menuItems.filter(f => f.category == FOOD_CATEGORY.SIDE);
+        this.menuEntrees = menuItems.filter(f => f.category == FOOD_CATEGORY.ENTREE);
+        this.menuDesserts = menuItems.filter(f => f.category == FOOD_CATEGORY.DESSERT);
+    });
 
   }
 
