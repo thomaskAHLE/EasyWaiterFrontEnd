@@ -14,10 +14,12 @@
 
 .page-header{
     grid-area: page-header;
+    display: grid;
 }
 
 .page-details{
     display: grid;
+    /* position: absolute; */
     grid-template-columns: 1fr 1fr;
     
 }

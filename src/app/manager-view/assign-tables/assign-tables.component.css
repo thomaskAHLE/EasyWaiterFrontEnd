@@ -52,7 +52,7 @@
 
 .waiters-nav{
     grid-area: waiters-nav;
-    height: 100vh;
+    /* height: 100vh; */
     
 }
 

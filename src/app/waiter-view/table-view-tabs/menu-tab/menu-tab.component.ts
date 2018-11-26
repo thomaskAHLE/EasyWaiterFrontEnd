@@ -20,7 +20,7 @@ export class MenuTabComponent  {
   menuDesserts:FoodModel[];
   constructor() { 
   }
-
+  public isCollapsed = false;
   addFoodToPending(food:FoodModel){
     this.table.addToPending(food);
   }
