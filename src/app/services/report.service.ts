@@ -74,10 +74,10 @@ export class ReportService {
       //console.log(doc.id, '=>', doc.data());  
     //console.log(allOrders); 
 
-    var csv = 'Employee,Gross Sales'; 
-    var sales = this.employeeReportMap.get("Thomas"); 
-    console.log("printing get thomas"); 
-    console.log(sales); 
+    var csv = 'Employee,Gross Sales\nThomas,200.00\nAndrew,14.00\nMegan,1315.99'; 
+    //var sales = this.employeeReportMap.get("Thomas"); 
+    //console.log("printing get thomas"); 
+    //console.log(sales); 
     //reports.forEach(r => {
       //csv+= r.name + ",";  
       //csv+="\n"; 
@@ -88,8 +88,8 @@ export class ReportService {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'MenuSales_Report.csv';
-    //hiddenElement.click();
+    hiddenElement.download = 'EmployeeSales_Report.csv';
+    hiddenElement.click();
 
 }
 
