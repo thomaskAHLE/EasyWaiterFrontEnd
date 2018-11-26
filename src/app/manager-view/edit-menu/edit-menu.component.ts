@@ -7,6 +7,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import { EMmodalComponent } from '../emmodal/emmodal.component';
 import { NgModuleRef } from '@angular/core/src/render3';
+import { RmItemModalComponent } from '../rm-item-modal/rm-item-modal.component';
 
 
 @Component({
@@ -16,7 +17,6 @@ import { NgModuleRef } from '@angular/core/src/render3';
 })
 export class EditMenuComponent{
 
-  @ViewChild('ipt') nameval: ElementRef;
   modalReference: any;
   
   @Input()
@@ -41,7 +41,9 @@ export class EditMenuComponent{
   
   onRemoveMenuItem(foodItem:FoodModel)
   {
-    this._menuService.removeMenuItem(foodItem);
+    const modalRef = this.modal.open(RmItemModalComponent);
+    modalRef.componentInstance.food = foodItem;
+    //this._menuService.removeMenuItem(foodItem);
   }
 
   onEditMenuItem(foodItem:FoodModel)

@@ -12,7 +12,7 @@ export class ModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
-    this.mytag.nativeElement.value = "Text";
+    this.mytag.nativeElement.value = "";
   }
 
   ngAfterInit(){
