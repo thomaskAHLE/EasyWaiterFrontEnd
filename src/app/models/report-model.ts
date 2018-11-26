@@ -3,9 +3,9 @@ export class ReportModel{
 
     employee:string;
     name:string;
-    price:number;
+    price:string;
     key:string;
-    constructor( employee:string, name:string, price:number, key:string = null)
+    constructor( employee:string, name:string, price:string, key:string = null)
     {
         this.name = name;
         this.employee = employee;
