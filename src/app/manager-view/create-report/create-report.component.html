@@ -6,7 +6,7 @@
         <i class="fas fa-receipt big-icon"></i>
       <div class="card-body">
         <h5 class="card-title">Employee Sales Report</h5>
-        <a href="https://us-central1-test-demo-94464.cloudfunctions.net/csvStaffJsonReport" class="btn btn-primary">Generate</a>
+        <button class="btn btn-primary" (click)= "onSalesGenerate()">Generate</button>
         <h6 class="card-subtitle mb-2 text-muted">Generate today's table and sales data for all active waiters</h6>
       </div>
     </div>
@@ -14,7 +14,7 @@
         <i class="fas fa-utensils big-icon"></i>
       <div class="card-body">
         <h5 class="card-title">Menu Sales Report</h5>
-        <a class="btn btn-primary" (click)= "onSalesGenerate()">Generate</a>
+        <button class="btn btn-primary" (click)= "onSalesGenerate()">Generate</button>
         <h6 class="card-subtitle mb-2 text-muted">Generate today's gross sales for all menu items</h6>
       </div>
     </div>
