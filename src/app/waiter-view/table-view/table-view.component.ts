@@ -37,7 +37,6 @@ export class TableViewComponent implements OnInit {
   ngOnInit() {
     this._tableService.getTableFromTableNum(this.selectedId)
       .subscribe((tables: TableModel[]) => {
-        console.log(tables);
         this.table = tables[0];
         this.restaurantService.getOrderObservableforTable(this.table.tableNumber).subscribe(
           (orders:OrderModel[]) =>
