@@ -74,25 +74,29 @@ export class ReportService {
       //console.log(doc.id, '=>', doc.data());  
     //console.log(allOrders); 
 
-    /*var csv = ' ,Times Sold,Gross Sales'; 
-    allOrders.forEach(function(row){
-      csv+=row.join(','); 
-      csv+="\n"; 
-    }); 
+    var csv = 'Employee,Gross Sales'; 
+    var sales = this.employeeReportMap.get("Thomas"); 
+    console.log("printing get thomas"); 
+    console.log(sales); 
+    //reports.forEach(r => {
+      //csv+= r.name + ",";  
+      //csv+="\n"; 
+    //})}) 
 
+    console.log("printing csv"); 
     console.log(csv);
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElement.target = '_blank';
     hiddenElement.download = 'MenuSales_Report.csv';
-    hiddenElement.click();*/
+    //hiddenElement.click();
 
 }
 
 generateEmployeeReport()
 {
     var allOrders = this.ordersCollection.snapshotChanges() as Observable<any[]>;
-    var csv = ' ,Total Tables, Total Sales'; 
+    var csv = 'Employee, Total Sales'; 
     allOrders.forEach(function(row){
       csv+=row.join(','); 
       csv+="\n"; 
