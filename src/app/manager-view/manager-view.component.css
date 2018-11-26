@@ -19,6 +19,7 @@
 .page-details{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    
 }
 
 .page-details > h6 {

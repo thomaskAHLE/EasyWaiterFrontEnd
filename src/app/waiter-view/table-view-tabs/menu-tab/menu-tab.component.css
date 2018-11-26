@@ -6,7 +6,7 @@
 .panel p {
     padding: 0 18px;
     display: none;
-    background-color: white;
+    /* background-color: white; */
     overflow: hidden;
 }
 
@@ -20,10 +20,6 @@
     display: block;
 }
 
-.panel i:after + p{
-    cursor: pointer;
-    display: block;
-}
 
 .table.table-hover.table-bordered{
     margin: auto;

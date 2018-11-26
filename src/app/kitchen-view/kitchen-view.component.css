@@ -56,3 +56,9 @@
         font-size: 1.2em;
     }
 }
+
+@media(max-width:500px){
+    .text-center{
+        font-size: 0.99em;
+    }
+}
