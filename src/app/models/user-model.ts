@@ -7,6 +7,8 @@ export class UserModel
     uid: string;
     password: string;
     userType: USER_TYPE; 
+    /* constuctor: constuctor for user model
+     */
     constructor(userName: string, userEmail:string, userPassword:string, userType:USER_TYPE, userId:string = null)
     {
         this.displayName = userName;

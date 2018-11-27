@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TableModel } from '../../models/table-model';
-import { RestaurantService } from '../../services/restaurant.service';
-import { UserModel, USER_TYPE } from '../../models/user-model';
+import { UserModel } from '../../models/user-model';
 import { TableService } from 'src/app/services/table.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-assign-tables',
@@ -17,27 +15,37 @@ export class AssignTablesComponent {
   waiterList: UserModel[] = [];
   @Input()
   tables: TableModel[] = [];
-  constructor(private _tableService: TableService, private _userService: UserService) {
+
+  /* constructor:
+   * @param tableService: injected for table assignment and table activation
+   */  
+  constructor(private tableService: TableService) {
    }
 
+  /* activateTable
+  * @param tableToActivate: table to activate
+  * if table is not already activated, activates it and updates it in database
+  */  
   activateTable(tableToActivate:TableModel){
     if(!tableToActivate.isActive)
     {
       tableToActivate.isActive = true;
-      this._tableService.updateTableisActive(tableToActivate);
-      console.log('activating table');
-      console.log(tableToActivate);
+      this.tableService.updateTableisActive(tableToActivate);
     }
   }
-
-  updateAssign(waiterlist, tableToAssign:TableModel) {
-    
-    tableToAssign.assignedTo = waiterlist;
-    this._tableService.updateTableAssignment(tableToAssign);
+  /* updateAssign
+  * @param waiter: waiter to assign to table
+  * @param tableToAssign: table to set assignment
+  * changes assignment to waiter, updates in database
+  * if table is not active, activates table
+  */ 
+  updateAssign(waiter:string, tableToAssign:TableModel) { 
+    tableToAssign.assignedTo = waiter;
+    this.tableService.updateTableAssignment(tableToAssign);
     if(!tableToAssign.isActive)
     {
       tableToAssign.isActive = true;
-      this._tableService.updateTableisActive(tableToAssign);
+      this.tableService.updateTableisActive(tableToAssign);
     }
   }
 }

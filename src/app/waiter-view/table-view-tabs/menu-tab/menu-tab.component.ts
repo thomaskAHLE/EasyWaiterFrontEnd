@@ -18,11 +18,15 @@ export class MenuTabComponent  {
   menuEntrees:FoodModel[];
   @Input()
   menuDesserts:FoodModel[];
-  constructor() { 
-  }
-  public isCollapsed = false;
-  addFoodToPending(food:FoodModel){
-    this.table.addToPending(food);
+ 
+  /* constructor*/
+   constructor() { }
+
+  /* addFoodToPending 
+  * @param foodToAdd: food to add to table's pending orders
+  */
+  addFoodToPending(foodToAdd:FoodModel){
+    this.table.addToPending(foodToAdd);
   }
 
 }

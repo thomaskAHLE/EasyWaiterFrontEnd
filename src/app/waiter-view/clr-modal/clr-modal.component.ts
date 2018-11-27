@@ -13,18 +13,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ClrModalComponent implements OnInit {
   tableNum : number;
   table: TableModel;
-  constructor(public activeModal: NgbActiveModal, private route: ActivatedRoute, private router: Router, private _restaurantService: RestaurantService, private _tableService: TableService) { }
 
+  /* constructor 
+   * @param activeModal: injected to dismiss modal when done
+   * @param router: injected to route back to waiterview 
+   * @param restaurantService: injected to call clear table
+   * @param tableService: injected to make a table inactive
+  */
+  constructor(public activeModal: NgbActiveModal, private router: Router, private restaurantService: RestaurantService, 
+              private _tableService: TableService) { }
+
+  /* ngOnInit() gets table from table number
+  */ 
   ngOnInit() {
     this._tableService.getTableFromTableNum(this.tableNum)
       .subscribe((tables:TableModel[])=>{
-        console.log(tables)
         this.table = tables[0]
       });
   }
-
+  /* onClearTables()
+   * clears table in database
+   * sets table as inactive
+   * routes back to waiterview
+  */ 
   onClearTables(){
-    this._restaurantService.clearTablesOrders(this.table);
+    this.restaurantService.clearTablesOrders(this.table);
     this.table.isActive = false;
     this._tableService.updateTableisActive(this.table);
     this.router.navigate(['waiter-view']);

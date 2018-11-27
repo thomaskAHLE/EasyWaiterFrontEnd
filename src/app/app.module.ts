@@ -26,7 +26,7 @@ import { ModalComponent } from './manager-view/modal/modal.component';
 import { EMmodalComponent } from './manager-view/emmodal/emmodal.component';
 import { ClrModalComponent } from './waiter-view/clr-modal/clr-modal.component';
 import { BackModalComponent } from './waiter-view/back-modal/back-modal.component';
-
+import {RmItemModalComponent} from './manager-view/rm-item-modal/rm-item-modal.component'
 
 const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
@@ -55,6 +55,7 @@ const appRoute: Routes = [
     ModalComponent,
     EMmodalComponent,
     ClrModalComponent,
+    RmItemModalComponent,
     BackModalComponent
   ],
   imports: [
@@ -78,7 +79,9 @@ const appRoute: Routes = [
     ModalComponent,
     EMmodalComponent,
     ClrModalComponent,
+    RmItemModalComponent,
     BackModalComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

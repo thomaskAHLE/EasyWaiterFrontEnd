@@ -34,11 +34,11 @@ export class MenuService {
   }
 
   /* updateMenuItem: updates changed menu item in database
-   * @params food: food item to update
+   * @params foodToUpdate: food item to update
   */
-  updateMenuItem(food:FoodModel):void
+  updateMenuItem(foodToUpdate:FoodModel):void
   {
-    this.menuCollection.doc(food.$key).update({name:food.name, price: food.price, category: food.category, description: food.description});
+    this.menuCollection.doc(foodToUpdate.$key).update({name:foodToUpdate.name, price: foodToUpdate.price, category: foodToUpdate.category, description: foodToUpdate.description});
   }
 
   /* removeMenuItem: removes menu item from database

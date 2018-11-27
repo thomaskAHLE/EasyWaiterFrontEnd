@@ -31,10 +31,10 @@ export class RestaurantService {
    * @return Observable<OrderModel[]>: used for subscribing to changes in orders
   */
   getToDoOrders(): Observable<OrderModel[]> {
-    let v: AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref => {
+    let toDoOrdersCollection: AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref => {
       return ref.where('status', '==', ORDER_STATUS.TO_DO)
     });
-    return v.snapshotChanges().pipe(map(obj => obj.map(o => { const data = new OrderModel(o.payload.doc.data().food, o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data; })));
+    return toDoOrdersCollection.snapshotChanges().pipe(map(obj => obj.map(o => { const data = new OrderModel(o.payload.doc.data().food, o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data; })));
   }
 
   /* getPendingToOrders recieves pending orders from a table and sends them to the database
@@ -49,10 +49,10 @@ export class RestaurantService {
    * @return Observable<OrderModel[]>: used for subscribing to changes in orders
   */
   getInProgOrders(): Observable<OrderModel[]> {
-    let v: AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref => {
+    let inProgCollection: AngularFirestoreCollection<OrderModel> = this.afs.collection('orders', ref => {
       return ref.where('status', '==', ORDER_STATUS.IN_PROGRESS)
     });
-    return v.snapshotChanges().pipe(map(obj => obj.map(o => { const data = new OrderModel(o.payload.doc.data().food, o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data; })));
+    return inProgCollection.snapshotChanges().pipe(map(obj => obj.map(o => { const data = new OrderModel(o.payload.doc.data().food, o.payload.doc.data().tableNumber, o.payload.doc.data().status); data.$key = o.payload.doc.id; return data; })));
   }
 
   /* getFinishedOrders: gets all orders that have status = Finished
@@ -74,10 +74,10 @@ export class RestaurantService {
   }
 
   /* updateOrderStatus: updates the status of an order in the database
-   * @param order: Order to update
+   * @param orderToUpdate: Order to update
   */
-  updateOrderStatus(order: OrderModel): void {
-    this.orderCollection.doc(order.$key).update({ status: order.status });
+  updateOrderStatus(orderToUpdate: OrderModel): void {
+    this.orderCollection.doc(orderToUpdate.$key).update({ status: orderToUpdate.status });
   }
 
   /* getOrderObservableforTable: gets all orders for a table
@@ -96,11 +96,11 @@ export class RestaurantService {
   * orders are transformed to report items before being put in finished orders
   * @param table: table to clear used to for getting orders for table 
   */
-  clearTablesOrders(table: TableModel): void {
+  clearTablesOrders(tableToClear: TableModel): void {
     let deliveredOrdersCollection: AngularFirestoreCollection<ReportModel> = this.afs.collection('deliveredOrders');
-    this.getOrderObservableforTable(table.tableNumber).subscribe((orders: OrderModel[]) => {
+    this.getOrderObservableforTable(tableToClear.tableNumber).subscribe((orders: OrderModel[]) => {
       orders.forEach(o => {
-        const order = {employee: table.assignedTo, name:o.food.name, price: o.food.price.toString(), key:null}
+        const order = {employee: tableToClear.assignedTo, name:o.food.name, price: o.food.price.toString(), key:null}
         deliveredOrdersCollection.add(order);
       })
       orders.forEach(o => {

@@ -17,7 +17,7 @@
     
   <tfoot>
   <div *ngIf='table?.PendingOrders?.length >  0;else noPending'>
-  <button class = "btn btn-success" (click) = 'send()'>Send</button>
+  <button class = "btn btn-success" (click) = 'sendToKitchen()'>Send</button>
 </div>
 <ng-template #noPending>
     <button class = "btn btn-secondary" disabled>Send</button>
