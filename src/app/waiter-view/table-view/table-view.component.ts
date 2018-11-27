@@ -42,6 +42,7 @@ export class TableViewComponent implements OnInit {
           (orders:OrderModel[]) =>
           {
             this.tableOrders = orders.sort((a,b)=> a.status - b.status);
+            
             this.canClear = (this.tableOrders.find(t => t.status != ORDER_STATUS.DELIVERED)? false : true);
           }
         )

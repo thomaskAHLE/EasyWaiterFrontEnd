@@ -11,24 +11,39 @@ export class MenuService {
 
   menuCollection: AngularFirestoreCollection;
   foodlist: FoodModel[] =[];
+  /* constructor
+   * @params afs: Injected afs into service to get menu from database
+  */
   constructor(private _afs:AngularFirestore) { 
     this.menuCollection = this._afs.collection('menu');
   }
 
+  /* addToMenu: adds food to menu
+   * @params food: food to add to menu
+  */
   addToMenu(food:FoodModel):void
   {
     this.menuCollection.add(JSON.parse(JSON.stringify(food)));
   }
-  getMenuObservable(): Observable<any[]>{
+  /* getMenuObservable: used to subscribe to menu observable
+   * @params afs: Injected afs into service to get menu from database
+  */
+  getMenuObservable(): Observable<FoodModel[]>{
     return this.menuCollection.snapshotChanges().pipe(map(obj => obj.map(o => {const data = new FoodModel(o.payload.doc.data().name,o.payload.doc.data().price, o.payload.doc.data().category, o.payload.doc.data().description);  data.$key = o.payload.doc.id; return data;}
     )));
   }
 
+  /* updateMenuItem: updates changed menu item in database
+   * @params food: food item to update
+  */
   updateMenuItem(food:FoodModel):void
   {
     this.menuCollection.doc(food.$key).update({name:food.name, price: food.price, category: food.category, description: food.description});
   }
 
+  /* removeMenuItem: removes menu item from database
+   * @params food: foodItem to remove
+  */
   removeMenuItem(food:FoodModel):void
   {
     let foodToRemoveDoc:AngularFirestoreDocument<FoodModel> = this._afs.doc<FoodModel>(`menu/${food.$key}`);

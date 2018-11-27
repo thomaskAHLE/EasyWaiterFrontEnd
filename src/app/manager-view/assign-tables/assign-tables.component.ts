@@ -25,6 +25,8 @@ export class AssignTablesComponent {
     {
       tableToActivate.isActive = true;
       this._tableService.updateTableisActive(tableToActivate);
+      console.log('activating table');
+      console.log(tableToActivate);
     }
   }
 

@@ -17,7 +17,12 @@ export class AuthenticationService {
 
   user: Observable<UserModel | null>;
   userRef: AngularFirestoreDocument<UserModel>;
-  constructor(private afs: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
+  
+  /* constructor
+   * @params afs: Injected afs into service to get users from database
+   * @params afsAuth: Injected afsauthentication into service to authenticate user
+  */
+  constructor(private afs: AngularFirestore, private afsAuth: AngularFireAuth) {
     this.user = afsAuth.authState.pipe(switchMap(user => {
       if (user) {
         return this.afs.doc<UserModel>(`users/${user.uid}`).valueChanges();
@@ -28,12 +33,18 @@ export class AuthenticationService {
     }));
   }
 
+/* login: uses afsAuth to try to log user in
+   * @param email: user email to login
+   * @params password: user password to login
+*/
  login(email: string, password: string):void {
     this.afsAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then( () =>{
       return this.afsAuth.auth.signInWithEmailAndPassword(email, password); })
   };
   
 
+  /* logout: logs user out of site
+  */
   logout() {
     this.afsAuth.auth.signOut();
   }
