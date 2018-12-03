@@ -12,6 +12,8 @@ import { ReportModel } from '../models/report-model';
 @Injectable({
   providedIn: 'root'
 })
+
+/* Currently not funcitonal*/
 export class ReportService {
 
   ordersCollection: AngularFirestoreCollection<ReportModel>; 
@@ -27,6 +29,7 @@ export class ReportService {
   } 
 
 
+  /* generates sales report for menu items*/
   generateSalesReport()
   { 
     this.salesReportMap = new Map<string, Number>();
@@ -93,6 +96,7 @@ export class ReportService {
 
 }
 
+/* generates report for all employees */
 generateEmployeeReport()
 {
     var allOrders = this.ordersCollection.snapshotChanges() as Observable<any[]>;

@@ -15,12 +15,19 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   email: string = '';
   password: string = '';
-  constructor(public authenticationService: AuthenticationService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {
-  }
 
+  /* constuctor
+   * @param authenticationService: injected to authenticate user
+   * @param router: used for routing to correct page upon successful login
+   * @param fb: used to build login form
+  */
+  constructor(public authenticationService: AuthenticationService,
+              private router: Router, private fb: FormBuilder ) { }
+
+  /* ngOnInit()
+   * if user is already logged in routes to page 
+   * otherwise builds loginForm
+  */           
   ngOnInit() {
     if(this.authenticationService.user)
     {
@@ -33,11 +40,18 @@ export class LoginComponent implements OnInit {
   }
   get f() { return this.loginForm.controls; }
 
-  async signInEmail() {
+  /* signInEmail():gets email and password from login form and attempts to login through authentication service
+   * otherwise builds calls afterSignIn when done
+  */
+  async signInEmail() 
+  {
     this.authenticationService.login(this.loginForm.value['email'], this.loginForm.value['password']);
     return await this.afterSignIn();
   }
 
+  /* aftersignIn():subscribes to authentication service user 
+   * user is not null routes to correct user page
+  */
   private afterSignIn() {
     this.authenticationService.user.subscribe(user => {
       if (user) {

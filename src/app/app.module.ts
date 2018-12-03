@@ -26,8 +26,12 @@ import { ModalComponent } from './manager-view/modal/modal.component';
 import { EMmodalComponent } from './manager-view/emmodal/emmodal.component';
 import { ClrModalComponent } from './waiter-view/clr-modal/clr-modal.component';
 import { BackModalComponent } from './waiter-view/back-modal/back-modal.component';
+<<<<<<< HEAD
 import { RmItemModalComponent } from './manager-view/rm-item-modal/rm-item-modal.component';
 
+=======
+import {RmItemModalComponent} from './manager-view/rm-item-modal/rm-item-modal.component'
+>>>>>>> 7fa876cbc72b6263ac389aabca396213c5a3b4ed
 
 const appRoute: Routes = [
   {path: 'waiter-view', component: WaiterViewComponent},
@@ -56,8 +60,13 @@ const appRoute: Routes = [
     ModalComponent,
     EMmodalComponent,
     ClrModalComponent,
+<<<<<<< HEAD
     BackModalComponent,
     RmItemModalComponent
+=======
+    RmItemModalComponent,
+    BackModalComponent
+>>>>>>> 7fa876cbc72b6263ac389aabca396213c5a3b4ed
   ],
   imports: [
     BrowserModule,
@@ -80,8 +89,14 @@ const appRoute: Routes = [
     ModalComponent,
     EMmodalComponent,
     ClrModalComponent,
+<<<<<<< HEAD
     BackModalComponent,
     RmItemModalComponent],
+=======
+    RmItemModalComponent,
+    BackModalComponent],
+
+>>>>>>> 7fa876cbc72b6263ac389aabca396213c5a3b4ed
   bootstrap: [AppComponent]
 })
 export class AppModule { }

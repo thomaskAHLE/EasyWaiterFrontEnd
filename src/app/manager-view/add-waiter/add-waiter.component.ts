@@ -9,15 +9,21 @@ import { UserModel, USER_TYPE } from 'src/app/models/user-model';
   templateUrl: './add-waiter.component.html',
   styleUrls: ['./add-waiter.component.css']
 })
-export class AddWaiterComponent implements OnInit {
+
+/*Not functional requires backend*/
+
+export class AddWaiterComponent {
   @Input()
   waiterList: UserModel[];
-  constructor(private modal: NgbModal, private userService: UserService) {
+  /* constructor
+   * @param modal: add waiter modal
+  */
+  constructor(private modal: NgbModal) {
    }
 
-  ngOnInit() {
-  }
-
+  /* onClick()
+   * opens add waiter Modal
+  */
   onClick() {
     this.modal.open(ModalComponent);
   }

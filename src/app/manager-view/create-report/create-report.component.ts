@@ -10,22 +10,33 @@ import { OrderModel } from 'src/app/models/order-model';
   templateUrl: './create-report.component.html',
   styleUrls: ['./create-report.component.css']
 })
+
+/*
+ Currently not functional
+*/
 export class CreateReportComponent implements OnInit {
 
   orders: Observable<OrderModel[]>; 
-
-  constructor(private _reportService: ReportService) { }
+  /* constructor
+   * @param reportService: injected to use reportServiceFunctions
+  */
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    //this.orders = this._reportService.getOrderObservable(); 
+   
   }
-
+  /* onSalesGenerate
+   * uses reportService to generateSalesReport
+   */
   onSalesGenerate() {
-    this._reportService.generateSalesReport(); 
+    this.reportService.generateSalesReport(); 
   }
 
+  /* onEmployeeGenerate
+   * uses reportService to generateEmployeeReport
+   */
   onEmployeeGenerate() {
-    this._reportService.generateEmployeeReport(); 
+    this.reportService.generateEmployeeReport(); 
   }
 
 }

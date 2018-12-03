@@ -29,38 +29,50 @@ export class ManagerViewComponent implements OnInit {
   menuDesserts:FoodModel[];
   waiterList: UserModel[];
   tables: TableModel[];
+
+  /* constructor:
+   * @param authService: injected to get current user
+   * @param router: injeceted to route to login when logging out
+   * @param tableService: injected to get all tables
+   * @param menuService: injeceted to get menu items
+   * @param userService: injected to get users
+   */ 
   constructor(private authService: AuthenticationService, private router:Router, private menuService: MenuService, 
-    private userService:UserService,
-    private _tableService: TableService
-    
-    ) {
+    private userService:UserService,private _tableService: TableService) {
     this.openTab = OPEN_TAB.ASSTA;
    }
 
+  /* ngOnInit:
+   * gets user from auth service
+   * gets menu items from menuService
+   * gets tables from tableService
+   * gets waiters from userService
+   */  
   ngOnInit() {
     this.authService.user.pipe(take(1)).subscribe(user => {
       this.manager = user;
-     });
-     this.menuService.getMenuObservable().subscribe((menuItems:FoodModel[])=>{
+    });
+    this.menuService.getMenuObservable().subscribe((menuItems:FoodModel[])=>{
       this.menuApps = menuItems.filter(f => f.category == FOOD_CATEGORY.APPETIZER);
       this.menuSides = menuItems.filter(f => f.category == FOOD_CATEGORY.SIDE);
       this.menuEntrees = menuItems.filter(f => f.category == FOOD_CATEGORY.ENTREE);
       this.menuDesserts = menuItems.filter(f => f.category == FOOD_CATEGORY.DESSERT);
-  });
-  this._tableService.getAllTables()
-      .subscribe((alltables: TableModel[]) => {
+    });
+    this._tableService.getAllTables().subscribe((alltables: TableModel[]) => {
         this.tables = alltables; 
-      });
-    this.userService.getUsers().subscribe((allUsers:UserModel[])=>
-    {
-      this.waiterList = allUsers.filter(u => u.userType == USER_TYPE.WAITER);
+    });
+    this.userService.getUsers().subscribe((allUsers:UserModel[])=>{
+        this.waiterList = allUsers.filter(u => u.userType == USER_TYPE.WAITER);
     })
   }
 
+  /* logoutManager:
+   * uses auth service to log user out
+   * uses router to navigate to login screen
+   */  
   logoutManager()
   {
     this.authService.logout();
     this.router.navigate(['login']);
-
   }
 }

@@ -14,6 +14,9 @@ export class OrderModel  {
         this.tableNumber = tableNumber;
         this.status = status;
     }
+    /* getStatusString
+     * @return string for status of order used for UI
+    */
     getStatusString() :string {
         return OrderModel.OrderStatusStrings[this.status];
     }
