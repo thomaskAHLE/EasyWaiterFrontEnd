@@ -1,8 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {ViewChild, ElementRef} from '@angular/core';
-import  {FoodModel, FOOD_CATEGORY} from '../../models/food-model';
+import  {FoodModel} from '../../models/food-model';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
@@ -10,27 +8,34 @@ import { MenuService } from 'src/app/services/menu.service';
   templateUrl: './emmodal.component.html',
   styleUrls: ['./emmodal.component.css']
 })
-export class EMmodalComponent implements OnInit {
-  constructor(public activeModal: NgbActiveModal, private modal: NgbModal, private _menuService: MenuService) { }
+export class EMmodalComponent  {
+
   @Input()
   food:FoodModel;
   @Input()
   emModalType:number;
+  /* constuctor
+   * @param activeModal: used to dismiss modal
+   * @param menuService: used to updateItem or AddItem to menu
+   */
+  constructor(public activeModal: NgbActiveModal, private menuService: MenuService) { }
+  
 
-  ngOnInit() {
-  }
 
-  saveVal(){
-      console.log(this.food);
+
+/* updateMenuItem
+   * if emModalTyep is edit  uses menuService to updateMenuItem
+   * if emModalTyep is add uses menuService to add item to menu
+   * dismisses active modal
+ */
+  updateMenuItem(){
       if(this.emModalType ==0)
       {
-      this._menuService.updateMenuItem(this.food);
+      this.menuService.updateMenuItem(this.food);
       }
       else {
-        this._menuService.addToMenu(this.food);
+        this.menuService.addToMenu(this.food);
       }
-    
-    
     this.activeModal.dismiss();
   }
 

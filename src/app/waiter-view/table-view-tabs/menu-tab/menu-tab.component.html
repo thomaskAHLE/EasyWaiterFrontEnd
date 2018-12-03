@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<table class="table table-bordered ">
+<table class="table table-hover table-bordered">
   <thead>
     <th colspan="2" class = "text-center">Appetizers</th>
     
@@ -10,9 +10,12 @@
         
       <td width="50%"> 
         <div class="panel">
-          {{a.name}} {{a.price}}
+          {{a.name}} ${{a.price}}
+          <!-- <i class="fas fa-info-circle" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" ></i>
+          <p [ngbCollapse]="isCollapsed" >{{a.description}}</p>  -->
           <i class="fas fa-info-circle"></i>
-          <p>{{a.description}}</p> 
+          <p>{{a.description}}</p>
         </div>
       </td>
       <td class="text-center" width="50%"> 
@@ -22,8 +25,8 @@
   </tbody>
 
 </table>
-
-<table class="table table-bordered ">
+ <br>
+<table class="table table-hover table-bordered">
   <thead>
     <th colspan="2" class = "text-center">Sides</th>
   </thead>
@@ -31,7 +34,7 @@
     <tr *ngFor="let s of menuSides">
       <td width="50%">
           <div class="panel">
-              {{s.name}} {{s.price}}
+              {{s.name}} ${{s.price}}
               <i class="fas fa-info-circle"></i>
               <p>{{s.description}}</p> 
             </div>
@@ -44,8 +47,8 @@
   </tbody>
   
 </table>
-
-<table class="table table-bordered ">
+  <br>
+<table class="table table-hover table-bordered">
   <thead>
     <th colspan="2" class = "text-center">Entrees</th>
   </thead>
@@ -53,7 +56,7 @@
     <tr *ngFor="let e of menuEntrees">
       <td width="50%">
           <div class="panel">
-              {{e.name}} {{e.price}}
+              {{e.name}} ${{e.price}}
               <i class="fas fa-info-circle"></i>
               <p>{{e.description}}</p> 
             </div>
@@ -65,8 +68,8 @@
   </tbody>
   
 </table>
-
-<table class="table table-bordered ">
+  <br>
+<table class="table table-hover table-bordered">
   <thead>
     <th colspan="2" class = "text-center">Desserts</th>
   </thead>
@@ -74,7 +77,7 @@
     <tr *ngFor="let d of menuDesserts">
       <td width="50%"> 
           <div class="panel">
-              {{d.name}} {{d.price}}
+              {{d.name}} ${{d.price}}
               <i class="fas fa-info-circle"></i>
               <p>{{d.description}}</p> 
             </div>

@@ -17,10 +17,17 @@
     margin: 10px;
 }
 
+.btn.btn-primary{
+    background-color: #5680E9;
+    border: #5680E9;
+}
+
 .btn.btn-primary.add-btn{
-    float: right;
+    float: left;
     margin-bottom: 1em;
     margin-right: 1em;
+    background-color: #5680E9;
+    border: #5680E9;
 }
 
 @media (max-width: 1070px){

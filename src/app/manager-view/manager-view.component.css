@@ -5,13 +5,59 @@
 
 .back-grid {
     display: grid;
-    grid-template-columns: 10% 70% 20%;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 10% 90%;
     grid-template-areas:
-    "nav-menu table-space waiters-nav"; 
+    "nav-menu page-header"
+    "nav-menu other-stuff"; 
+}
+
+.page-header{
+    grid-area: page-header;
+    display: grid;
+}
+
+.page-details{
+    display: grid;
+    /* position: absolute; */
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+.page-details > h6 {
+    justify-self: center;
+    align-self: center;
+}
+
+.page-details > div > h1{
+    display: inline;
+    color: #5680E9;
+    font: arial;
+}
+
+#logo{
+    justify-self: left;
+    align-self: left;
+}
+
+#logout{
+    justify-self: right;
+    align-self: right;
+    margin-right: 2em;
+    margin-top: 1em;
+}
+
+#logout > button{
+    padding: 8px 8px;
+    font-size: 15px;
+    line-height: normal;
+    -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+            border-radius: 4px;
 }
 
 .nav-menu{
-    background-color: grey;
+    background-color: #5680E9;
     position: fixed;
     font-size: 60px;
     grid-area: nav-menu;
@@ -36,17 +82,25 @@
 }
 
 .nav-menu-item1:hover{
-    background-color: aqua;
+    background-color: #84CEEB;
 }
 
 .nav-menu-item1-active{
-    background-color: aqua;
+    background-color: #84CEEB;
     grid-area: nav-menu-item1;
     align-self: center;
     justify-self: center;
     padding: 15px;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+.nav-menu-item1 > a {
+    color: white;
+}
+
+.nav-menu-item1-active > a{
+    color: white;
 }
 
 .nav-menu-item2{
@@ -59,17 +113,25 @@
 }
 
 .nav-menu-item2:hover{
-    background-color: aqua;
+    background-color: #84CEEB;
 }
 
 .nav-menu-item2-active{
-    background-color: aqua;
+    background-color: #84CEEB;
     grid-area: nav-menu-item2;
     align-self: center;
     justify-self: center;
     padding: 15px;
     padding-left: 30px;
     padding-right: 25px;
+}
+
+.nav-menu-item2 > a {
+    color: white;
+}
+
+.nav-menu-item2-active > a{
+    color: white;
 }
 
 .nav-menu-item3{
@@ -81,16 +143,13 @@
     padding-right: 25px;
 }
 
-.nav-menu-item3 > a {
-    color: black;
-}
 
 .nav-menu-item3:hover {
-    background-color: aqua;
+    background-color: #84CEEB;
 }
 
 .nav-menu-item3-active{
-    background-color: aqua;
+    background-color: #84CEEB;
     grid-area: nav-menu-item3;
     align-self: center;
     justify-self: center;
@@ -99,8 +158,12 @@
     padding-right: 25px;
 }
 
-.nav-menu-item3:after{
-    background-color: rgb(55, 0, 255); 
+.nav-menu-item3 > a {
+    color: white;
+}
+
+.nav-menu-item3-active > a{
+    color: white;
 }
 
 .nav-menu-item4{
@@ -113,15 +176,31 @@
 }
 
 .nav-menu-item4:hover{
-    background-color: aqua;
+    background-color: #84CEEB;
 }
 
 .nav-menu-item4-active{
-    background-color: aqua;
+    background-color: #84CEEB;
     grid-area: nav-menu-item4;
     align-self: center;
     justify-self: center;
     padding: 15px;
     padding-left: 36px;
     padding-right: 25px;
+}
+
+.nav-menu-item4 > a {
+    color: white;
+}
+
+.nav-menu-item4-active > a{
+    color: white;
+}
+
+@media (max-width: 1050px){
+    #logo{
+        justify-self: left;
+        align-self: left;
+        padding-left: 3em;
+    }
 }

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {TableModel} from '../models/table-model';
-import {UserService} from '../services/user.service';
 import { RestaurantService } from '../services/restaurant.service';
 import{TableService} from '../services/table.service';
 import { OrderModel, ORDER_STATUS } from '../models/order-model';
+import { AuthenticationService } from '../services/authentication.service';
+import { UserModel } from '../models/user-model';
+import {take} from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-waiter-view',
   templateUrl: './waiter-view.component.html',
@@ -15,31 +18,56 @@ export class WaiterViewComponent implements OnInit {
   activeTables: TableModel[] = [];
   inactiveTables:TableModel[] =[];
   finishedOrders:OrderModel[] =[];
+  waiter:UserModel;
  
-  constructor( private _userService: UserService, private _restaurantService: RestaurantService, private _tableService: TableService) {
-   }
-
+  /* constructor 
+   * @param restaurantService: injected check if table has a finished order for pickup
+   * @param tableService: gets all tables for a waiter
+   * @param auth: gets current user
+   * @param router: used for routing to logout
+  */
+  constructor( private _restaurantService: RestaurantService, private _tableService: TableService,
+               public auth: AuthenticationService, private router:Router) {
+  }
+ /* ngOnInit
+   * gets user from auth service
+   * gets tables for that user
+   * gets all finished orders
+  */
   ngOnInit() {
-    const waiter = this._userService.getCurrentUser();
-    this._tableService.getTablesForWaiter(waiter.userName).subscribe((tables:TableModel[])=>{this.allTables = tables; this.allTables.sort((a,b)=> a.tableNumber - b.tableNumber); tables.forEach(t=>console.log(t))});
-    this.activeTables = this.allTables.filter(t => t.isActive);
-    this.inactiveTables = this.allTables.filter(t => !t.isActive);
-    console.log(this.allTables.filter(t => t.isActive));
-    console.log(this.inactiveTables = this.allTables.filter(t => !t.isActive));
-    console.log(this.activeTables);
+    this.auth.user.pipe(take(1)).subscribe(user => {
+      this.waiter = user;
+      this._tableService.getTablesForWaiter(this.waiter.displayName).subscribe((tables:TableModel[])=>{this.allTables = tables;});
+     });
     this._restaurantService.getFinishedOrders().subscribe((finished: OrderModel[])=>{this.finishedOrders = finished});
   }
 
+  /* getActiveTables()
+   @return TableModel[]: returns an array of active tables assigned to the user
+  */
   getActiveTables():TableModel[]{
     return this.allTables.filter(t=> t.isActive);
   }
 
+  /* getInactiveTables()
+   @return TableModel[]: returns an array of inactive tables assigned to the user
+  */
   getInactiveTables():TableModel[]{
     return this.allTables.filter(t => !t.isActive);
   }
+  /* getInactiveTables()
+   @return boolean: returns true if a table has an order marked for pickup
+  */
   readyForPickup(tableNum:number):boolean{
-    console.log("bleh");
-    console.log(this.finishedOrders.filter(fo => fo.tableNumber == tableNum));
     return this.finishedOrders.filter(fo => fo.tableNumber == tableNum).length > 0;
+  }
+  /* waiterLogout()
+   * uses authentication service to log user out
+   * navigates back to login screen
+  */
+  waiterLogout()
+  {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 }

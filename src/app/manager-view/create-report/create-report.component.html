@@ -1,3 +1,29 @@
-<p>
-  create-report works!
-</p>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<div class="back-grid">
+  <div class="nav-menu"> </div>
+  <div class ="report-container">
+    <div class = "card text-center" style="width: 18rem; height:18rem;">
+        <i class="fas fa-receipt big-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Employee Sales Report</h5>
+        <button class="btn btn-primary" (click)= "onSalesGenerate()">Generate</button>
+        <h6 class="card-subtitle mb-2 text-muted">Generate today's table and sales data for all active waiters</h6>
+      </div>
+    </div>
+    <div class = "card text-center" style="width: 18rem; height: 18rem;">
+        <i class="fas fa-utensils big-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Menu Sales Report</h5>
+        <button class="btn btn-primary" (click)= "onSalesGenerate()">Generate</button>
+        <h6 class="card-subtitle mb-2 text-muted">Generate today's gross sales for all menu items</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+

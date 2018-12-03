@@ -16,6 +16,7 @@ import { TableViewComponent } from './waiter-view/table-view/table-view.componen
 import { LoginComponent } from './login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import{AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AssignTablesComponent } from './manager-view/assign-tables/assign-tables.component';
 import { CreateReportComponent } from './manager-view/create-report/create-report.component';
@@ -23,6 +24,9 @@ import { EditMenuComponent } from './manager-view/edit-menu/edit-menu.component'
 import { AddWaiterComponent } from './manager-view/add-waiter/add-waiter.component';
 import { ModalComponent } from './manager-view/modal/modal.component';
 import { EMmodalComponent } from './manager-view/emmodal/emmodal.component';
+import { ClrModalComponent } from './waiter-view/clr-modal/clr-modal.component';
+import { BackModalComponent } from './waiter-view/back-modal/back-modal.component';
+import {RmItemModalComponent} from './manager-view/rm-item-modal/rm-item-modal.component'
 
 
 const appRoute: Routes = [
@@ -50,7 +54,10 @@ const appRoute: Routes = [
     EditMenuComponent,
     AddWaiterComponent,
     ModalComponent,
-    EMmodalComponent
+    EMmodalComponent,
+    ClrModalComponent,
+    RmItemModalComponent,
+    BackModalComponent
   ],
   imports: [
     BrowserModule,
@@ -65,12 +72,17 @@ const appRoute: Routes = [
     )
     ,   
      AngularFireModule.initializeApp(environment.firebase)
-    , AngularFirestoreModule
+    , AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   entryComponents: [
     ModalComponent,
-    EMmodalComponent],
+    EMmodalComponent,
+    ClrModalComponent,
+    RmItemModalComponent,
+    BackModalComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

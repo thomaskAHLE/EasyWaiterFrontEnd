@@ -5,7 +5,7 @@
     <br>
     <button class="btn btn-primary add-btn " (click)="onAddMenuItem()" >Add Item</button>  
     
-    <table class="table table-bordered ">
+    <table class="table table-bordered table-hover">
         <thead>
           <th colspan="2" class = "text-center">Appetizers</th>
           
@@ -28,7 +28,7 @@
 
       </table>
 
-      <table class="table table-bordered ">
+      <table class="table table-bordered table-hover">
         <thead>
           <th colspan="2" class = "text-center">Sides</th>
         </thead>
@@ -41,7 +41,7 @@
             </td>
             <td class="text-center" width="50%">
                 <button class="btn btn-primary" (click)="onEditMenuItem(s)">Edit</button>
-                <button type="button" class="btn btn-danger" >Remove</button>
+                <button type="button" class="btn btn-danger"(click)="onRemoveMenuItem(s)" >Remove</button>
             </td>
             
           </tr>
@@ -49,7 +49,7 @@
         
       </table>
 
-      <table class="table table-bordered ">
+      <table class="table table-bordered table-hover">
         <thead>
           <th colspan="2" class = "text-center">Entrees</th>
         </thead>
@@ -62,14 +62,14 @@
             </td>
             <td class="text-center" width="50%">
                 <button class="btn btn-primary" (click)="onEditMenuItem(e)">Edit</button>
-                <button type="button" class="btn btn-danger" >Remove</button>
+                <button type="button" class="btn btn-danger" (click)="onRemoveMenuItem(e)">Remove</button>
             </td>
           </tr>
         </tbody>
         
       </table>
 
-      <table class="table table-bordered ">
+      <table class="table table-bordered table-hover">
         <thead>
           <th colspan="2" class = "text-center">Desserts</th>
         </thead>
@@ -82,7 +82,7 @@
             </td>
             <td class="text-center" width="50%">
                 <button class="btn btn-primary" (click)="onEditMenuItem(d)">Edit</button>
-                <button type="button" class="btn btn-danger" >Remove</button>
+                <button type="button" class="btn btn-danger" (click)="onRemoveMenuItem(d)">Remove</button>
             </td>
           </tr>
         </tbody>

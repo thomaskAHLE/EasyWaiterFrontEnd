@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 <body>
   <div class="back-grid">
     <div class = "nav-menu">
@@ -11,10 +12,27 @@
       <div class = "nav-menu-item4" *ngIf="openTab !== OpenTab.CREATERE"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATERE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
       <div class = "nav-menu-item4-active" *ngIf="openTab === OpenTab.CREATERE"> <a class="fas fa-file" (click)='openTab = OpenTab.CREATERE' [ngClass]="{'active':openTab== OpenTab.CREATERE}"></a></div>
     </div>
+    <div class="page-header">
+      <div class="page-details">
+        <div id="logo"><h1 style="color:black">EASY </h1> <h1> WAITER</h1> 
+          <p>Hello, {{manager?.displayName}}</p>
+        </div>
+        <div id="logout"><button class = 'btn btn-danger btn-small' (click) = 'logoutManager()'>Logout</button></div>
+      </div>
+    </div>
   </div>
-  <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" ></app-add-waiter>
-  <app-assign-tables *ngIf="openTab === OpenTab.ASSTA" ></app-assign-tables>
+  <app-add-waiter *ngIf="openTab === OpenTab.ADDWA" 
+  [waiterList] = "waiterList" 
+  ></app-add-waiter>
+  <app-assign-tables *ngIf="openTab === OpenTab.ASSTA" 
+  [tables] = "tables" 
+  [waiterList] = "waiterList" 
+  ></app-assign-tables>
   <app-create-report *ngIf="openTab === OpenTab.CREATERE" ></app-create-report>
-  <app-edit-menu *ngIf="openTab === OpenTab.EDITMEN" ></app-edit-menu>
+  <app-edit-menu *ngIf="openTab === OpenTab.EDITMEN" 
+  [menuApps] = "menuApps"
+  [menuSides] = "menuSides"
+  [menuEntrees] = "menuEntrees"
+  [menuDesserts] = "menuDesserts" ></app-edit-menu>
   
 </body>

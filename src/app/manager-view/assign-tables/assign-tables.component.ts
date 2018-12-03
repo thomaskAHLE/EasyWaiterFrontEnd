@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TableModel } from '../../models/table-model';
-import { RestaurantService } from '../../services/restaurant.service';
 import { UserModel } from '../../models/user-model';
 import { TableService } from 'src/app/services/table.service';
 
@@ -9,51 +8,44 @@ import { TableService } from 'src/app/services/table.service';
   templateUrl: './assign-tables.component.html',
   styleUrls: ['./assign-tables.component.css']
 })
-export class AssignTablesComponent implements OnInit {
+export class AssignTablesComponent {
   mytable: TableModel;
-  // waiterlist : UserModel[] = [];
-  waiterlist: string[] = ['Waiter 1', 'Waiter 2', 'Waiter 3', 'Waiter 4'];
+
+  @Input()
+  waiterList: UserModel[] = [];
+  @Input()
   tables: TableModel[] = [];
-  constructor(private _tableService: TableService) { }
 
-  ngOnInit() {
-    // console.log(this.table2.nativeElement.innerHTML);
-    this._tableService.getAllTables()
-      .subscribe((alltables: TableModel[]) => {
-        console.log(alltables)
-        this.tables = alltables; 
-        this.tables.forEach(t => console.log(t.assignedTo))
-      });
-    console.log('work plz');
-    
-  }
+  /* constructor:
+   * @param tableService: injected for table assignment and table activation
+   */  
+  constructor(private tableService: TableService) {
+   }
 
-  clearTable(i: number) {
-    console.log(this.tables);
-    let tableToClear: TableModel = this.tables.find(t => t.tableNumber == i);
-    console.log(tableToClear);
-    tableToClear.assignedTo = 'none';
-    this._tableService.updateTableAssignment(tableToClear);
-    alert("are you sure?");
-  }
-
+  /* activateTable
+  * @param tableToActivate: table to activate
+  * if table is not already activated, activates it and updates it in database
+  */  
   activateTable(tableToActivate:TableModel){
-    console.log('activating table' + tableToActivate);
     if(!tableToActivate.isActive)
     {
       tableToActivate.isActive = true;
-      this._tableService.updateTableisActive(tableToActivate);
+      this.tableService.updateTableisActive(tableToActivate);
     }
   }
-
-  updateAssign(waiterlist, tableToAssign:TableModel) {
-    
-    tableToAssign.assignedTo = waiterlist;
-    this._tableService.updateTableAssignment(tableToAssign);
+  /* updateAssign
+  * @param waiter: waiter to assign to table
+  * @param tableToAssign: table to set assignment
+  * changes assignment to waiter, updates in database
+  * if table is not active, activates table
+  */ 
+  updateAssign(waiter:string, tableToAssign:TableModel) { 
+    tableToAssign.assignedTo = waiter;
+    this.tableService.updateTableAssignment(tableToAssign);
     if(!tableToAssign.isActive)
     {
       tableToAssign.isActive = true;
-      this._tableService.updateTableisActive(tableToAssign);
+      this.tableService.updateTableisActive(tableToAssign);
     }
   }
 }

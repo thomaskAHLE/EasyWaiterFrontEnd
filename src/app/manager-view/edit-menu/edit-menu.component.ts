@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/services/menu.service';
-import {MenuModel} from '../../models/menu-model';
-import { TableModel } from 'src/app/models/table-model';
-import {FoodModel, FOOD_CATEGORY} from '../../models/food-model';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import {FoodModel} from '../../models/food-model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { EMmodalComponent } from '../emmodal/emmodal.component';
-import { NgModuleRef } from '@angular/core/src/render3';
+import { RmItemModalComponent } from '../rm-item-modal/rm-item-modal.component';
 
 
 @Component({
@@ -14,30 +10,29 @@ import { NgModuleRef } from '@angular/core/src/render3';
   templateUrl: './edit-menu.component.html',
   styleUrls: ['./edit-menu.component.css']
 })
-export class EditMenuComponent implements OnInit {
+export class EditMenuComponent{
 
-  @ViewChild('ipt') nameval: ElementRef;
   modalReference: any;
-  table: TableModel;
-  menuApps: FoodModel[] = [];
-  menuSides:FoodModel[] = [];
-  menuEntrees:FoodModel[]=[];
-  menuDesserts:FoodModel[]=[];
-  menu: MenuModel;
-
-  constructor(private _menuService: MenuService, private modal: NgbModal) { 
-  }
-
   
-
-  ngOnInit( ) {
-    this._menuService.getOrderObservable().subscribe((menuItems:FoodModel[])=>{
-      this.menuApps = menuItems.filter(f => f.category == FOOD_CATEGORY.APPETIZER);
-      this.menuSides = menuItems.filter(f => f.category == FOOD_CATEGORY.SIDE);
-      this.menuEntrees = menuItems.filter(f => f.category == FOOD_CATEGORY.ENTREE);
-      this.menuDesserts = menuItems.filter(f => f.category == FOOD_CATEGORY.DESSERT);
-  });
+  @Input()
+  menuApps: FoodModel[] = [];
+  @Input()
+  menuSides:FoodModel[] = [];
+  @Input()
+  menuEntrees:FoodModel[]=[];
+  @Input()
+  menuDesserts:FoodModel[]=[];
+  
+ /* constructor: 
+  * @param modal: injects modal for use when editing adding or removing a menu item
+  */ 
+  constructor(private modal: NgbModal) { 
   }
+
+  /* onAddMenuItem 
+  * creates new foodModel
+  * opens EMmodal and passes in new foodModel and ModalType =AddItem as Input
+  */ 
   onAddMenuItem() {
     let food:FoodModel = new FoodModel("",0,0,"");
     const modalRef = this.modal.open(EMmodalComponent);
@@ -45,15 +40,24 @@ export class EditMenuComponent implements OnInit {
     modalRef.componentInstance.emModalType = 1;
   }
   
-  onRemoveMenuItem(foodItem:FoodModel)
+  /* onRemoveMenuItem 
+  * @param foodToRemove: menuItem to remove
+  * opens remove modal and passes in foodToRemove as input
+  */ 
+  onRemoveMenuItem(foodToRemove:FoodModel)
   {
-    this._menuService.removeMenuItem(foodItem);
+    const modalRef = this.modal.open(RmItemModalComponent);
+    modalRef.componentInstance.food = foodToRemove;
   }
 
-  onEditMenuItem(foodItem:FoodModel)
+  /* onRemoveMenuItem 
+  * @param foodToEdit: menuItem to edit
+  * opens edit modal and passes in foodToEdit and emModalType = EditItem as Input
+  */ 
+  onEditMenuItem(foodToEdit:FoodModel)
   {
     const modalRef = this.modal.open(EMmodalComponent);
-    modalRef.componentInstance.food = foodItem;
+    modalRef.componentInstance.food = foodToEdit;
     modalRef.componentInstance.emModalType = 0;
   }
 

@@ -3,15 +3,15 @@
     <div class="nav-menu"></div>
     <div class="other-stuff">
         <button class="btn btn-primary add-btn " (click)='onClick()' >Add Employee</button>
-        <table class="table table-bordered ">
+        <table class="table table-bordered table-hover">
             <thead>
               <th colspan="2" class = "text-center">Waiters</th>
             </thead>
             <tbody>
-              <tr *ngFor="let w of waiterlist">
+              <tr *ngFor="let w of waiterList">
                 <td width="50%">
                     <div #nameval class="panel">
-                        {{w}} 
+                        {{w.displayName}} 
                       </div>
                 </td>
                 <td class="text-center" width="50%">

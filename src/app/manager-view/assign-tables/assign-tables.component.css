@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+
 .back-grid {
     display: grid;
     grid-template-columns: 10% 70% 19% 1%;
@@ -13,11 +14,11 @@
 .table-space{
     grid-area: table-space;
 }
-
+    
 .table-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 100vh;
+    height: 70vh;
     width: 70vw;
     position: fixed;
 }
@@ -29,7 +30,8 @@
 .table-space-item-active{
     align-self: center;
     justify-self: center;
-    background-color: blueviolet;
+    background-image: url(floor.jpg);
+    background-size: contain; 
     height: 110px;
     width: 110px;
     border-radius: 10px;
@@ -50,25 +52,22 @@
 
 .waiters-nav{
     grid-area: waiters-nav;
-    height: 100vh;
+    /* height: 100vh; */
     
 }
 
 .waiters-nav > .list-group-item.list-group-item-info{
-    background-color: blueviolet;
+    background-color: #5680E9;
 }
 
 .waiters-nav > .list-group-item.list-group-item-info > p{
     padding: 20px;
     text-align: center;
     color: whitesmoke;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
 
-.waiters-nav li{
-    height: 80px;
-}
 
 .list-group-item.list-group-item-action{
     text-align: center;

@@ -1,0 +1,43 @@
+
+.back-grid{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-areas: 
+    "nav-menu report-container"
+}
+
+
+.nav-menu{
+    grid-area: nav-menu;
+}
+
+.report-container{
+    grid-area: report-container;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5em;
+}
+
+.report-container >div{
+    align-self: center;
+    justify-self: center; 
+}
+
+
+.card {
+    display:inline-block;
+}
+
+.big-icon {
+    padding-top: 0.5em; 
+    font-size: 65px;
+}
+
+.card-subtitle{
+    padding-top: 3em; 
+}
+
+.btn.btn-primary{
+    background-color: #5680E9;
+    border: #5680E9;
+}

@@ -14,19 +14,18 @@
     <p>Item Price</p>
     <input #itemPrice value={{food.price}} [(ngModel)]="food.price" id="typeahead-basic" type="text" class="form-control"/>
     <hr>
-      <div ngbDropdown class="d-inline-block">
         <label>Category</label>
         <div>
-        <select class="form-control" id="exampleFormControlSelect1">
-            <option value='1'>Appetizer</option>
-            <option value='2'>Side</option>
-            <option value='3'>Entree</option>
-            <option value='4'>Dessert</option>
+        <select [(ngModel)] = 'food.category'class="form-control" id="exampleFormControlSelect1">
+            <option value='0'>Appetizer</option>
+            <option value='1'>Side</option>
+            <option value='2'>Entree</option>
+            <option value='3'>Dessert</option>
           </select>
-        </div>
+        
       </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="saveVal()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="updateMenuItem()">Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
 </div>
