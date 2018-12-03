@@ -11,9 +11,11 @@
       <td width="50%"> 
         <div class="panel">
           {{a.name}} ${{a.price}}
-          <i class="fas fa-info-circle" (click)="isCollapsed = !isCollapsed"
+          <!-- <i class="fas fa-info-circle" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" ></i>
-          <p [ngbCollapse]="isCollapsed" >{{a.description}}</p> 
+          <p [ngbCollapse]="isCollapsed" >{{a.description}}</p>  -->
+          <i class="fas fa-info-circle"></i>
+          <p>{{a.description}}</p>
         </div>
       </td>
       <td class="text-center" width="50%"> 
